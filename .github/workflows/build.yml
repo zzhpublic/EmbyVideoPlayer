@@ -36,20 +36,20 @@ jobs:
 
       - name: Select Xcode
         run: |
-                # Try multiple Xcode 15.4 paths, fallback to default
-                if [ -d "/Applications/Xcode_15.4.app" ]; then
-                  sudo xcode-select -s /Applications/Xcode_15.4.app
-                elif [ -d "/Applications/Xcode_15.3.app" ]; then
-                  sudo xcode-select -s /Applications/Xcode_15.3.app
-                else
-                  sudo xcode-select -s /Applications/Xcode.app
-                fi
-                xcodebuild -version
+          # Try multiple Xcode 15.4 paths, fallback to default
+          if [ -d "/Applications/Xcode_15.4.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_15.4.app
+          elif [ -d "/Applications/Xcode_15.3.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_15.3.app
+          else
+            sudo xcode-select -s /Applications/Xcode.app
+          fi
+          xcodebuild -version
 
-            - name: Install Swift toolchain
-              uses: swift-actions/setup-swift@v2
-              with:
-                swift-version: "5.10"
+      - name: Install Swift toolchain
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: "5.10"
 
       - name: Cache Swift packages
         uses: actions/cache@v4
@@ -122,15 +122,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Select Xcode
         run: |
-                # Try multiple Xcode 15.4 paths, fallback to default
-                if [ -d "/Applications/Xcode_15.4.app" ]; then
-                  sudo xcode-select -s /Applications/Xcode_15.4.app
-                elif [ -d "/Applications/Xcode_15.3.app" ]; then
-                  sudo xcode-select -s /Applications/Xcode_15.3.app
-                else
-                  sudo xcode-select -s /Applications/Xcode.app
-                fi
-                xcodebuild -version
+          # Try multiple Xcode 15.4 paths, fallback to default
+          if [ -d "/Applications/Xcode_15.4.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_15.4.app
+          elif [ -d "/Applications/Xcode_15.3.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_15.3.app
+          else
+            sudo xcode-select -s /Applications/Xcode.app
+          fi
+          xcodebuild -version
       - name: Generate DocC documentation
         run: |
           xcodebuild docbuild \
