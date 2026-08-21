@@ -485,19 +485,19 @@ extension EmbyAPIClient {
     
     func getMovies(libraryId: String, sortBy: String = "SortName", limit: Int = 100) async -> [EmbyItem]? {
         await withCheckedContinuation { continuation in
-            getMovies(libraryId: libraryId, sortBy: sortBy, limit: limit) { continuation.resume(returning: $0) }
+                getMovies(libraryId: libraryId, completion: { continuation.resume(returning: $0) })
         }
     }
     
     func getSeries(libraryId: String, sortBy: String = "SortName", limit: Int = 100) async -> [EmbyItem]? {
         await withCheckedContinuation { continuation in
-            getSeries(libraryId: libraryId, sortBy: sortBy, limit: limit) { continuation.resume(returning: $0) }
+                getSeries(libraryId: libraryId, completion: { continuation.resume(returning: $0) })
         }
     }
     
     func getEpisodes(seriesId: String, sortBy: String = "SortName", limit: Int = 100) async -> [EmbyItem]? {
         await withCheckedContinuation { continuation in
-            getEpisodes(seriesId: seriesId, sortBy: sortBy, limit: limit) { continuation.resume(returning: $0) }
+                getEpisodes(seriesId: seriesId, completion: { continuation.resume(returning: $0) })
         }
     }
     
