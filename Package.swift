@@ -26,12 +26,12 @@ let package = Package(
                 .product(name: "Kingfisher", package: "Kingfisher"),
             ],
             path: "Sources",
-            resources: [],
+                    resources: []
         ),
         .executableTarget(
             name: "EmbyVideoPlayerApp",
             dependencies: ["EmbyVideoPlayer"],
-            path: "App",
+                    path: "App"
         ),
     ],
 )
