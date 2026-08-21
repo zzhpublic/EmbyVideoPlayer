@@ -15,17 +15,17 @@ jobs:
       matrix:
         include:
           - platform: macOS
-            runs-on: macos-latest
+                  runs-on: macos-14
             xcode: "15.4"
             destination: 'platform=macOS'
             scheme: EmbyVideoPlayerApp
           - platform: iOS Simulator
-            runs-on: macos-latest
+                  runs-on: macos-14
             xcode: "15.4"
             destination: 'platform=iOS Simulator,name=iPhone 15,OS=latest'
             scheme: EmbyVideoPlayerApp
           - platform: tvOS Simulator
-            runs-on: macos-latest
+                  runs-on: macos-14
             xcode: "15.4"
             destination: 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation),OS=latest'
             scheme: EmbyVideoPlayerApp
@@ -95,7 +95,7 @@ jobs:
 
   swift-format:
     name: SwiftFormat Check
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - name: Install SwiftFormat
@@ -105,7 +105,7 @@ jobs:
 
   swift-lint:
     name: SwiftLint Check
-    runs-on: macos-latest
+        runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - name: Install SwiftLint
@@ -115,7 +115,7 @@ jobs:
 
   generate-docs:
     name: Generate Documentation
-    runs-on: macos-latest
+        runs-on: macos-14
     needs: build-and-test
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     steps:
