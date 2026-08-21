@@ -369,6 +369,10 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
         // This should be set by the view controller
         return nil
     }
+    
+        func setDrawable(_ drawable: Any?) {
+            mediaPlayer?.drawable = drawable
+        }
 }
 
 #elseif os(macOS)

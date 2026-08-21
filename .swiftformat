@@ -3,7 +3,6 @@
 
 # Indentation
 --indent 4
---tabWidth 4
 tabWidth: 4
 useTabs: false
 
