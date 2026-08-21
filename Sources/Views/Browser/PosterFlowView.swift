@@ -9,11 +9,41 @@ import SwiftUI
 import Kingfisher
 import EmbyVideoPlayer
 
-// Helper for conditional iOS 17+ modifiers
+// Helper for conditional iOS 17+ modifiers - simplified for iOS 16 compatibility
 extension View {
     @ViewBuilder
     func ifAvailable(_ transform: (Self) -> some View) -> some View {
         transform(self)
+    }
+}
+
+// Backport scrollTargetLayout for iOS 16
+extension View {
+    @ViewBuilder
+    func backportScrollTargetLayout() -> some View {
+        if #available(iOS 17.0, *) {
+            self.scrollTargetLayout()
+        } else {
+            self
+        }
+    }
+    
+    @ViewBuilder
+    func backportScrollPosition<ID: Hashable>(id: Binding<ID?>) -> some View {
+        if #available(iOS 17.0, *) {
+            self.scrollPosition(id: id)
+        } else {
+            self
+        }
+    }
+    
+    @ViewBuilder
+    func backportScrollTargetBehavior(_ behavior: Any?) -> some View {
+        if #available(iOS 17.0, *) {
+            self.scrollTargetBehavior(.viewAligned)
+        } else {
+            self
+        }
     }
 }
 
@@ -266,28 +296,23 @@ struct HorizontalPosterFlow: View {
             .padding(.horizontal)
             
             // Horizontal scroll
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 16) {
-                    ForEach(items) { item in
-                        PosterCardView(
-                            item: item,
-                            layout: layout,
-                            onTap: { onItemTap(item) },
-                            onLongPress: { onItemLongPress?(item) }
-                        )
-                        .id(item.id)
-                    }
-                }
-                .padding(.horizontal)
-            }
-                        .ifAvailable { view in
-                            if #available(iOS 17.0, *) {
-                                view.scrollTargetLayout().scrollPosition(id: $scrollPosition)
-                            } else {
-                                view
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHStack(spacing: 16) {
+                                ForEach(items) { item in
+                                    PosterCardView(
+                                        item: item,
+                                        layout: layout,
+                                        onTap: { onItemTap(item) },
+                                        onLongPress: { onItemLongPress?(item) }
+                                    )
+                                    .id(item.id)
+                                }
                             }
+                            .padding(.horizontal)
                         }
-        }
+                        .backportScrollTargetLayout()
+                        .backportScrollPosition(id: $scrollPosition)
+                    }
     }
 }
 
@@ -394,44 +419,30 @@ struct CarouselPosterFlow: View {
                 let visibleCount = max(1, Int(geometry.size.width / (itemWidth + 16)))
                 
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 16) {
-                        ForEach(items.indices, id: \.self) { index in
-                            let item = items[index]
-                            let isCurrent = index == currentIndex
+                                    LazyHStack(spacing: 16) {
+                                        ForEach(items.indices, id: \.self) { index in
+                                            let item = items[index]
+                                            let isCurrent = index == currentIndex
                             
-                            PosterCardView(
-                                item: item,
-                                layout: .carousel(itemWidth: itemWidth, itemHeight: itemHeight),
-                                onTap: { onItemTap(item) },
-                                onLongPress: { onItemLongPress?(item) }
-                            )
-                            .scaleEffect(isCurrent ? 1.0 : 0.9)
-                            .opacity(isCurrent ? 1.0 : 0.7)
-                            .animation(.spring(response: 0.3, dampingFraction: 0.8), value: currentIndex)
-                        }
-                    }
-                    .padding(.horizontal, (geometry.size.width - itemWidth) / 2)
-                    .scrollTargetLayout()
-                }
-                                    .ifAvailable { view in
-                                        if #available(iOS 17.0, *) {
-                                            view.scrollTargetBehavior(.viewAligned)
-                                                .onScrollGeometryChange(for: CGFloat.self) { geometry in
-                                                    geometry.contentOffset.x + geometry.contentInsets.leading
-                                                } action: { _, newOffset in
-                                                    let newIndex = Int(round(newOffset / (itemWidth + 16)))
-                                                    if newIndex >= 0 && newIndex < items.count {
-                                                        currentIndex = newIndex
-                                                    }
-                                                }
-                                        } else {
-                                            view
+                                            PosterCardView(
+                                                item: item,
+                                                layout: .carousel(itemWidth: itemWidth, itemHeight: itemHeight),
+                                                onTap: { onItemTap(item) },
+                                                onLongPress: { onItemLongPress?(item) }
+                                            )
+                                            .scaleEffect(isCurrent ? 1.0 : 0.9)
+                                            .opacity(isCurrent ? 1.0 : 0.7)
+                                            .animation(.spring(response: 0.3, dampingFraction: 0.8), value: currentIndex)
                                         }
                                     }
-            }
-            .frame(height: itemHeight + 80) // Account for title
-        }
-    }
+                                    .padding(.horizontal, (geometry.size.width - itemWidth) / 2)
+                                    .scrollTargetLayout()
+                                }
+                                .backportScrollTargetBehavior(nil)
+                            }
+                            .frame(height: itemHeight + 80) // Account for title
+                        }
+                    }
 }
 
 // MARK: - Main Poster Flow Container

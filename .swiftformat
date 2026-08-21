@@ -4,7 +4,6 @@
 # Indentation
 --indent 4
 --tabwidth 4
---usetabs false
 
 # Line length
 --maxwidth 120
