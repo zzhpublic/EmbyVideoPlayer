@@ -87,11 +87,16 @@ jobs:
         if: matrix.platform == 'iOS Device'
         run: |
           mkdir -p ./build/ipa/Payload
-                APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive -name "*.app" -type d | head -1)
+                echo "=== Archive contents ==="
+                find ./build/EmbyVideoPlayer.xcarchive -type f -name "*.app" 2>/dev/null | head -20
+                echo "=== All directories ==="
+                find ./build/EmbyVideoPlayer.xcarchive -type d 2>/dev/null | head -30
+                APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive -name "*.app" -type d 2>/dev/null | head -1)
                 if [ -z "$APP_PATH" ]; then
                   echo "No .app found in archive"
                   exit 1
                 fi
+                echo "Found app at: $APP_PATH"
                 cp -R "$APP_PATH" ./build/ipa/Payload/
                 cd ./build/ipa
                 zip -r EmbyVideoPlayer.ipa Payload/
