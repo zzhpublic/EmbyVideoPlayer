@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Swift Build",
+            "type": "shell",
+            "command": "C:\\Users\\fire\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.exe",
+            "args": [
+                "build",
+                "--package-path",
+                "C:\\Users\\fire\\EmbyVideoPlayer"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

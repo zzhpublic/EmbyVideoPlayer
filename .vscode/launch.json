@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Swift Build",
+            "type": "lldb",
+            "request": "launch",
+            "program": "C:\\Users\\fire\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.exe",
+            "args": ["build", "--package-path", "C:\\Users\\fire\\EmbyVideoPlayer"],
+            "cwd": "C:\\Users\\fire\\EmbyVideoPlayer"
+        }
+    ]
+}
