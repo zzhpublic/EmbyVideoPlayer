@@ -14,16 +14,18 @@ jobs:
     strategy:
           matrix:
             include:
-              - platform: iOS Simulator
+              - platform: iOS Device
                 runs-on: macos-14
                 xcode: "15.4"
-                destination: 'platform=iOS Simulator,name=iPhone 15,OS=latest'
+                destination: 'generic/platform=iOS'
                 scheme: EmbyVideoPlayerApp
-              - platform: tvOS Simulator
+                disable_codesign: true
+              - platform: tvOS Device
                 runs-on: macos-14
                 xcode: "15.4"
-                destination: 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation),OS=latest'
+                destination: 'generic/platform=tvOS'
                 scheme: EmbyVideoPlayerApp
+                disable_codesign: true
 
     steps:
       - name: Checkout repository
@@ -66,7 +68,10 @@ jobs:
             -scheme ${{ matrix.scheme }} \
             -destination "${{ matrix.destination }}" \
             -configuration Debug \
-            build
+                  CODE_SIGNING_ALLOWED=${{ matrix.disable_codesign }} \
+                  CODE_SIGN_IDENTITY="" \
+                  CODE_SIGNING_REQUIRED=NO \
+                  build
 
 
       - name: Upload build artifacts
