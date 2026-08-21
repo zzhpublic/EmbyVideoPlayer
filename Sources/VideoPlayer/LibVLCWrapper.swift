@@ -231,7 +231,7 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
     
     func setAspectRatio(_ aspectRatio: String?) {
         if let aspectRatio = aspectRatio {
-            mediaPlayer?.videoAspectRatio = aspectRatio
+                aspectRatio.withCString { mediaPlayer?.videoAspectRatio = $0 }
         } else {
                 mediaPlayer?.videoAspectRatio = ""
         }
@@ -240,7 +240,7 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
     
     func setCropGeometry(_ geometry: String?) {
         if let geometry = geometry {
-            mediaPlayer?.videoCropGeometry = geometry
+                geometry.withCString { mediaPlayer?.videoCropGeometry = $0 }
         } else {
                 mediaPlayer?.videoCropGeometry = ""
         }
