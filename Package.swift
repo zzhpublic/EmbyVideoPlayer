@@ -6,17 +6,17 @@ let package = Package(
     platforms: [
         .iOS(.v16),
         .tvOS(.v16),
-        .macOS(.v13),
+        .macOS(.v13)
     ],
     products: [
         .library(name: "EmbyVideoPlayer", targets: ["EmbyVideoPlayer"]),
-        .executable(name: "EmbyVideoPlayerApp", targets: ["EmbyVideoPlayerApp"]),
+        .executable(name: "EmbyVideoPlayerApp", targets: ["EmbyVideoPlayerApp"])
     ],
     dependencies: [
         // MobileVLCKit for LibVLC - using community SPM distribution
         .package(url: "https://github.com/MobileVLCKit-SPM/MobileVLCKit-SPM.git", from: "3.6.0"),
         // Kingfisher for image loading
-        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0"),
+        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0")
     ],
     targets: [
         .target(
@@ -26,12 +26,12 @@ let package = Package(
                 .product(name: "Kingfisher", package: "Kingfisher"),
             ],
             path: "Sources",
-                    resources: []
+            resources: []
         ),
         .executableTarget(
             name: "EmbyVideoPlayerApp",
             dependencies: ["EmbyVideoPlayer"],
-                    path: "App"
-        ),
-    ],
+            path: "App"
+        )
+    ]
 )
