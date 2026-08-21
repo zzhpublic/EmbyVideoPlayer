@@ -98,12 +98,12 @@ public enum SMBBrowserError: LocalizedError {
 public class SMBBrowser: ObservableObject {
     @Published public var discoveredServers: [SMBServer] = []
     @Published public var shares: [SMBShare] = []
-    @Published var currentPath: String = ""
-    @Published var files: [SMBFile] = []
-    @Published var isLoading = false
-    @Published var errorMessage: String?
-    @Published var currentServer: SMBServer?
-    @Published var currentShare: SMBShare?
+    @Published public var currentPath: String = ""
+    @Published public var files: [SMBFile] = []
+    @Published public var isLoading = false
+    @Published public var errorMessage: String?
+    @Published public var currentServer: SMBServer?
+    @Published public var currentShare: SMBShare?
     
     private var browser: NWBrowser?
     private let queue = DispatchQueue(label: "smb.browser.queue")
@@ -112,7 +112,7 @@ public class SMBBrowser: ObservableObject {
     // Bonjour service type for SMB
     private let smbServiceType = "_smb._tcp."
     
-    init() {
+    public init() {
         loadSavedServers()
     }
     

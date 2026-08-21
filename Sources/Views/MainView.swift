@@ -8,7 +8,7 @@
 import SwiftUI
 import EmbyVideoPlayer
 
-struct MainView: View {
+public struct MainView: View {
     @EnvironmentObject var vlcManager: LibVLCWrapper
     @EnvironmentObject var embyClient: EmbyAPIClient
     @EnvironmentObject var smbBrowser: SMBBrowser

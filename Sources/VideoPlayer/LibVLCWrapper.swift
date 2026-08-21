@@ -97,42 +97,14 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
     @Published public var mediaInfo: LibVLCMediaInfo?
     
     private var mediaPlayer: VLCMediaPlayer?
-    private var media: VLCMedia?
-    private var isInitialized = false
+        private var media: VLCMedia?
+        private var isInitialized = false
     
-    // VLCMediaPlayerDelegate
-        public func mediaPlayerStateChanged(_ aNotification: Notification) {
-        guard let player = aNotification.object as? VLCMediaPlayer else { return }
-        
-        DispatchQueue.main.async {
-            self.updatePlaybackState(from: player)
+        public static let shared = LibVLCWrapper()
+    
+        public override init() {
+            super.init()
         }
-    }
-    
-        public func mediaPlayerTimeChanged(_ aNotification: Notification) {
-        guard let player = aNotification.object as? VLCMediaPlayer else { return }
-        
-        DispatchQueue.main.async {
-            if let media = player.media {
-                let currentTime = player.time.intValue
-                let totalTime = media.length.intValue
-                
-                self.playbackState.time = TimeInterval(currentTime) / 1000
-                if totalTime > 0 {
-                    self.playbackState.position = Float(currentTime) / Float(totalTime)
-                    self.playbackState.duration = TimeInterval(totalTime) / 1000
-                }
-            }
-        }
-    }
-    
-        public func mediaPlayerSnapshot(_ aNotification: Notification) {
-        // Handle snapshot if needed
-    }
-    
-    override init() {
-        super.init()
-    }
     
     public func initialize() throws {
         // MobileVLCKit initializes automatically

@@ -142,14 +142,16 @@ public struct EmbyEncoding: Codable {
 // MARK: - Emby API Client
 
 public class EmbyAPIClient: ObservableObject {
-    @Published var servers: [EmbyServer] = []
-    @Published var currentServer: EmbyServer?
-    @Published var currentUser: EmbyUser?
-    @Published var isLoading = false
-    @Published var errorMessage: String?
+    @Published public var servers: [EmbyServer] = []
+    @Published public var currentServer: EmbyServer?
+    @Published public var currentUser: EmbyUser?
+    @Published public var isLoading = false
+    @Published public var errorMessage: String?
     
     private var cancellables = Set<AnyCancellable>()
     private let session = URLSession.shared
+    
+    public init() {}
     
     // MARK: - Server Management
     
