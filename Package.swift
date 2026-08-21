@@ -6,11 +6,11 @@ let package = Package(
     platforms: [
         .iOS(.v16),
         .tvOS(.v16),
-        .macOS(.v13)
+        .macOS(.v13),
     ],
     products: [
         .library(name: "EmbyVideoPlayer", targets: ["EmbyVideoPlayer"]),
-        .executable(name: "EmbyVideoPlayerApp", targets: ["EmbyVideoPlayerApp"])
+        .executable(name: "EmbyVideoPlayerApp", targets: ["EmbyVideoPlayerApp"]),
     ],
     dependencies: [
         // MobileVLCKit for LibVLC - using community SPM distribution
@@ -26,12 +26,12 @@ let package = Package(
                 .product(name: "Kingfisher", package: "Kingfisher"),
             ],
             path: "Sources",
-            resources: []
+            resources: [],
         ),
         .executableTarget(
             name: "EmbyVideoPlayerApp",
             dependencies: ["EmbyVideoPlayer"],
-            path: "App"
-        )
-    ]
+            path: "App",
+        ),
+    ],
 )
