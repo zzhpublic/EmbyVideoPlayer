@@ -87,10 +87,15 @@ jobs:
         if: matrix.platform == 'iOS Device'
         run: |
           mkdir -p ./build/ipa/Payload
-          cp -R ./build/EmbyVideoPlayer.xcarchive/Products/Applications/EmbyVideoPlayerApp.app ./build/ipa/Payload/
-          cd ./build/ipa
-          zip -r EmbyVideoPlayer.ipa Payload/
-          echo "Unsigned IPA created at ./build/ipa/EmbyVideoPlayer.ipa"
+                APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive -name "*.app" -type d | head -1)
+                if [ -z "$APP_PATH" ]; then
+                  echo "No .app found in archive"
+                  exit 1
+                fi
+                cp -R "$APP_PATH" ./build/ipa/Payload/
+                cd ./build/ipa
+                zip -r EmbyVideoPlayer.ipa Payload/
+                echo "Unsigned IPA created at ./build/ipa/EmbyVideoPlayer.ipa"
 
       - name: Upload build artifacts
         if: always()
