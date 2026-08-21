@@ -1,0 +1,104 @@
+# SwiftFormat Configuration for EmbyVideoPlayer
+# https://github.com/nicklockwood/SwiftFormat
+
+# Indentation
+indent: 4
+tabWidth: 4
+useTabs: false
+
+# Line length
+maxWidth: 120
+
+# Newlines
+linebreak: lf
+allman: false
+
+# Spacing
+spaceAroundOperators: true
+spaceAroundRangeOperators: true
+spaceAroundBrackets: false
+spaceAroundGenerics: false
+spaceInsideParens: false
+spaceInsideBrackets: false
+spaceInsideBraces: true
+spaceInsideComment: true
+
+# Braces
+braceStyle: stroustrup
+voidTypeInParens: false
+
+# Semicolons
+semicolons: never
+
+# Commas
+commas: always
+
+# Colons
+colons: true
+
+# Operators
+operatorLineBreak: before
+preferForLoop: true
+
+# Swift version
+swiftVersion: "6.0"
+
+# Rules to exclude
+exclude:
+  - .build
+  - DerivedData
+  - .github
+  - Pods
+  - Carthage
+  - .vscode
+
+# File options
+swiftlint: false
+fragment: false
+
+# Headers
+header: ""
+headerIgnored: ""
+
+# Organize imports
+organizeImports: true
+importGrouping: true
+
+# Wrap
+wrapMultilineStatementBraces: true
+wrapArguments: beforeFirst
+wrapParameters: beforeFirst
+wrapCollections: beforeFirst
+wrapTernary: beforeFirst
+wrapSwitchCases: true
+wrapEnumCases: beforeFirst
+wrapConditions: beforeFirst
+
+# Self
+redundantSelf: true
+
+# Redundant
+redundantReturn: true
+redundantLet: true
+redundantType: true
+redundantNilInit: true
+redundantVoidReturn: true
+redundantModifiers: true
+redundantPattern: true
+
+# Sort
+sortImports: true
+sortSwitchCases: false
+sortProtocolMembers: false
+
+# Trailing
+trailingClosures: always
+trailingCommas: always
+trailingCommasInClosures: always
+
+# Else
+elseOnSameLine: true
+elseIfOnSameLine: true
+
+# Experimental
+experimentalFeatures: []

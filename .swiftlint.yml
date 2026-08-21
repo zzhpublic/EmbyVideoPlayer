@@ -1,0 +1,152 @@
+# SwiftLint Configuration for EmbyVideoPlayer
+# https://github.com/realm/SwiftLint
+
+disabled_rules:
+  - trailing_whitespace
+  - line_length
+  - type_body_length
+  - file_length
+  - function_body_length
+  - cyclomatic_complexity
+  - nesting
+  - identifier_name
+  - todo
+  - force_cast
+  - force_try
+  - implicit_return
+  - opening_brace
+  - closing_brace
+  - vertical_parameter_alignment_on_call
+  - vertical_parameter_alignment
+  - closure_end_indentation
+  - empty_count
+  - empty_string
+  - redundant_nil_coalescing
+  - redundant_void_return
+  - explicit_init
+  - unneeded_break_in_switch
+  - switch_case_alignment
+  - switch_case_on_newline
+  - colon
+  - comma
+  - control_statement
+  - fallthrough
+  - legacy_random
+  - legacy_constructor
+  - legacy_cggeometry_functions
+  - legacy_nsgeometry_functions
+  - redundant_discardable_let
+  - redundant_string_enum_value
+  - superfluous_disable_command
+  - trailing_newline
+  - trailing_semicolon
+  - unavailable_function
+  - unneeded_parentheses_in_closure_argument
+  - unowned_variable_capture
+  - untyped_error_in_catch
+  - vertical_whitespace
+  - void_return
+
+opt_in_rules:
+  - empty_collection_literal
+  - explicit_self
+  - fatal_error_message
+  - first_where
+  - force_unwrapping
+  - missing_docs
+  - nimble_operator
+  - no_grouping_extension
+  - operator_usage_whitespace
+  - overridden_super_call
+  - private_action
+  - private_outlet
+  - prohibited_super_call
+  - quick_discard_none
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - required_deinit
+  - return_arrow_whitespace
+  - strong_iboutlet
+  - toggle_bool
+  - trailing_closure
+  - unavailable_function
+  - unneeded_parentheses_in_closure_argument
+  - unowned_variable_capture
+  - untyped_error_in_catch
+  - vertical_parameter_alignment
+  - vertical_parameter_alignment_on_call
+  - vertical_whitespace
+  - yoda_condition
+
+analyzer_rules:
+  - explicit_self
+  - force_unwrapping
+  - missing_docs
+
+included:
+  - Sources
+  - Tests
+  - App
+
+excluded:
+  - .build
+  - DerivedData
+  - .github
+  - Pods
+  - Carthage
+  - .vscode
+  - Package.swift
+
+line_length:
+  warning: 120
+  error: 160
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_interpolated_strings: true
+  ignores_urls: true
+
+type_body_length:
+  warning: 300
+  error: 500
+
+file_length:
+  warning: 500
+  error: 1000
+  ignores_comments: true
+
+function_body_length:
+  warning: 100
+  error: 200
+
+cyclomatic_complexity:
+  warning: 15
+  error: 25
+
+nesting:
+  type_level:
+    warning: 3
+    error: 4
+  statement_level:
+    warning: 5
+    error: 8
+
+identifier_name:
+  min_length:
+    warning: 2
+    error: 1
+  max_length:
+    warning: 50
+    error: 60
+  excluded:
+    - id
+    - id
+    - URL
+    - UUID
+    - SMB
+    - Emby
+    - API
+    - VLC
+    - UI
+    - App
+
+reporter: "xcode"

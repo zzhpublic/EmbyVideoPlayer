@@ -1,0 +1,107 @@
+# Xcode
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+*.xcworkspace
+xcuserdata/
+
+# Build
+.build/
+DerivedData/
+*.build/
+
+# Swift Package Manager
+Package.resolved
+*.swp
+.swp
+
+# CocoaPods
+Pods/
+*.xcworkspace
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# IDE
+*.swp
+*.swo
+*~
+.idea/
+*.iml
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+build.log
+
+# Coverage
+*.profdata
+*.gcda
+*.gcno
+
+# Misc
+*.pem
+*.mobileprovision
+*.cer
+
+# Generated files
+*.generated.swift
+*.swiftinterface
+
+# Documentation
+docs/
+.doccarchive
+
+# SwiftFormat cache
+.swiftformat_cache
+
+# SwiftLint cache
+.swiftlint_cache
