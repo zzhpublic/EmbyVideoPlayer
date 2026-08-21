@@ -3,7 +3,7 @@
 
 # Indentation
 --indent 4
-tabWidth: 4
+--tabwidth 4
 useTabs: false
 
 # Line length

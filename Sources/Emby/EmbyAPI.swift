@@ -503,7 +503,13 @@ extension EmbyAPIClient {
         }
     }
     
-    func getPlaybackInfo(itemId: String) async -> EmbyPlaybackInfo? {
+        func getSeasons(seriesId: String) async -> [EmbyItem]? {
+            await withCheckedContinuation { continuation in
+                    getSeasons(seriesId: seriesId, completion: { continuation.resume(returning: $0) })
+            }
+        }
+    
+        func getPlaybackInfo(itemId: String) async -> EmbyPlaybackInfo? {
         await withCheckedContinuation { continuation in
             getPlaybackInfo(itemId: itemId) { continuation.resume(returning: $0) }
         }
