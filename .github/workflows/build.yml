@@ -83,25 +83,17 @@ jobs:
             SKIP_INSTALL=NO \
             BUILD_LIBRARY_FOR_DISTRIBUTION=YES
 
-      - name: Export IPA
-        if: matrix.platform == 'iOS Device'
-        run: |
-          xcodebuild -exportArchive \
-            -archivePath ./build/EmbyVideoPlayer.xcarchive \
-            -exportPath ./build/ipa \
-            -exportOptionsPlist ./exportOptions.plist
-
       - name: Upload build artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-${{ matrix.platform }}-${{ github.sha }}
-          path: |
-            .build
-            DerivedData
-            build/ipa/*.ipa
-          retention-days: 7
-          if-no-files-found: ignore
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                name: build-${{ matrix.platform }}-${{ github.sha }}
+                path: |
+                  .build
+                  DerivedData
+                  build/EmbyVideoPlayer.xcarchive
+                retention-days: 7
+                if-no-files-found: ignore
 
   swift-format:
     name: SwiftFormat Check
