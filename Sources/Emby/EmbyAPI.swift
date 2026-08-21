@@ -73,7 +73,7 @@ public struct EmbyItem: Identifiable, Codable, Hashable {
         public var baseURL: String = ""
 }
 
-struct EmbyPerson: Codable, Hashable {
+public struct EmbyPerson: Codable, Hashable {
     public let name: String
     public let role: String?
     public let type: String
