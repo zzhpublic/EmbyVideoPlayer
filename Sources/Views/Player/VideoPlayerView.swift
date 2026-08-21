@@ -862,7 +862,7 @@ extension VideoPlayerView {
 #Preview {
     VideoPlayerView(playbackInfo: EmbyPlaybackInfo(
         mediaSources: [
-            EmbyMediaSource(protocol: "File", id: "1", path: "/test.mp4", encodings: nil, container: "mp4", size: 1000000, name: "1080p", runTimeTicks: 72000000000, bitrate: 5000000, width: 1920, height: 1080, videoType: "VideoFile", video3DFormat: nil, isoType: nil, videoProfile: "High", audioProfile: "AAC", supportsDirectPlay: true, supportsDirectStream: true, supportsTranscoding: false, isRemote: false)
+            EmbyMediaSource(`protocol`: "File", id: "1", path: "/test.mp4", encodings: nil, container: "mp4", size: 1000000, name: "1080p", runTimeTicks: 72000000000, bitrate: 5000000, width: 1920, height: 1080, videoType: "VideoFile", video3DFormat: nil, isoType: nil, videoProfile: "High", audioProfile: "AAC", supportsDirectPlay: true, supportsDirectStream: true, supportsTranscoding: false, isRemote: false)
         ],
         item: EmbyItem(id: "1", name: "Test Movie", type: "Movie", mediaType: "Video", seriesName: nil, parentId: nil, path: nil, overview: "Test overview", productionYear: 2024, communityRating: 8.5, officialRating: "PG-13", runTimeTicks: 72000000000, imageTags: nil, backdropImageTags: nil, genreItems: ["Action", "Sci-Fi"], people: nil, studios: nil, taglines: nil, premiereDate: nil, isFolder: nil, childCount: nil, locationType: nil, mediaStreams: nil, playAccess: nil)
     ))

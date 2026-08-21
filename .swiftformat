@@ -2,7 +2,7 @@
 # https://github.com/nicklockwood/SwiftFormat
 
 # Indentation
-indentWidth: 4
+indent: 4
 tabWidth: 4
 useTabs: false
 

@@ -107,7 +107,7 @@ struct EmbyPlaybackInfo: Codable {
 }
 
 struct EmbyMediaSource: Codable {
-    let protocol: String
+    let `protocol`: String
     let id: String
     let path: String
     let encodings: [EmbyEncoding]?
