@@ -13,8 +13,8 @@ let package = Package(
         .executable(name: "EmbyVideoPlayerApp", targets: ["EmbyVideoPlayerApp"])
     ],
     dependencies: [
-        // MobileVLCKit for LibVLC
-        .package(url: "https://github.com/videolan/libvlc-ios.git", from: "3.6.0"),
+            // MobileVLCKit for LibVLC - using official SPM package
+            .package(url: "https://github.com/videolan/MobileVLCKit.git", from: "3.6.0"),
         // Kingfisher for image loading
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0"),
     ],
