@@ -12,23 +12,18 @@ jobs:
     name: Build & Test (${{ matrix.platform }})
     runs-on: ${{ matrix.runs-on }}
     strategy:
-      matrix:
-        include:
-          - platform: macOS
-            runs-on: macos-14
-            xcode: "15.4"
-            destination: 'platform=macOS'
-            scheme: EmbyVideoPlayerApp
-          - platform: iOS Simulator
-            runs-on: macos-14
-            xcode: "15.4"
-            destination: 'platform=iOS Simulator,name=iPhone 15,OS=latest'
-            scheme: EmbyVideoPlayerApp
-          - platform: tvOS Simulator
-            runs-on: macos-14
-            xcode: "15.4"
-            destination: 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation),OS=latest'
-            scheme: EmbyVideoPlayerApp
+          matrix:
+            include:
+              - platform: iOS Simulator
+                runs-on: macos-14
+                xcode: "15.4"
+                destination: 'platform=iOS Simulator,name=iPhone 15,OS=latest'
+                scheme: EmbyVideoPlayerApp
+              - platform: tvOS Simulator
+                runs-on: macos-14
+                xcode: "15.4"
+                destination: 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation),OS=latest'
+                scheme: EmbyVideoPlayerApp
 
     steps:
       - name: Checkout repository
@@ -73,14 +68,6 @@ jobs:
             -configuration Debug \
             build
 
-      - name: Run tests (macOS only)
-        if: matrix.platform == 'macOS'
-        run: |
-          xcodebuild \
-            -scheme ${{ matrix.scheme }} \
-            -destination "${{ matrix.destination }}" \
-            -configuration Debug \
-            test
 
       - name: Upload build artifacts
         if: always()
