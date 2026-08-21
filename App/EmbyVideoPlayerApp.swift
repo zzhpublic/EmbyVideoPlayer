@@ -9,14 +9,14 @@ import SwiftUI
 
 @main
 struct EmbyVideoPlayerApp: App {
-    @StateObject private var vlcManager = LibVLCManager.shared
+    @StateObject private var vlcWrapper = LibVLCWrapper.shared
     @StateObject private var embyClient = EmbyAPIClient()
     @StateObject private var smbBrowser = SMBBrowser()
     
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(vlcManager)
+                .environmentObject(vlcWrapper)
                 .environmentObject(embyClient)
                 .environmentObject(smbBrowser)
         }
