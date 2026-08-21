@@ -83,16 +83,16 @@ jobs:
             SKIP_INSTALL=NO \
             BUILD_LIBRARY_FOR_DISTRIBUTION=YES
 
-            - name: Create unsigned IPA
-              if: matrix.platform == 'iOS Device'
-              run: |
-                mkdir -p ./build/ipa/Payload
-                cp -R ./build/EmbyVideoPlayer.xcarchive/Products/Applications/EmbyVideoPlayerApp.app ./build/ipa/Payload/
-                cd ./build/ipa
-                zip -r EmbyVideoPlayer.ipa Payload/
-                echo "Unsigned IPA created at ./build/ipa/EmbyVideoPlayer.ipa"
+      - name: Create unsigned IPA
+        if: matrix.platform == 'iOS Device'
+        run: |
+          mkdir -p ./build/ipa/Payload
+          cp -R ./build/EmbyVideoPlayer.xcarchive/Products/Applications/EmbyVideoPlayerApp.app ./build/ipa/Payload/
+          cd ./build/ipa
+          zip -r EmbyVideoPlayer.ipa Payload/
+          echo "Unsigned IPA created at ./build/ipa/EmbyVideoPlayer.ipa"
 
-            - name: Upload build artifacts
+      - name: Upload build artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -101,9 +101,9 @@ jobs:
             .build
             DerivedData
             build/EmbyVideoPlayer.xcarchive
-                        build/ipa/EmbyVideoPlayer.ipa
-                      retention-days: 7
-                      if-no-files-found: ignore
+            build/ipa/EmbyVideoPlayer.ipa
+          retention-days: 7
+          if-no-files-found: ignore
 
   swift-format:
     name: SwiftFormat Check
