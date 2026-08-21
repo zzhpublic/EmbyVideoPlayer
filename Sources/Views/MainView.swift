@@ -15,6 +15,8 @@ public struct MainView: View {
      
     @State private var selectedTab: MainTab = .home
     
+    public init() {}
+    
     public enum MainTab: String, CaseIterable {
         case home = "Home"
         case emby = "Emby"
