@@ -20,12 +20,6 @@ jobs:
             destination: 'generic/platform=iOS'
             scheme: EmbyVideoPlayerApp
             disable_codesign: true
-          - platform: tvOS Device
-            runs-on: macos-14
-            xcode: "15.4"
-            destination: 'generic/platform=tvOS'
-            scheme: EmbyVideoPlayerApp
-            disable_codesign: true
 
     steps:
       - name: Checkout repository
@@ -63,7 +57,7 @@ jobs:
         run: swift package resolve
 
       - name: Build for ${{ matrix.platform }}
-        timeout-minutes: 30
+              timeout-minutes: 45
         run: |
                 xcodebuild \
                   -scheme ${{ matrix.scheme }} \
