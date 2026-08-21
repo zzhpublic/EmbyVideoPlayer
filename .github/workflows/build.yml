@@ -12,20 +12,20 @@ jobs:
     name: Build & Test (${{ matrix.platform }})
     runs-on: ${{ matrix.runs-on }}
     strategy:
-          matrix:
-            include:
-              - platform: iOS Device
-                runs-on: macos-14
-                xcode: "15.4"
-                destination: 'generic/platform=iOS'
-                scheme: EmbyVideoPlayerApp
-                disable_codesign: true
-              - platform: tvOS Device
-                runs-on: macos-14
-                xcode: "15.4"
-                destination: 'generic/platform=tvOS'
-                scheme: EmbyVideoPlayerApp
-                disable_codesign: true
+      matrix:
+        include:
+          - platform: iOS Device
+            runs-on: macos-14
+            xcode: "15.4"
+            destination: 'generic/platform=iOS'
+            scheme: EmbyVideoPlayerApp
+            disable_codesign: true
+          - platform: tvOS Device
+            runs-on: macos-14
+            xcode: "15.4"
+            destination: 'generic/platform=tvOS'
+            scheme: EmbyVideoPlayerApp
+            disable_codesign: true
 
     steps:
       - name: Checkout repository
@@ -63,8 +63,8 @@ jobs:
         run: swift package resolve
 
       - name: Build for ${{ matrix.platform }}
-              timeout-minutes: 30
-              run: |
+        timeout-minutes: 30
+        run: |
                 xcodebuild \
                   -scheme ${{ matrix.scheme }} \
                   -destination "${{ matrix.destination }}" \
