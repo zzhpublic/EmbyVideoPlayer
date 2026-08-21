@@ -292,11 +292,17 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
         playbackState.videoTrack = Int(player.currentVideoTrackIndex)
         playbackState.audioTrack = Int(player.currentAudioTrackIndex)
         playbackState.subtitleTrack = Int(player.currentVideoSubTitleIndex)
-                if let aspectRatio = player.videoAspectRatio, !aspectRatio.isEmpty {
-                    playbackState.aspectRatio = aspectRatio
+                if let aspectRatioPtr = player.videoAspectRatio {
+                    let aspectRatio = String(cString: aspectRatioPtr)
+                    if !aspectRatio.isEmpty {
+                        playbackState.aspectRatio = aspectRatio
+                    }
                 }
-                if let cropGeometry = player.videoCropGeometry, !cropGeometry.isEmpty {
-                    playbackState.cropGeometry = cropGeometry
+                if let cropGeometryPtr = player.videoCropGeometry {
+                    let cropGeometry = String(cString: cropGeometryPtr)
+                    if !cropGeometry.isEmpty {
+                        playbackState.cropGeometry = cropGeometry
+                    }
                 }
             }
     
