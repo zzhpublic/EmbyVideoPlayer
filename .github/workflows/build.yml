@@ -36,12 +36,12 @@ jobs:
 
       - name: Select Xcode
         run: |
-                if [ "${{ matrix.xcode }}" = "15.4" ]; then
-                  sudo xcode-select -s /Applications/Xcode_15.4.app || sudo xcode-select -s /Applications/Xcode.app
-                else
-                  sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
-                fi
-                xcodebuild -version
+          if [ "${{ matrix.xcode }}" = "15.4" ]; then
+            sudo xcode-select -s /Applications/Xcode_15.4.app || sudo xcode-select -s /Applications/Xcode.app
+          else
+            sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
+          fi
+          xcodebuild -version
 
       - name: Install Swift toolchain
         uses: swift-actions/setup-swift@v2
@@ -88,7 +88,7 @@ jobs:
             .build
             DerivedData
           retention-days: 7
-                if-no-files-found: ignore
+          if-no-files-found: ignore
 
   swift-format:
     name: SwiftFormat Check
@@ -98,8 +98,7 @@ jobs:
       - name: Install SwiftFormat
         run: brew install swiftformat
       - name: Check SwiftFormat
-          run: |
-            swiftformat --lint --config .swiftformat . || echo "SwiftFormat found issues"
+        run: swiftformat --lint --config .swiftformat . || echo "SwiftFormat found issues"
 
   swift-lint:
     name: SwiftLint Check
