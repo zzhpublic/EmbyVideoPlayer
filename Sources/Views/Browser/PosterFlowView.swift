@@ -436,7 +436,7 @@ struct CarouselPosterFlow: View {
                                         }
                                     }
                                     .padding(.horizontal, (geometry.size.width - itemWidth) / 2)
-                                    .scrollTargetLayout()
+                                                                        .backportScrollTargetLayout()
                                 }
                                 .backportScrollTargetBehavior(nil)
                             }

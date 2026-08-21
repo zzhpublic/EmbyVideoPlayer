@@ -9,7 +9,7 @@
 --maxwidth 120
 
 # Newlines
---linebreak lf
+--linebreaks lf
 --allman false
 
 # Spacing
