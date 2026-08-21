@@ -68,40 +68,40 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             build
 
-            - name: Archive for IPA (iOS Device only)
-              if: matrix.platform == 'iOS Device'
-              timeout-minutes: 45
-              run: |
-                xcodebuild archive \
-                  -scheme ${{ matrix.scheme }} \
-                  -destination "${{ matrix.destination }}" \
-                  -configuration Release \
-                  -archivePath ./build/EmbyVideoPlayer.xcarchive \
-                  CODE_SIGNING_ALLOWED=NO \
-                  CODE_SIGN_IDENTITY="" \
-                  CODE_SIGNING_REQUIRED=NO \
-                  SKIP_INSTALL=NO \
-                  BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+      - name: Archive for IPA (iOS Device only)
+        if: matrix.platform == 'iOS Device'
+        timeout-minutes: 45
+        run: |
+          xcodebuild archive \
+            -scheme ${{ matrix.scheme }} \
+            -destination "${{ matrix.destination }}" \
+            -configuration Release \
+            -archivePath ./build/EmbyVideoPlayer.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            SKIP_INSTALL=NO \
+            BUILD_LIBRARY_FOR_DISTRIBUTION=YES
 
-            - name: Export IPA
-              if: matrix.platform == 'iOS Device'
-              run: |
-                xcodebuild -exportArchive \
-                  -archivePath ./build/EmbyVideoPlayer.xcarchive \
-                  -exportPath ./build/ipa \
-                  -exportOptionsPlist ./exportOptions.plist
+      - name: Export IPA
+        if: matrix.platform == 'iOS Device'
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath ./build/EmbyVideoPlayer.xcarchive \
+            -exportPath ./build/ipa \
+            -exportOptionsPlist ./exportOptions.plist
 
-            - name: Upload build artifacts
-              if: always()
-              uses: actions/upload-artifact@v4
-              with:
-                name: build-${{ matrix.platform }}-${{ github.sha }}
-                path: |
-                  .build
-                  DerivedData
-                  build/ipa/*.ipa
-                retention-days: 7
-                if-no-files-found: ignore
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.platform }}-${{ github.sha }}
+          path: |
+            .build
+            DerivedData
+            build/ipa/*.ipa
+          retention-days: 7
+          if-no-files-found: ignore
 
   swift-format:
     name: SwiftFormat Check
@@ -111,14 +111,14 @@ jobs:
       - name: Install SwiftFormat
         run: brew install swiftformat
       - name: Check SwiftFormat
-          run: echo "Skipping SwiftFormat check"
+        run: echo "Skipping SwiftFormat check"
 
   swift-lint:
-      name: SwiftLint Check
-      runs-on: macos-14
-      steps:
-        - uses: actions/checkout@v4
-        - name: Install SwiftLint
-          run: brew install swiftlint
-        - name: Check SwiftLint
-          run: swiftlint lint --config .swiftlint.yml
+    name: SwiftLint Check
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      - name: Check SwiftLint
+        run: swiftlint lint --config .swiftlint.yml
