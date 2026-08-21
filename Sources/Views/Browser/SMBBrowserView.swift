@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EmbyVideoPlayer
 
 // MARK: - SMB Browser View
 

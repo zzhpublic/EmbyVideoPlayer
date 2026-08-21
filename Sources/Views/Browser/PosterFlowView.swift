@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import EmbyVideoPlayer
 
 // MARK: - Poster Flow Models
 

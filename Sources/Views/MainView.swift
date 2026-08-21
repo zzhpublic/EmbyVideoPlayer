@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import EmbyVideoPlayer
 
 struct MainView: View {
     @EnvironmentObject var vlcManager: LibVLCWrapper
     @EnvironmentObject var embyClient: EmbyAPIClient
     @EnvironmentObject var smbBrowser: SMBBrowser
-    
+     
     @State private var selectedTab: MainTab = .home
     
     enum MainTab: String, CaseIterable {

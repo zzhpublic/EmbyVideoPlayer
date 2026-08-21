@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import MobileVLCKit
+import EmbyVideoPlayer
 
 // MARK: - Video Player View
 
