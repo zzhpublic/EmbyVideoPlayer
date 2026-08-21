@@ -9,6 +9,14 @@ import SwiftUI
 import Kingfisher
 import EmbyVideoPlayer
 
+// Helper for conditional iOS 17+ modifiers
+extension View {
+    @ViewBuilder
+    func ifAvailable(_ transform: (Self) -> some View) -> some View {
+        transform(self)
+    }
+}
+
 // MARK: - Poster Flow Models
 
 struct PosterItem: Identifiable, Hashable {
@@ -22,6 +30,7 @@ struct PosterItem: Identifiable, Hashable {
     let duration: TimeInterval?
     let genres: [String]?
     let overview: String?
+    let parentId: String?
     
     init(from embyItem: EmbyItem) {
         self.id = embyItem.id
@@ -34,6 +43,7 @@ struct PosterItem: Identifiable, Hashable {
         self.duration = embyItem.runtime
         self.genres = embyItem.genreItems
         self.overview = embyItem.overview
+        self.parentId = embyItem.parentId
     }
 }
 
@@ -83,15 +93,15 @@ struct PosterCardView: View {
                                             .foregroundColor(.gray)
                                     )
                             }
-                            .fade(duration: 0.25)
-                            .resizable()
-                            .aspectRatio(0.67, contentMode: .fill)
-                            .frame(width: cardSize.width, height: cardSize.height)
-                            .clipped()
-                            .cornerRadius(8)
-                            .onSuccess { _ in
-                                imageLoaded = true
-                            }
+                                            .onSuccess { _ in
+                                                imageLoaded = true
+                                            }
+                                            .fade(duration: 0.25)
+                                            .resizable()
+                                            .aspectRatio(0.67, contentMode: .fill)
+                                            .frame(width: cardSize.width, height: cardSize.height)
+                                            .clipped()
+                                            .cornerRadius(8)
                     } else {
                         Rectangle()
                             .fill(Color.gray.opacity(0.3))
@@ -219,7 +229,7 @@ struct PosterCardButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .onChange(of: configuration.isPressed) { _, pressed in
+                .onChange(of: configuration.isPressed) { pressed in
                 isPressed = pressed
             }
     }
@@ -270,8 +280,13 @@ struct HorizontalPosterFlow: View {
                 }
                 .padding(.horizontal)
             }
-            .scrollTargetLayout()
-            .scrollPosition(id: $scrollPosition)
+                        .ifAvailable { view in
+                            if #available(iOS 17.0, *) {
+                                view.scrollTargetLayout().scrollPosition(id: $scrollPosition)
+                            } else {
+                                view
+                            }
+                        }
         }
     }
 }
@@ -398,15 +413,21 @@ struct CarouselPosterFlow: View {
                     .padding(.horizontal, (geometry.size.width - itemWidth) / 2)
                     .scrollTargetLayout()
                 }
-                .scrollTargetBehavior(.viewAligned)
-                .onScrollGeometryChange(for: CGFloat.self) { geometry in
-                    geometry.contentOffset.x + geometry.contentInsets.leading
-                } action: { _, newOffset in
-                    let newIndex = Int(round(newOffset / (itemWidth + 16)))
-                    if newIndex >= 0 && newIndex < items.count {
-                        currentIndex = newIndex
-                    }
-                }
+                                    .ifAvailable { view in
+                                        if #available(iOS 17.0, *) {
+                                            view.scrollTargetBehavior(.viewAligned)
+                                                .onScrollGeometryChange(for: CGFloat.self) { geometry in
+                                                    geometry.contentOffset.x + geometry.contentInsets.leading
+                                                } action: { _, newOffset in
+                                                    let newIndex = Int(round(newOffset / (itemWidth + 16)))
+                                                    if newIndex >= 0 && newIndex < items.count {
+                                                        currentIndex = newIndex
+                                                    }
+                                                }
+                                        } else {
+                                            view
+                                        }
+                                    }
             }
             .frame(height: itemHeight + 80) // Account for title
         }

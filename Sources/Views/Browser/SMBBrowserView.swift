@@ -147,7 +147,7 @@ struct SMBBrowserView: View {
                 }
             }
             .navigationDestination(for: SMBShare.self) { share in
-                SMBShareView(share: share, browser: browser)
+                            SMBShareView(share: share, browser: browser, path: "")
             }
             .navigationDestination(for: SMBFile.self) { file in
                 if file.isDirectory {
@@ -516,16 +516,20 @@ struct SMBShareView: View {
                     List {
                         // Parent directory option
                         if !path.isEmpty {
-                            Button(action: { browser.browseShare(share, path: parentPath) }) {
-                                HStack {
-                                    Image(systemName: "folder")
-                                        .foregroundColor(.blue)
-                                    Text("..")
-                                        .foregroundColor(.primary)
-                                    Spacer()
-                                }
-                            }
-                        }
+                                                    Button(action: { 
+                                                        Task {
+                                                            try? await browser.browseShare(share, path: parentPath)
+                                                        }
+                                                    }) {
+                                                        HStack {
+                                                            Image(systemName: "folder")
+                                                                .foregroundColor(.blue)
+                                                            Text("..")
+                                                                .foregroundColor(.primary)
+                                                            Spacer()
+                                                        }
+                                                    }
+                                                }
                         
                         ForEach(sortedFiles) { file in
                             SMBFileRow(file: file)
@@ -787,6 +791,7 @@ struct SMBVideoPlayerView: View {
     @State private var controlsTimer: Timer?
     @State private var isLoading = true
     @State private var errorMessage: String?
+        @State private var dragPosition: Float? = nil
     
     init(video: SMBFile, url: URL) {
         self.video = video
@@ -902,14 +907,12 @@ struct SMBVideoPlayerView: View {
     }
     
     private func seekRelative(_ seconds: TimeInterval) {
-        let newTime = player.playbackState.time + seconds
-        player.seek(to: max(0, min(newTime, player.playbackState.duration)))
-        resetControlsTimer()
-    }
+            let newTime = player.playbackState.time + seconds
+            player.seek(to: max(0, min(newTime, player.playbackState.duration)))
+            resetControlsTimer()
+        }
     
-    private var dragPosition: Float? = nil
-    
-    private func handleDrag(_ value: DragGesture.Value) {
+        private func handleDrag(_ value: DragGesture.Value) {
         let translation = value.translation.width
         let screenWidth = UIScreen.main.bounds.width
         let seekAmount = Float(translation / screenWidth)
