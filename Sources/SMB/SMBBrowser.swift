@@ -189,7 +189,7 @@ class SMBBrowser: ObservableObject {
                         let server = SMBServer(
                             name: name,
                             host: "\(host)",
-                            port: port.rawValue,
+                                                port: Int(port.rawValue),
                             workgroup: nil,
                             username: nil,
                             password: nil

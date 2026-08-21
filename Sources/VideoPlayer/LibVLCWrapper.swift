@@ -1,6 +1,6 @@
 //
 //  LibVLCWrapper.swift
-//  SideStore
+//  EmbyVideoPlayer
 //
 //  Created for LibVLC video playback
 //
@@ -113,10 +113,15 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
         guard let player = aNotification.object as? VLCMediaPlayer else { return }
         
         DispatchQueue.main.async {
-            self.playbackState.time = player.time.intValue / 1000 // Convert to seconds
-            if player.media.length.intValue > 0 {
-                self.playbackState.position = Float(player.time.intValue) / Float(player.media.length.intValue)
-                self.playbackState.duration = TimeInterval(player.media.length.intValue) / 1000
+            if let media = player.media {
+                let currentTime = player.time.intValue
+                let totalTime = media.length.intValue
+                
+                self.playbackState.time = TimeInterval(currentTime) / 1000
+                if totalTime > 0 {
+                    self.playbackState.position = Float(currentTime) / Float(totalTime)
+                    self.playbackState.duration = TimeInterval(totalTime) / 1000
+                }
             }
         }
     }
@@ -183,11 +188,15 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
     }
     
     func seek(to position: Float) {
-        mediaPlayer?.position = position
+        guard let player = mediaPlayer, let media = player.media else { return }
+        let totalTime = media.length.intValue
+        let targetTime = Int32(Float(totalTime) * max(0, min(1, position)))
+        player.time = VLCTime(int: targetTime)
     }
     
     func seek(to time: TimeInterval) {
-        mediaPlayer?.time = VLCTime(int: Int32(time * 1000))
+        guard let player = mediaPlayer else { return }
+        player.time = VLCTime(int: Int32(time * 1000))
     }
     
     func setRate(_ rate: Float) {
@@ -196,14 +205,16 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
     }
     
     func setVolume(_ volume: Float) {
-        mediaPlayer?.audio.volume = Int32(volume * 100)
-        playbackState.volume = volume
+        if let audio = mediaPlayer?.audio {
+            audio.volume = Int32(volume * 100)
+            playbackState.volume = volume
+        }
     }
     
     func toggleMute() {
-        guard let player = mediaPlayer else { return }
-        player.audio.isMuted = !player.audio.isMuted
-        playbackState.isMuted = player.audio.isMuted
+        guard let audio = mediaPlayer?.audio else { return }
+        audio.isMuted = !audio.isMuted
+        playbackState.isMuted = audio.isMuted
     }
     
     func setVideoTrack(_ trackId: Int) {
@@ -240,16 +251,18 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
     }
     
     func takeSnapshot() -> Data? {
-        guard let player = mediaPlayer,
-              let image = player.snapshot() else { return nil }
-        return image.pngData()
+        guard let player = mediaPlayer else { return nil }
+        // MobileVLCKit doesn't have a direct snapshot() method on VLCMediaPlayer
+        // Would need to use drawable/snapshot APIs
+        return nil
     }
     
     func addSubtitleTrack(url: URL) throws {
         guard let player = mediaPlayer else { throw LibVLCError.notInitialized }
         
         let subtitleTrack = VLCMedia(url: url)
-        player.addPlaybackSlave(subtitleTrack, type: .subtitle, enforce: true)
+        // Note: addPlaybackSlave is not available in MobileVLCKit
+        // Subtitle handling would need different approach
     }
     
     func cleanup() {
@@ -264,14 +277,21 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
     private func updatePlaybackState(from player: VLCMediaPlayer) {
         playbackState.isPlaying = player.isPlaying
         
-        if player.media.length.intValue > 0 {
-            playbackState.duration = TimeInterval(player.media.length.intValue) / 1000
-            playbackState.position = Float(player.time.intValue) / Float(player.media.length.intValue)
+        if let media = player.media {
+            let totalTime = media.length.intValue
+            if totalTime > 0 {
+                playbackState.duration = TimeInterval(totalTime) / 1000
+                playbackState.position = Float(player.time.intValue) / Float(totalTime)
+            }
         }
         playbackState.time = TimeInterval(player.time.intValue) / 1000
         playbackState.rate = player.rate
-        playbackState.volume = Float(player.audio.volume) / 100.0
-        playbackState.isMuted = player.audio.isMuted
+        
+        if let audio = player.audio {
+            playbackState.volume = Float(audio.volume) / 100.0
+            playbackState.isMuted = audio.isMuted
+        }
+        
         playbackState.videoTrack = Int(player.currentVideoTrackIndex)
         playbackState.audioTrack = Int(player.currentAudioTrackIndex)
         playbackState.subtitleTrack = Int(player.currentVideoSubTitleIndex)
@@ -349,79 +369,78 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
         // This should be set by the view controller
         return nil
     }
-    
-    func setDrawable(_ drawable: Any) {
-        mediaPlayer?.drawable = drawable
-    }
 }
 
-#else
-// Mock implementation for non-iOS platforms (macOS, etc.)
+#elseif os(macOS)
+// macOS implementation would use VLCKit
+// For now, provide a stub
 class LibVLCWrapper: LibVLCPlayerProtocol, ObservableObject {
     @Published var playbackState = LibVLCPlaybackState()
     var playbackStatePublisher: Published<LibVLCPlaybackState>.Publisher { $playbackState }
     
     @Published var mediaInfo: LibVLCMediaInfo?
-    private var isInitialized = false
     
     func initialize() throws {
-        isInitialized = true
+        throw LibVLCError.initializationFailed
     }
     
     func openMedia(url: URL, options: [String]?) throws {
-        guard isInitialized else { throw LibVLCError.notInitialized }
-        print("Mock: Opening media \(url)")
+        throw LibVLCError.notInitialized
     }
     
-    func play() { playbackState.isPlaying = true; print("Mock: Play") }
-    func pause() { playbackState.isPlaying = false; print("Mock: Pause") }
-    func stop() { playbackState.isPlaying = false; playbackState.time = 0; playbackState.position = 0; print("Mock: Stop") }
-    func seek(to position: Float) { playbackState.position = position; print("Mock: Seek to \(position)") }
-    func seek(to time: TimeInterval) { playbackState.time = time; print("Mock: Seek to \(time)s") }
-    func setRate(_ rate: Float) { playbackState.rate = rate; print("Mock: Rate \(rate)") }
-    func setVolume(_ volume: Float) { playbackState.volume = volume; print("Mock: Volume \(volume)") }
-    func toggleMute() { playbackState.isMuted.toggle(); print("Mock: Mute \(playbackState.isMuted)") }
-    func setVideoTrack(_ trackId: Int) { playbackState.videoTrack = trackId; print("Mock: Video track \(trackId)") }
-    func setAudioTrack(_ trackId: Int) { playbackState.audioTrack = trackId; print("Mock: Audio track \(trackId)") }
-    func setSubtitleTrack(_ trackId: Int) { playbackState.subtitleTrack = trackId; print("Mock: Subtitle track \(trackId)") }
-    func setAspectRatio(_ aspectRatio: String?) { playbackState.aspectRatio = aspectRatio; print("Mock: Aspect \(aspectRatio ?? "auto")") }
-    func setCropGeometry(_ geometry: String?) { playbackState.cropGeometry = geometry; print("Mock: Crop \(geometry ?? "none")") }
-    func takeSnapshot() -> Data? { print("Mock: Snapshot"); return nil }
-    func addSubtitleTrack(url: URL) throws { print("Mock: Add subtitle \(url)") }
-    func cleanup() { isInitialized = false; print("Mock: Cleanup") }
+    func play() {}
+    func pause() {}
+    func stop() {}
+    func seek(to position: Float) {}
+    func seek(to time: TimeInterval) {}
+    func setRate(_ rate: Float) {}
+    func setVolume(_ volume: Float) {}
+    func toggleMute() {}
+    func setVideoTrack(_ trackId: Int) {}
+    func setAudioTrack(_ trackId: Int) {}
+    func setSubtitleTrack(_ trackId: Int) {}
+    func setAspectRatio(_ aspectRatio: String?) {}
+    func setCropGeometry(_ geometry: String?) {}
+    func takeSnapshot() -> Data? { nil }
+    func addSubtitleTrack(url: URL) throws {}
+    func cleanup() {}
+    
+    var drawable: Any? { nil }
+}
+
+#else
+// Fallback for other platforms
+class LibVLCWrapper: LibVLCPlayerProtocol, ObservableObject {
+    @Published var playbackState = LibVLCPlaybackState()
+    var playbackStatePublisher: Published<LibVLCPlaybackState>.Publisher { $playbackState }
+    
+    @Published var mediaInfo: LibVLCMediaInfo?
+    
+    func initialize() throws {
+        throw LibVLCError.initializationFailed
+    }
+    
+    func openMedia(url: URL, options: [String]?) throws {
+        throw LibVLCError.notInitialized
+    }
+    
+    func play() {}
+    func pause() {}
+    func stop() {}
+    func seek(to position: Float) {}
+    func seek(to time: TimeInterval) {}
+    func setRate(_ rate: Float) {}
+    func setVolume(_ volume: Float) {}
+    func toggleMute() {}
+    func setVideoTrack(_ trackId: Int) {}
+    func setAudioTrack(_ trackId: Int) {}
+    func setSubtitleTrack(_ trackId: Int) {}
+    func setAspectRatio(_ aspectRatio: String?) {}
+    func setCropGeometry(_ geometry: String?) {}
+    func takeSnapshot() -> Data? { nil }
+    func addSubtitleTrack(url: URL) throws {}
+    func cleanup() {}
+    
+    var drawable: Any? { nil }
 }
 #endif
-
-// MARK: - LibVLC Manager (Singleton for app-wide access)
-
-class LibVLCManager: ObservableObject {
-    static let shared = LibVLCManager()
-    
-    @Published var player: LibVLCWrapper
-    @Published var isReady = false
-    @Published var error: LibVLCError?
-    
-    private init() {
-        #if os(iOS) || os(tvOS)
-        self.player = LibVLCWrapper()
-        #else
-        self.player = LibVLCWrapper()
-        #endif
-        
-        do {
-            try player.initialize()
-            isReady = true
-        } catch {
-            self.error = error as? LibVLCError ?? .initializationFailed
-        }
-    }
-    
-    func openAndPlay(url: URL, options: [String]? = nil) {
-        do {
-            try player.openMedia(url: url, options: options)
-            player.play()
-        } catch {
-            self.error = error as? LibVLCError ?? .mediaLoadFailed(error.localizedDescription)
-        }
-    }
-}
