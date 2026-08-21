@@ -280,13 +280,13 @@ struct HorizontalPosterFlow: View {
                 }
                 .padding(.horizontal)
             }
-                            .ifAvailable { view in
-                                if #available(iOS 17.0, *) {
-                                    view.scrollTargetLayout().scrollPosition(id: $scrollPosition)
-                                } else {
-                                    view
-                                }
+                        .ifAvailable { view in
+                            if #available(iOS 17.0, *) {
+                                view.scrollTargetLayout().scrollPosition(id: $scrollPosition)
+                            } else {
+                                view
                             }
+                        }
         }
     }
 }

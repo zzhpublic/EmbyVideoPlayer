@@ -4,101 +4,95 @@
 # Indentation
 --indent 4
 --tabwidth 4
-useTabs: false
+--usetabs false
 
 # Line length
-maxWidth: 120
+--maxwidth 120
 
 # Newlines
-linebreak: lf
-allman: false
+--linebreak lf
+--allman false
 
 # Spacing
-spaceAroundOperators: true
-spaceAroundRangeOperators: true
-spaceAroundBrackets: false
-spaceAroundGenerics: false
-spaceInsideParens: false
-spaceInsideBrackets: false
-spaceInsideBraces: true
-spaceInsideComment: true
+--spacearoundoperators
+--spacearoundrangeoperators
+--spacearoundbrackets false
+--spacearoundgenerics false
+--spaceinsideparens false
+--spaceinsidebrackets false
+--spaceinsidebraces
+--spaceinsidecomment
 
 # Braces
-braceStyle: stroustrup
-voidTypeInParens: false
+--bracestyle stroustrup
+--voidtypeinparens false
 
 # Semicolons
-semicolons: never
+--semicolons never
 
 # Commas
-commas: always
+--commas always
 
 # Colons
-colons: true
+--colons true
 
 # Operators
-operatorLineBreak: before
-preferForLoop: true
+--operatorlinebreak before
+--preferforloop
 
 # Swift version
-swiftVersion: "6.0"
+--swiftversion 6.0
 
 # Rules to exclude
-exclude:
-  - .build
-  - DerivedData
-  - .github
-  - Pods
-  - Carthage
-  - .vscode
+--exclude .build,DerivedData,.github,Pods,Carthage,.vscode
 
 # File options
-swiftlint: false
-fragment: false
+--swiftlint false
+--fragment false
 
 # Headers
-header: ""
-headerIgnored: ""
+--header ""
+--headerignored ""
 
 # Organize imports
-organizeImports: true
-importGrouping: true
+--organizeimports
+--importgrouping
 
 # Wrap
-wrapMultilineStatementBraces: true
-wrapArguments: beforeFirst
-wrapParameters: beforeFirst
-wrapCollections: beforeFirst
-wrapTernary: beforeFirst
-wrapSwitchCases: true
-wrapEnumCases: beforeFirst
-wrapConditions: beforeFirst
+--wrapmultilinestatementbraces
+--wraparguments beforefirst
+--wrapparameters beforefirst
+--wrapcollections beforefirst
+--wrapternary beforefirst
+--wrapswitchcases
+--wrapenumcases beforefirst
+--wrapconditions beforefirst
 
 # Self
-redundantSelf: true
+--redundantself
 
 # Redundant
-redundantReturn: true
-redundantLet: true
-redundantType: true
-redundantNilInit: true
-redundantVoidReturn: true
-redundantModifiers: true
-redundantPattern: true
+--redundantreturn
+--redundantlet
+--redundanttype
+--redundantnilinit
+--redundantvoidreturn
+--redundantmodifiers
+--redundantpattern
 
 # Sort
-sortImports: true
-sortSwitchCases: false
-sortProtocolMembers: false
+--sortimports
+--sortswitchcases false
+--sortprotocolmembers false
 
 # Trailing
-trailingClosures: always
-trailingCommas: always
-trailingCommasInClosures: always
+--trailingclosures always
+--trailingcommas always
+--trailingcommasinclosures always
 
 # Else
-elseOnSameLine: true
-elseIfOnSameLine: true
+--elseonsameline
+--elseifonsameline
 
 # Experimental
-experimentalFeatures: []
+--experimentalfeatures
