@@ -168,12 +168,9 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
         player.media = media
         
         // Parse media to get tracks info
-        media?.parse { [weak self] success in
-            if success {
-                self?.updateMediaInfo()
+                media?.parse()
+                updateMediaInfo()
             }
-        }
-    }
     
     func play() {
         mediaPlayer?.play()
@@ -236,7 +233,7 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
         if let aspectRatio = aspectRatio {
             mediaPlayer?.videoAspectRatio = aspectRatio
         } else {
-            mediaPlayer?.videoAspectRatio = nil
+                mediaPlayer?.videoAspectRatio = ""
         }
         playbackState.aspectRatio = aspectRatio
     }
@@ -245,7 +242,7 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
         if let geometry = geometry {
             mediaPlayer?.videoCropGeometry = geometry
         } else {
-            mediaPlayer?.videoCropGeometry = nil
+                mediaPlayer?.videoCropGeometry = ""
         }
         playbackState.cropGeometry = geometry
     }
@@ -295,9 +292,13 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
         playbackState.videoTrack = Int(player.currentVideoTrackIndex)
         playbackState.audioTrack = Int(player.currentAudioTrackIndex)
         playbackState.subtitleTrack = Int(player.currentVideoSubTitleIndex)
-        playbackState.aspectRatio = player.videoAspectRatio
-        playbackState.cropGeometry = player.videoCropGeometry
-    }
+                if let aspectRatio = player.videoAspectRatio, !aspectRatio.isEmpty {
+                    playbackState.aspectRatio = aspectRatio
+                }
+                if let cropGeometry = player.videoCropGeometry, !cropGeometry.isEmpty {
+                    playbackState.cropGeometry = cropGeometry
+                }
+            }
     
     private func updateMediaInfo() {
         guard let media = media else { return }
@@ -370,9 +371,9 @@ class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaP
         return nil
     }
     
-        func setDrawable(_ drawable: Any?) {
-            mediaPlayer?.drawable = drawable
-        }
+    func setDrawable(_ drawable: Any?) {
+        mediaPlayer?.drawable = drawable
+    }
 }
 
 #elseif os(macOS)
