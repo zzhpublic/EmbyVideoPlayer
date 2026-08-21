@@ -3,95 +3,21 @@
 
 # Indentation
 --indent 4
---tabwidth 4
 
 # Line length
 --maxwidth 120
 
-# Newlines
---linebreaks lf
---allman false
-
-# Spacing
---spacearoundoperators
---spacearoundrangeoperators
---spacearoundbrackets false
---spacearoundgenerics false
---spaceinsideparens false
---spaceinsidebrackets false
---spaceinsidebraces
---spaceinsidecomment
-
-# Braces
---bracestyle stroustrup
---voidtypeinparens false
-
-# Semicolons
---semicolons never
-
-# Commas
---commas always
-
-# Colons
---colons true
-
-# Operators
---operatorlinebreak before
---preferforloop
+# Exclude paths
+--exclude .build,DerivedData,.github,Pods,Carthage,.vscode
 
 # Swift version
 --swiftversion 6.0
 
-# Rules to exclude
---exclude .build,DerivedData,.github,Pods,Carthage,.vscode
-
-# File options
---swiftlint false
---fragment false
-
-# Headers
---header ""
---headerignored ""
-
-# Organize imports
---organizeimports
---importgrouping
-
-# Wrap
---wrapmultilinestatementbraces
---wraparguments beforefirst
---wrapparameters beforefirst
---wrapcollections beforefirst
---wrapternary beforefirst
---wrapswitchcases
---wrapenumcases beforefirst
---wrapconditions beforefirst
-
 # Self
 --redundantself
 
-# Redundant
---redundantreturn
---redundantlet
---redundanttype
---redundantnilinit
---redundantvoidreturn
---redundantmodifiers
---redundantpattern
-
-# Sort
---sortimports
---sortswitchcases false
---sortprotocolmembers false
-
-# Trailing
---trailingclosures always
+# Trailing commas
 --trailingcommas always
---trailingcommasinclosures always
 
 # Else
 --elseonsameline
---elseifonsameline
-
-# Experimental
---experimentalfeatures

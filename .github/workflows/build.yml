@@ -90,42 +90,11 @@ jobs:
         run: swiftformat --lint --config .swiftformat . || echo "SwiftFormat found issues"
 
   swift-lint:
-    name: SwiftLint Check
-    runs-on: macos-14
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install SwiftLint
-        run: brew install swiftlint
-      - name: Check SwiftLint
-        run: swiftlint lint --config .swiftlint.yml
-
-  generate-docs:
-    name: Generate Documentation
-    runs-on: macos-14
-    needs: build-and-test
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Select Xcode
-        run: |
-          # Try multiple Xcode 15.4 paths, fallback to default
-          if [ -d "/Applications/Xcode_15.4.app" ]; then
-            sudo xcode-select -s /Applications/Xcode_15.4.app
-          elif [ -d "/Applications/Xcode_15.3.app" ]; then
-            sudo xcode-select -s /Applications/Xcode_15.3.app
-          else
-            sudo xcode-select -s /Applications/Xcode.app
-          fi
-          xcodebuild -version
-      - name: Generate DocC documentation
-        run: |
-          xcodebuild docbuild \
-            -scheme EmbyVideoPlayer \
-            -destination 'platform=macOS' \
-            -derivedDataPath DerivedData
-      - name: Upload documentation
-        uses: actions/upload-artifact@v4
-        with:
-          name: documentation
-          path: DerivedData/Build/Products/Debug/EmbyVideoPlayer.doccarchive
-          retention-days: 30
+      name: SwiftLint Check
+      runs-on: macos-14
+      steps:
+        - uses: actions/checkout@v4
+        - name: Install SwiftLint
+          run: brew install swiftlint
+        - name: Check SwiftLint
+          run: swiftlint lint --config .swiftlint.yml
