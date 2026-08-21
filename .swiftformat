@@ -12,12 +12,3 @@
 
 # Swift version
 --swiftversion 6.0
-
-# Self
---redundantself
-
-# Trailing commas
---trailingcommas always
-
-# Else
---elseonsameline
