@@ -70,7 +70,7 @@ public struct EmbyItem: Identifiable, Codable, Hashable {
     }
     
     // Need baseURL from context
-    var baseURL: String = ""
+        public var baseURL: String = ""
 }
 
 struct EmbyPerson: Codable, Hashable {

@@ -101,7 +101,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
     private var isInitialized = false
     
     // VLCMediaPlayerDelegate
-    func mediaPlayerStateChanged(_ aNotification: Notification) {
+        public func mediaPlayerStateChanged(_ aNotification: Notification) {
         guard let player = aNotification.object as? VLCMediaPlayer else { return }
         
         DispatchQueue.main.async {
@@ -109,7 +109,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         }
     }
     
-    func mediaPlayerTimeChanged(_ aNotification: Notification) {
+        public func mediaPlayerTimeChanged(_ aNotification: Notification) {
         guard let player = aNotification.object as? VLCMediaPlayer else { return }
         
         DispatchQueue.main.async {
@@ -126,7 +126,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         }
     }
     
-    func mediaPlayerSnapshot(_ aNotification: Notification) {
+        public func mediaPlayerSnapshot(_ aNotification: Notification) {
         // Handle snapshot if needed
     }
     
@@ -134,7 +134,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         super.init()
     }
     
-    func initialize() throws {
+    public func initialize() throws {
         // MobileVLCKit initializes automatically
         // Just create the media player
         mediaPlayer = VLCMediaPlayer()
@@ -142,7 +142,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         isInitialized = true
     }
     
-    func openMedia(url: URL, options: [String]? = nil) throws {
+        public func openMedia(url: URL, options: [String]? = nil) throws {
         guard isInitialized, let player = mediaPlayer else {
             throw LibVLCError.notInitialized
         }
@@ -168,89 +168,89 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         player.media = media
         
         // Parse media to get tracks info
-                media?.parse()
-                updateMediaInfo()
-            }
+            media?.parse()
+            updateMediaInfo()
+        }
     
-    func play() {
+        public func play() {
         mediaPlayer?.play()
     }
     
-    func pause() {
+        public func pause() {
         mediaPlayer?.pause()
     }
     
-    func stop() {
+        public func stop() {
         mediaPlayer?.stop()
     }
     
-    func seek(to position: Float) {
+        public func seek(to position: Float) {
         guard let player = mediaPlayer, let media = player.media else { return }
         let totalTime = media.length.intValue
         let targetTime = Int32(Float(totalTime) * max(0, min(1, position)))
         player.time = VLCTime(int: targetTime)
     }
     
-    func seek(to time: TimeInterval) {
+        public func seek(to time: TimeInterval) {
         guard let player = mediaPlayer else { return }
         player.time = VLCTime(int: Int32(time * 1000))
     }
     
-    func setRate(_ rate: Float) {
+        public func setRate(_ rate: Float) {
         mediaPlayer?.rate = rate
         playbackState.rate = rate
     }
     
-    func setVolume(_ volume: Float) {
+        public func setVolume(_ volume: Float) {
         if let audio = mediaPlayer?.audio {
             audio.volume = Int32(volume * 100)
             playbackState.volume = volume
         }
     }
     
-    func toggleMute() {
+        public func toggleMute() {
         guard let audio = mediaPlayer?.audio else { return }
         audio.isMuted = !audio.isMuted
         playbackState.isMuted = audio.isMuted
     }
     
-    func setVideoTrack(_ trackId: Int) {
+        public func setVideoTrack(_ trackId: Int) {
         mediaPlayer?.currentVideoTrackIndex = Int32(trackId)
         playbackState.videoTrack = trackId
     }
     
-    func setAudioTrack(_ trackId: Int) {
+        public func setAudioTrack(_ trackId: Int) {
         mediaPlayer?.currentAudioTrackIndex = Int32(trackId)
         playbackState.audioTrack = trackId
     }
     
-    func setSubtitleTrack(_ trackId: Int) {
+        public func setSubtitleTrack(_ trackId: Int) {
         mediaPlayer?.currentVideoSubTitleIndex = Int32(trackId)
         playbackState.subtitleTrack = trackId
     }
     
-    func setAspectRatio(_ aspectRatio: String?) {
+        public func setAspectRatio(_ aspectRatio: String?) {
             // Note: videoAspectRatio property type varies in MobileVLCKit versions
             // For now, just update playback state
             playbackState.aspectRatio = aspectRatio
             // TODO: Implement actual aspect ratio setting when API is confirmed
         }
     
-        func setCropGeometry(_ geometry: String?) {
+        public func setCropGeometry(_ geometry: String?) {
             // Note: videoCropGeometry property type varies in MobileVLCKit versions
             // For now, just update playback state
             playbackState.cropGeometry = geometry
             // TODO: Implement actual crop geometry setting when API is confirmed
         }
     
-    func takeSnapshot() -> Data? {
+        public func takeSnapshot() -> Data? {
         guard let player = mediaPlayer else { return nil }
         // MobileVLCKit doesn't have a direct snapshot() method on VLCMediaPlayer
         // Would need to use drawable/snapshot APIs
         return nil
     }
     
-    func addSubtitleTrack(url: URL) throws {
+        public func addSubtitleTrack(url: URL) throws {
         guard let player = mediaPlayer else { throw LibVLCError.notInitialized }
         
         let subtitleTrack = VLCMedia(url: url)
@@ -258,7 +258,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         // Subtitle handling would need different approach
     }
     
-    func cleanup() {
+        public func cleanup() {
         stop()
         mediaPlayer = nil
         media = nil
