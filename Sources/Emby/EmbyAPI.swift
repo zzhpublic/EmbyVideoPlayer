@@ -10,44 +10,44 @@ import Combine
 
 // MARK: - Emby Models
 
-struct EmbyServer: Identifiable, Codable, Hashable {
-    let id = UUID()
-    let name: String
-    let address: String
-    let accessToken: String?
-    let userId: String?
+public struct EmbyServer: Identifiable, Codable, Hashable {
+    public let id = UUID()
+    public let name: String
+    public let address: String
+    public let accessToken: String?
+    public let userId: String?
     
-    var baseURL: String {
+    public var baseURL: String {
         address.hasPrefix("http") ? address : "http://\(address)"
     }
 }
 
-struct EmbyUser: Codable {
-    let id: String
-    let name: String
-    let serverId: String?
+public struct EmbyUser: Codable {
+    public let id: String
+    public let name: String
+    public let serverId: String?
 }
 
-struct EmbyItem: Identifiable, Codable, Hashable {
-    let id: String
-    let name: String
-    let type: String
-    let mediaType: String?
-    let seriesName: String?
-    let parentId: String?
-    let path: String?
-    let overview: String?
-    let productionYear: Int?
-    let communityRating: Double?
-    let officialRating: String?
-    let runTimeTicks: Int64?
-    let imageTags: [String: String]?
-    let backdropImageTags: [String: String]?
-    let genreItems: [String]?
-    let people: [EmbyPerson]?
-    let studios: [EmbyStudio]?
-    let taglines: [String]?
-    let premiereDate: String?
+public struct EmbyItem: Identifiable, Codable, Hashable {
+    public let id: String
+    public let name: String
+    public let type: String
+    public let mediaType: String?
+    public let seriesName: String?
+    public let parentId: String?
+    public let path: String?
+    public let overview: String?
+    public let productionYear: Int?
+    public let communityRating: Double?
+    public let officialRating: String?
+    public let runTimeTicks: Int64?
+    public let imageTags: [String: String]?
+    public let backdropImageTags: [String: String]?
+    public let genreItems: [String]?
+    public let people: [EmbyPerson]?
+    public let studios: [EmbyStudio]?
+    public let taglines: [String]?
+    public let premiereDate: String?
     let isFolder: Bool?
     let childCount: Int?
     let locationType: String?
@@ -74,74 +74,74 @@ struct EmbyItem: Identifiable, Codable, Hashable {
 }
 
 struct EmbyPerson: Codable, Hashable {
-    let name: String
-    let role: String?
-    let type: String
-    let imageTag: String?
+    public let name: String
+    public let role: String?
+    public let type: String
+    public let imageTag: String?
 }
 
-struct EmbyStudio: Codable, Hashable {
-    let name: String
-    let id: String?
+public struct EmbyStudio: Codable, Hashable {
+    public let name: String
+    public let id: String?
 }
 
-struct EmbyMediaStream: Codable, Hashable {
-    let codec: String
-    let type: String // Video, Audio, Subtitle
-    let language: String?
-    let displayTitle: String?
-    let index: Int?
-    let isExternal: Bool?
-    let path: String?
+public struct EmbyMediaStream: Codable, Hashable {
+    public let codec: String
+    public let type: String // Video, Audio, Subtitle
+    public let language: String?
+    public let displayTitle: String?
+    public let index: Int?
+    public let isExternal: Bool?
+    public let path: String?
 }
 
-struct EmbyItemsResponse: Codable {
-    let items: [EmbyItem]
-    let totalRecordCount: Int
-    let startIndex: Int
+public struct EmbyItemsResponse: Codable {
+    public let items: [EmbyItem]
+    public let totalRecordCount: Int
+    public let startIndex: Int
 }
 
-struct EmbyPlaybackInfo: Codable {
-    let mediaSources: [EmbyMediaSource]
-    let item: EmbyItem
+public struct EmbyPlaybackInfo: Codable {
+    public let mediaSources: [EmbyMediaSource]
+    public let item: EmbyItem
 }
 
-struct EmbyMediaSource: Codable {
-    let `protocol`: String
-    let id: String
-    let path: String
-    let encodings: [EmbyEncoding]?
-    let container: String?
-    let size: Int64?
-    let name: String?
-    let runTimeTicks: Int64?
-    let bitrate: Int?
-    let width: Int?
-    let height: Int?
-    let videoType: String?
-    let video3DFormat: String?
-    let isoType: String?
-    let videoProfile: String?
-    let audioProfile: String?
-    let supportsDirectPlay: Bool?
-    let supportsDirectStream: Bool?
-    let supportsTranscoding: Bool?
-    let isRemote: Bool?
+public struct EmbyMediaSource: Codable {
+    public let `protocol`: String
+    public let id: String
+    public let path: String
+    public let encodings: [EmbyEncoding]?
+    public let container: String?
+    public let size: Int64?
+    public let name: String?
+    public let runTimeTicks: Int64?
+    public let bitrate: Int?
+    public let width: Int?
+    public let height: Int?
+    public let videoType: String?
+    public let video3DFormat: String?
+    public let isoType: String?
+    public let videoProfile: String?
+    public let audioProfile: String?
+    public let supportsDirectPlay: Bool?
+    public let supportsDirectStream: Bool?
+    public let supportsTranscoding: Bool?
+    public let isRemote: Bool?
 }
 
-struct EmbyEncoding: Codable {
-    let codec: String
-    let type: String
-    let bitDepth: Int?
-    let channels: Int?
-    let sampleRate: Int?
-    let isDefault: Bool?
-    let displayTitle: String?
+public struct EmbyEncoding: Codable {
+    public let codec: String
+    public let type: String
+    public let bitDepth: Int?
+    public let channels: Int?
+    public let sampleRate: Int?
+    public let isDefault: Bool?
+    public let displayTitle: String?
 }
 
 // MARK: - Emby API Client
 
-class EmbyAPIClient: ObservableObject {
+public class EmbyAPIClient: ObservableObject {
     @Published var servers: [EmbyServer] = []
     @Published var currentServer: EmbyServer?
     @Published var currentUser: EmbyUser?

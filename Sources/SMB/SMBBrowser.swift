@@ -11,57 +11,57 @@ import Combine
 
 // MARK: - SMB Models
 
-struct SMBServer: Identifiable, Hashable, Codable {
-    let id = UUID()
-    let name: String
-    let host: String
-    let port: Int
-    let workgroup: String?
-    var username: String?
-    var password: String?
+public struct SMBServer: Identifiable, Hashable, Codable {
+    public let id = UUID()
+    public let name: String
+    public let host: String
+    public let port: Int
+    public let workgroup: String?
+    public var username: String?
+    public var password: String?
     
-    var displayName: String {
+    public var displayName: String {
         if let workgroup = workgroup, !workgroup.isEmpty {
             return "\(name) (\(workgroup))"
         }
         return name
     }
     
-    var connectionString: String {
+    public var connectionString: String {
         "smb://\(host):\(port)"
     }
 }
 
-struct SMBShare: Identifiable, Hashable, Codable {
-    let id = UUID()
-    let name: String
-    let path: String
-    let server: SMBServer
-    var isAccessible: Bool = false
+public struct SMBShare: Identifiable, Hashable, Codable {
+    public let id = UUID()
+    public let name: String
+    public let path: String
+    public let server: SMBServer
+    public var isAccessible: Bool = false
 }
 
-struct SMBFile: Identifiable, Hashable {
-    let id = UUID()
-    let name: String
-    let path: String
-    let isDirectory: Bool
-    let size: Int64
-    let modificationDate: Date
-    let share: SMBShare
+public struct SMBFile: Identifiable, Hashable {
+    public let id = UUID()
+    public let name: String
+    public let path: String
+    public let isDirectory: Bool
+    public let size: Int64
+    public let modificationDate: Date
+    public let share: SMBShare
     
-    var isVideoFile: Bool {
+    public var isVideoFile: Bool {
         let videoExtensions = ["mp4", "mkv", "avi", "mov", "m4v", "mpg", "mpeg", "ts", "m2ts", "webm", "flv", "wmv", "ogv", "3gp"]
         let ext = (name as NSString).pathExtension.lowercased()
         return videoExtensions.contains(ext)
     }
     
-    var isPosterFile: Bool {
+    public var isPosterFile: Bool {
         let posterExtensions = ["jpg", "jpeg", "png", "bmp", "tiff", "webp"]
         let ext = (name as NSString).pathExtension.lowercased()
         return posterExtensions.contains(ext)
     }
     
-    var formattedSize: String {
+    public var formattedSize: String {
         let formatter = ByteCountFormatter()
         formatter.allowedUnits = [.useKB, .useMB, .useGB]
         formatter.countStyle = .file
@@ -71,7 +71,7 @@ struct SMBFile: Identifiable, Hashable {
 
 // MARK: - SMB Browser Error
 
-enum SMBBrowserError: LocalizedError {
+public enum SMBBrowserError: LocalizedError {
     case connectionFailed(String)
     case authenticationFailed
     case shareNotFound
@@ -80,7 +80,7 @@ enum SMBBrowserError: LocalizedError {
     case timeout
     case unknown(Error)
     
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .connectionFailed(let msg): return "Connection failed: \(msg)"
         case .authenticationFailed: return "Authentication failed"
@@ -95,9 +95,9 @@ enum SMBBrowserError: LocalizedError {
 
 // MARK: - SMB Browser
 
-class SMBBrowser: ObservableObject {
-    @Published var discoveredServers: [SMBServer] = []
-    @Published var shares: [SMBShare] = []
+public class SMBBrowser: ObservableObject {
+    @Published public var discoveredServers: [SMBServer] = []
+    @Published public var shares: [SMBShare] = []
     @Published var currentPath: String = ""
     @Published var files: [SMBFile] = []
     @Published var isLoading = false

@@ -10,13 +10,13 @@ import Combine
 
 // MARK: - LibVLC Types
 
-enum LibVLCError: LocalizedError {
+public enum LibVLCError: LocalizedError {
     case initializationFailed
     case mediaLoadFailed(String)
     case playbackFailed(String)
     case notInitialized
     
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .initializationFailed: return "Failed to initialize LibVLC"
         case .mediaLoadFailed(let msg): return "Failed to load media: \(msg)"
@@ -26,41 +26,41 @@ enum LibVLCError: LocalizedError {
     }
 }
 
-struct LibVLCMediaInfo {
-    let duration: TimeInterval
-    let width: Int
-    let height: Int
-    let videoTracks: [LibVLCTrack]
-    let audioTracks: [LibVLCTrack]
-    let subtitleTracks: [LibVLCTrack]
+public struct LibVLCMediaInfo {
+    public let duration: TimeInterval
+    public let width: Int
+    public let height: Int
+    public let videoTracks: [LibVLCTrack]
+    public let audioTracks: [LibVLCTrack]
+    public let subtitleTracks: [LibVLCTrack]
 }
 
-struct LibVLCTrack: Identifiable, Hashable {
-    let id: Int
-    let name: String
-    let language: String?
-    let codec: String?
-    var isSelected: Bool = false
+public struct LibVLCTrack: Identifiable, Hashable {
+    public let id: Int
+    public let name: String
+    public let language: String?
+    public let codec: String?
+    public var isSelected: Bool = false
 }
 
-struct LibVLCPlaybackState {
-    var isPlaying: Bool = false
-    var position: Float = 0.0 // 0.0 to 1.0
-    var time: TimeInterval = 0
-    var duration: TimeInterval = 0
-    var rate: Float = 1.0
-    var volume: Float = 1.0
-    var isMuted: Bool = false
-    var videoTrack: Int = -1
-    var audioTrack: Int = -1
-    var subtitleTrack: Int = -1
-    var aspectRatio: String?
-    var cropGeometry: String?
+public struct LibVLCPlaybackState {
+    public var isPlaying: Bool = false
+    public var position: Float = 0.0 // 0.0 to 1.0
+    public var time: TimeInterval = 0
+    public var duration: TimeInterval = 0
+    public var rate: Float = 1.0
+    public var volume: Float = 1.0
+    public var isMuted: Bool = false
+    public var videoTrack: Int = -1
+    public var audioTrack: Int = -1
+    public var subtitleTrack: Int = -1
+    public var aspectRatio: String?
+    public var cropGeometry: String?
 }
 
 // MARK: - LibVLC Wrapper Protocol (for testing)
 
-protocol LibVLCPlayerProtocol: AnyObject {
+public protocol LibVLCPlayerProtocol: AnyObject {
     var playbackState: LibVLCPlaybackState { get }
     var playbackStatePublisher: Published<LibVLCPlaybackState>.Publisher { get }
     var mediaInfo: LibVLCMediaInfo? { get }
@@ -90,11 +90,11 @@ protocol LibVLCPlayerProtocol: AnyObject {
 #if os(iOS) || os(tvOS)
 import MobileVLCKit
 
-class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaPlayerDelegate {
-    @Published var playbackState = LibVLCPlaybackState()
-    var playbackStatePublisher: Published<LibVLCPlaybackState>.Publisher { $playbackState }
+public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VLCMediaPlayerDelegate {
+    @Published public var playbackState = LibVLCPlaybackState()
+    public var playbackStatePublisher: Published<LibVLCPlaybackState>.Publisher { $playbackState }
     
-    @Published var mediaInfo: LibVLCMediaInfo?
+    @Published public var mediaInfo: LibVLCMediaInfo?
     
     private var mediaPlayer: VLCMediaPlayer?
     private var media: VLCMedia?
