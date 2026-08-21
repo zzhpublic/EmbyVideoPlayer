@@ -11,7 +11,7 @@ import SwiftUI
 
 struct SMBBrowserView: View {
     @StateObject var browser = SMBBrowser()
-    @EnvironmentObject var vlcManager: LibVLCManager
+    @EnvironmentObject var vlcManager: LibVLCWrapper
     
     @State private var showingAddServer = false
     @State private var showingAuth = false
@@ -778,7 +778,7 @@ struct SMBFileGridItem: View {
 struct SMBVideoPlayerView: View {
     let video: SMBFile
     let url: URL
-    @EnvironmentObject var vlcManager: LibVLCManager
+    @EnvironmentObject var vlcManager: LibVLCWrapper
     @Environment(\.dismiss) var dismiss
     
     @State private var player: LibVLCWrapper
@@ -790,7 +790,7 @@ struct SMBVideoPlayerView: View {
     init(video: SMBFile, url: URL) {
         self.video = video
         self.url = url
-        self._player = State(initialValue: LibVLCManager.shared.player)
+            self._player = State(initialValue: LibVLCWrapper())
     }
     
     var body: some View {
@@ -954,5 +954,5 @@ struct SMBVideoPlayerView: View {
 
 #Preview {
     SMBBrowserView()
-        .environmentObject(LibVLCManager.shared)
+        .environmentObject(LibVLCWrapper())
 }

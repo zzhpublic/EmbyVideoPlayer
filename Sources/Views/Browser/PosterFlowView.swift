@@ -611,7 +611,7 @@ struct PosterFlowView: View {
 struct ItemDetailView: View {
     let item: PosterItem
     @EnvironmentObject var embyClient: EmbyAPIClient
-    @EnvironmentObject var vlcManager: LibVLCManager
+    @EnvironmentObject var vlcManager: LibVLCWrapper
     
     @State private var seasons: [PosterItem] = []
     @State private var episodes: [PosterItem] = []
@@ -845,5 +845,5 @@ struct SectionView: View {
 #Preview {
     PosterFlowView()
         .environmentObject(EmbyAPIClient())
-        .environmentObject(LibVLCManager.shared)
+        .environmentObject(LibVLCWrapper())
 }

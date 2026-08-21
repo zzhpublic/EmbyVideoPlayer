@@ -13,7 +13,7 @@ import MobileVLCKit
 
 struct VideoPlayerView: View {
     let playbackInfo: EmbyPlaybackInfo
-    @EnvironmentObject var vlcManager: LibVLCManager
+    @EnvironmentObject var vlcManager: LibVLCWrapper
     @EnvironmentObject var embyClient: EmbyAPIClient
     @Environment(\.dismiss) var dismiss
     
@@ -44,8 +44,9 @@ struct VideoPlayerView: View {
         
         self.mediaSourceId = bestSource.id
         self.itemId = playbackInfo.item.id
-        self._player = State(initialValue: LibVLCManager.shared.player)
-    }
+            // Player will be initialized from environment
+            self._player = State(initialValue: LibVLCWrapper())
+        }
     
     var body: some View {
         ZStack {
@@ -866,5 +867,5 @@ extension VideoPlayerView {
         ],
         item: EmbyItem(id: "1", name: "Test Movie", type: "Movie", mediaType: "Video", seriesName: nil, parentId: nil, path: nil, overview: "Test overview", productionYear: 2024, communityRating: 8.5, officialRating: "PG-13", runTimeTicks: 72000000000, imageTags: nil, backdropImageTags: nil, genreItems: ["Action", "Sci-Fi"], people: nil, studios: nil, taglines: nil, premiereDate: nil, isFolder: nil, childCount: nil, locationType: nil, mediaStreams: nil, playAccess: nil)
     ))
-    .environmentObject(LibVLCManager.shared)
+    .environmentObject(LibVLCWrapper())
 }

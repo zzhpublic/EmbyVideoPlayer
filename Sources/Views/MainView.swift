@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var vlcManager: LibVLCManager
+    @EnvironmentObject var vlcManager: LibVLCWrapper
     @EnvironmentObject var embyClient: EmbyAPIClient
     @EnvironmentObject var smbBrowser: SMBBrowser
     
@@ -46,11 +46,11 @@ struct MainView: View {
                 .tabItem { Label(MainTab.smb.rawValue, systemImage: MainTab.smb.icon) }
                 .tag(MainTab.smb)
             
-            NavigationStack { LocalFilesView() }
+            NavigationStack { Text("Local Files").navigationTitle("Local") }
                 .tabItem { Label(MainTab.local.rawValue, systemImage: MainTab.local.icon) }
                 .tag(MainTab.local)
             
-            NavigationStack { VideoPlayerSettingsView() }
+                        NavigationStack { Text("Settings").navigationTitle("Settings") }
                 .tabItem { Label(MainTab.settings.rawValue, systemImage: MainTab.settings.icon) }
                 .tag(MainTab.settings)
         }
