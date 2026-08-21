@@ -22,7 +22,7 @@ let package = Package(
         .target(
                     name: "EmbyVideoPlayer",
                     dependencies: [
-                        .product(name: "MobileVLCKit", package: "libvlc-ios"),
+                                .product(name: "MobileVLCKit", package: "MobileVLCKit"),
                         .product(name: "Kingfisher", package: "Kingfisher"),
                     ],
                     path: "Sources",
