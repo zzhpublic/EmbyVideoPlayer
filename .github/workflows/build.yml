@@ -63,11 +63,12 @@ jobs:
         run: swift package resolve
 
       - name: Build for ${{ matrix.platform }}
-        run: |
-          xcodebuild \
-            -scheme ${{ matrix.scheme }} \
-            -destination "${{ matrix.destination }}" \
-            -configuration Debug \
+              timeout-minutes: 30
+              run: |
+                xcodebuild \
+                  -scheme ${{ matrix.scheme }} \
+                  -destination "${{ matrix.destination }}" \
+                  -configuration Debug \
                   CODE_SIGNING_ALLOWED=${{ matrix.disable_codesign }} \
                   CODE_SIGN_IDENTITY="" \
                   CODE_SIGNING_REQUIRED=NO \
