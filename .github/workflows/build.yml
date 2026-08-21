@@ -1,4 +1,4 @@
-﻿name: Build and Test
+name: Build and Test
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
           - platform: iOS Device
             runs-on: macos-14
             xcode: "15.4"
-            destination: '"'"'generic/platform=iOS'"'"'
+            destination: 'generic/platform=iOS'
             scheme: EmbyVideoPlayerApp
             disable_codesign: true
 
@@ -68,7 +68,6 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             build
 
-
       - name: Upload build artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -104,7 +103,7 @@ jobs:
     name: Generate Documentation
     runs-on: macos-14
     needs: build-and-test
-    if: github.ref == '"'"'refs/heads/main'"'"' || github.ref == '"'"'refs/heads/master'"'"'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode
@@ -122,7 +121,7 @@ jobs:
         run: |
           xcodebuild docbuild \
             -scheme EmbyVideoPlayer \
-            -destination '"'"'platform=macOS'"'"' \
+            -destination 'platform=macOS' \
             -derivedDataPath DerivedData
       - name: Upload documentation
         uses: actions/upload-artifact@v4
