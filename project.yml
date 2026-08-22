@@ -51,7 +51,7 @@ targets:
     sources:
       - path: App
     resources:
-      - path: App/LaunchScreen.storyboard
+          - path: App/Assets.xcassets
     dependencies:
       - target: EmbyVideoPlayer
     settings:
