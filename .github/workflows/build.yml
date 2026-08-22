@@ -93,7 +93,12 @@ jobs:
           mkdir -p ./build/ipa/Payload
           echo "=== Searching for .app in archive ==="
           find ./build/EmbyVideoPlayer.xcarchive -type f 2>/dev/null | head -50
-          APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive -name "*.app" -type d 2>/dev/null | head -1)
+          # Check Products/Applications for .app (xcodebuild archive puts it there for executable targets)
+          APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive/Products -name "*.app" -type d 2>/dev/null | head -1)
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app found in Products, checking other locations..."
+            APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive -name "*.app" -type d 2>/dev/null | head -1)
+          fi
           if [ -z "$APP_PATH" ]; then
             echo "No .app found in archive"
             echo "Archive structure:"
