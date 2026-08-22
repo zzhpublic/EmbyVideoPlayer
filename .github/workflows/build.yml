@@ -54,7 +54,9 @@ jobs:
             ${{ runner.os }}-spm-
 
       - name: Install xcodegen
-        run: brew install xcodegen
+        run: |
+          brew install xcodegen
+          xcodegen --version
 
       - name: Generate Xcode project
         run: xcodegen generate
