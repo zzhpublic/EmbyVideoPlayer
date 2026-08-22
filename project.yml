@@ -1,0 +1,122 @@
+name: EmbyVideoPlayer
+projectFormatVersion: 144
+options:
+  bundleIdPrefix: com.emby
+  deploymentTarget:
+    iOS: "16.0"
+  minimumXcodeGenVersion: "2.42.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    CODE_SIGNING_ALLOWED: "NO"
+    CODE_SIGN_IDENTITY: ""
+    CODE_SIGNING_REQUIRED: "NO"
+    DEVELOPMENT_TEAM: ""
+  configs:
+    Debug:
+      SWIFT_OPTIMIZATION_LEVEL: "-Onone"
+    Release:
+      SWIFT_OPTIMIZATION_LEVEL: "-O"
+
+packages:
+  MobileVLCKit:
+    url: https://github.com/MobileVLCKit-SPM/MobileVLCKit-SPM.git
+    from: "3.6.0"
+  Kingfisher:
+    url: https://github.com/onevcat/Kingfisher.git
+    from: "7.0.0"
+
+targets:
+  EmbyVideoPlayer:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Sources
+    dependencies:
+      - package: MobileVLCKit
+        product: MobileVLCKit
+      - package: Kingfisher
+        product: Kingfisher
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
+        PRODUCT_MODULE_NAME: EmbyVideoPlayer
+        INFOPLIST_FILE: App/Info.plist
+
+  EmbyVideoPlayerApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+    resources:
+          - path: App/Assets.xcassets
+    dependencies:
+      - target: EmbyVideoPlayer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
+        PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
+        INFOPLIST_FILE: App/Info.plist
+        SWIFT_OBJC_BRIDGING_HEADER: ""
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDevelopmentRegion: en
+        CFBundleDisplayName: EmbyVideoPlayer
+        CFBundleExecutable: $(EXECUTABLE_NAME)
+        CFBundleIdentifier: com.emby.videoplayer
+        CFBundleInfoDictionaryVersion: "6.0"
+        CFBundleName: EmbyVideoPlayer
+        CFBundlePackageType: APPL
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        LSRequiresIPhoneOS: true
+        UILaunchStoryboardName: LaunchScreen
+        UIRequiredDeviceCapabilities:
+          - arm64
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: true
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default Configuration
+                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+          NSExceptionDomains:
+            localhost:
+              NSExceptionAllowsInsecureHTTPLoads: true
+        NSBonjourServices:
+          - _smb._tcp.
+          - _http._tcp.
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        UISupportsDocumentBrowser: true
+        UIBackgroundModes:
+          - audio
+          - fetch
+
+schemes:
+  EmbyVideoPlayerApp:
+    build:
+      targets:
+        EmbyVideoPlayer: [analyze, test, run, archive]
+        EmbyVideoPlayerApp: [analyze, test, run, archive]
+    run:
+      config: Debug
+    test:
+      config: Debug
+    archive:
+      config: Release
+      revealArchiveInOrganizer: true

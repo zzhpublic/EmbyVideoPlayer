@@ -53,55 +53,88 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-spm-
 
+      - name: Install xcodegen
+        run: |
+          brew install xcodegen
+          xcodegen --version
+
+      - name: Generate Xcode project
+        run: |
+          xcodegen generate
+          # Check project format version
+          grep -i "objectVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -1
+
+      - name: Downgrade Xcode project format for Xcode 15.4 compatibility
+        run: |
+          # Xcode 15.4 supports down to format ~32 (Xcode 7+), but xcodegen generates 77 (Xcode 16+)
+          # Manually patch BOTH objectVersion AND preferredProjectObjectVersion
+          sed -i '' 's/objectVersion = 77;/objectVersion = 46;/' EmbyVideoPlayer.xcodeproj/project.pbxproj
+          sed -i '' 's/preferredProjectObjectVersion = 77;/preferredProjectObjectVersion = 46;/' EmbyVideoPlayer.xcodeproj/project.pbxproj
+          # Also update compatibilityVersion if present
+          sed -i '' 's/compatibilityVersion = "Xcode 16.0";/compatibilityVersion = "Xcode 8.0";/' EmbyVideoPlayer.xcodeproj/project.pbxproj
+          # Verify the changes
+          grep -i "objectVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -5
+          grep -i "compatibilityVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -5
+
       - name: Resolve Swift Package dependencies
         run: swift package resolve
 
-            - name: Generate Xcode project
-              run: swift package generate-xcodeproj
+      - name: Build for ${{ matrix.platform }}
+        timeout-minutes: 45
+        run: |
+          xcodebuild \
+            -project EmbyVideoPlayer.xcodeproj \
+            -scheme ${{ matrix.scheme }} \
+            -destination "${{ matrix.destination }}" \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=${{ matrix.disable_codesign }} \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            build
 
-            - name: Build for ${{ matrix.platform }}
-              timeout-minutes: 45
-              run: |
-                xcodebuild \
-                  -scheme ${{ matrix.scheme }} \
-                  -destination "${{ matrix.destination }}" \
-                  -configuration Debug \
-                  CODE_SIGNING_ALLOWED=${{ matrix.disable_codesign }} \
-                  CODE_SIGN_IDENTITY="" \
-                  CODE_SIGNING_REQUIRED=NO \
-                  build
-
-            - name: Archive for IPA (iOS Device only)
-              if: matrix.platform == 'iOS Device'
-              timeout-minutes: 45
-              run: |
-                xcodebuild archive \
-                  -scheme ${{ matrix.scheme }} \
-                  -destination "${{ matrix.destination }}" \
-                  -configuration Release \
-                  -archivePath ./build/EmbyVideoPlayer.xcarchive \
-                  CODE_SIGNING_ALLOWED=NO \
-                  CODE_SIGN_IDENTITY="" \
-                  CODE_SIGNING_REQUIRED=NO \
-                  SKIP_INSTALL=NO \
-                  BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+      - name: Archive for IPA (iOS Device only)
+        if: matrix.platform == 'iOS Device'
+        timeout-minutes: 45
+        run: |
+          xcodebuild archive \
+            -project EmbyVideoPlayer.xcodeproj \
+            -scheme ${{ matrix.scheme }} \
+            -destination "${{ matrix.destination }}" \
+            -configuration Release \
+            -archivePath ./build/EmbyVideoPlayer.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            SKIP_INSTALL=NO \
+            BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+          echo "=== Archive Contents Debug ==="
+          ls -la ./build/EmbyVideoPlayer.xcarchive/
+          find ./build/EmbyVideoPlayer.xcarchive -type f 2>/dev/null | head -50
+          echo "=== End Debug ==="
 
       - name: Create unsigned IPA
-              if: matrix.platform == 'iOS Device'
-              run: |
-                mkdir -p ./build/ipa/Payload
-                APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive -name "*.app" -type d 2>/dev/null | head -1)
-                if [ -z "$APP_PATH" ]; then
-                  echo "No .app found in archive"
-                  echo "Archive structure:"
-                  find ./build/EmbyVideoPlayer.xcarchive -type d 2>/dev/null | head -40
-                  exit 1
-                fi
-                echo "Found app at: $APP_PATH"
-                cp -R "$APP_PATH" ./build/ipa/Payload/
-                cd ./build/ipa
-                zip -r EmbyVideoPlayer.ipa Payload/
-                echo "Unsigned IPA created at ./build/ipa/EmbyVideoPlayer.ipa"
+        if: matrix.platform == 'iOS Device'
+        run: |
+          mkdir -p ./build/ipa/Payload
+          echo "=== Searching for .app in archive ==="
+          find ./build/EmbyVideoPlayer.xcarchive -type f 2>/dev/null | head -50
+          # For iOS app bundles, xcodebuild archive puts .app in Products/Applications/
+          APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive/Products/Applications -name "*.app" -type d 2>/dev/null | head -1)
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app found in Products/Applications, checking other locations..."
+            APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive -name "*.app" -type d 2>/dev/null | head -1)
+          fi
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app found in archive"
+            echo "Archive structure:"
+            find ./build/EmbyVideoPlayer.xcarchive -type d 2>/dev/null | head -40
+            exit 1
+          fi
+          echo "Found app at: $APP_PATH"
+          cp -R "$APP_PATH" ./build/ipa/Payload/
+          cd ./build/ipa
+          zip -r EmbyVideoPlayer.ipa Payload/
+          echo "Unsigned IPA created at ./build/ipa/EmbyVideoPlayer.ipa"
 
       - name: Upload build artifacts
         if: always()
