@@ -46,26 +46,26 @@ targets:
         INFOPLIST_FILE: App/Info.plist
 
   EmbyVideoPlayerApp:
-      type: application
-      platform: iOS
-      sources:
-        - path: App
-      resources:
-        - path: App/Assets.xcassets
-      dependencies:
-        - target: EmbyVideoPlayer
-        - package: MobileVLCKit
-          product: MobileVLCKit
-        - package: Kingfisher
-          product: Kingfisher
-      settings:
-        base:
-          PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
-          PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
-          INFOPLIST_FILE: App/Info.plist
-          SWIFT_OBJC_BRIDGING_HEADER: ""
-          LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
-      info:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+    resources:
+      - path: App/Assets.xcassets
+    dependencies:
+      - target: EmbyVideoPlayer
+      - package: MobileVLCKit
+        product: MobileVLCKit
+      - package: Kingfisher
+        product: Kingfisher
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
+        PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
+        INFOPLIST_FILE: App/Info.plist
+        SWIFT_OBJC_BRIDGING_HEADER: ""
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+    info:
       path: App/Info.plist
       properties:
         CFBundleDevelopmentRegion: en
