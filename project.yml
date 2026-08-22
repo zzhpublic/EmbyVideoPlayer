@@ -51,9 +51,13 @@ targets:
     sources:
       - path: App
     resources:
-          - path: App/Assets.xcassets
+      - path: App/Assets.xcassets
     dependencies:
       - target: EmbyVideoPlayer
+      - package: MobileVLCKit
+        product: MobileVLCKit
+      - package: Kingfisher
+        product: Kingfisher
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
