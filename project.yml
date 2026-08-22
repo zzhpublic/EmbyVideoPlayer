@@ -51,17 +51,23 @@ targets:
     sources:
       - path: App
     resources:
-          - path: App/Assets.xcassets
+        - path: App/Assets.xcassets
     dependencies:
       - target: EmbyVideoPlayer
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
-        PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
-        INFOPLIST_FILE: App/Info.plist
-        SWIFT_OBJC_BRIDGING_HEADER: ""
-        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
-    info:
+        - package: MobileVLCKit
+          product: MobileVLCKit
+          embed: true
+        - package: Kingfisher
+          product: Kingfisher
+          embed: true
+      settings:
+        base:
+          PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
+          PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
+          INFOPLIST_FILE: App/Info.plist
+          SWIFT_OBJC_BRIDGING_HEADER: ""
+          LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+      info:
       path: App/Info.plist
       properties:
         CFBundleDevelopmentRegion: en
