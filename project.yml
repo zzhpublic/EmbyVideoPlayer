@@ -1,11 +1,11 @@
 name: EmbyVideoPlayer
+projectFormatVersion: 150
 options:
   bundleIdPrefix: com.emby
   deploymentTarget:
     iOS: "16.0"
   minimumXcodeGenVersion: "2.42.0"
   createIntermediateGroups: true
-  projectFormatVersion: 150
 
 settings:
   base:
