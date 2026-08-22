@@ -64,6 +64,16 @@ jobs:
           # Check project format version
           grep -i "objectVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -1
 
+      - name: Downgrade Xcode project format for Xcode 15.4 compatibility
+        run: |
+          # Xcode 15.4 supports up to format ~144, but xcodegen generates 77 (Xcode 16+)
+          # Manually patch the project format
+          sed -i '' 's/objectVersion = 77;/objectVersion = 144;/' EmbyVideoPlayer.xcodeproj/project.pbxproj
+          # Also update compatibilityVersion if present
+          sed -i '' 's/compatibilityVersion = "Xcode 16.0";/compatibilityVersion = "Xcode 15.4";/' EmbyVideoPlayer.xcodeproj/project.pbxproj
+          # Verify the change
+          grep -i "objectVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -1
+
       - name: Resolve Swift Package dependencies
         run: swift package resolve
 
