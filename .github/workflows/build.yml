@@ -56,9 +56,6 @@ jobs:
       - name: Resolve Swift Package dependencies
         run: swift package resolve
 
-      - name: Generate Xcode project
-        run: swift package generate-xcodeproj
-
       - name: Build for ${{ matrix.platform }}
         timeout-minutes: 45
         run: |
