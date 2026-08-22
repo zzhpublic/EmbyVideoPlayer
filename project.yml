@@ -46,20 +46,18 @@ targets:
         INFOPLIST_FILE: App/Info.plist
 
   EmbyVideoPlayerApp:
-    type: application
-    platform: iOS
-    sources:
-      - path: App
-    resources:
+      type: application
+      platform: iOS
+      sources:
+        - path: App
+      resources:
         - path: App/Assets.xcassets
-    dependencies:
-      - target: EmbyVideoPlayer
+      dependencies:
+        - target: EmbyVideoPlayer
         - package: MobileVLCKit
           product: MobileVLCKit
-          embed: true
         - package: Kingfisher
           product: Kingfisher
-          embed: true
       settings:
         base:
           PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
