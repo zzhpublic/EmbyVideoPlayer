@@ -1,5 +1,5 @@
 name: EmbyVideoPlayer
-projectFormatVersion: 150
+projectFormatVersion: 144
 options:
   bundleIdPrefix: com.emby
   deploymentTarget:
