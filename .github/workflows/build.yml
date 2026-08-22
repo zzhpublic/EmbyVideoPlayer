@@ -59,7 +59,10 @@ jobs:
           xcodegen --version
 
       - name: Generate Xcode project
-        run: xcodegen generate
+        run: |
+          xcodegen generate
+          # Check project format version
+          grep -i "objectVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -1
 
       - name: Resolve Swift Package dependencies
         run: swift package resolve
