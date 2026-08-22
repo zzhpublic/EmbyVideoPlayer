@@ -66,13 +66,14 @@ jobs:
 
       - name: Downgrade Xcode project format for Xcode 15.4 compatibility
         run: |
-          # Xcode 15.4 supports down to format ~46 (Xcode 6+), but xcodegen generates 77 (Xcode 16+)
+          # Xcode 15.4 supports down to format ~32 (Xcode 7+), but xcodegen generates 77 (Xcode 16+)
           # Manually patch the project format to a very old version that Xcode 15.4 can read
-          sed -i '' 's/objectVersion = 77;/objectVersion = 46;/' EmbyVideoPlayer.xcodeproj/project.pbxproj
+          sed -i '' 's/objectVersion = 77;/objectVersion = 32;/' EmbyVideoPlayer.xcodeproj/project.pbxproj
           # Also update compatibilityVersion if present
-          sed -i '' 's/compatibilityVersion = "Xcode 16.0";/compatibilityVersion = "Xcode 6.0";/' EmbyVideoPlayer.xcodeproj/project.pbxproj
+          sed -i '' 's/compatibilityVersion = "Xcode 16.0";/compatibilityVersion = "Xcode 7.0";/' EmbyVideoPlayer.xcodeproj/project.pbxproj
           # Verify the change
-          grep -i "objectVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -1
+          grep -i "objectVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -5
+          grep -i "compatibilityVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -5
 
       - name: Resolve Swift Package dependencies
         run: swift package resolve
