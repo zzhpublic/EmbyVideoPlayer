@@ -1,28 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>images</key>
-    <array>
-        <dict>
-            <key>idiom</key>
-            <string>universal</string>
-            <key>filename</key>
-            <string>LaunchImage.png</string>
-            <key>minimum-system-version</key>
-            <string>16.0</string>
-            <key>orientation</key>
-            <string>portrait</string>
-            <key>scale</key>
-            <string>3x</string>
-        </dict>
-    </array>
-    <key>info</key>
-    <dict>
-        <key>version</key>
-        <integer>1</integer>
-        <key>author</key>
-        <string>xcode</string>
-    </dict>
-</dict>
-</plist>
+{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
