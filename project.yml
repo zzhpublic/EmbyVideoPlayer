@@ -49,19 +49,19 @@ targets:
     platform: iOS
     sources:
       - path: App
-      resources:
-        - path: App/LaunchScreen.storyboard
-      dependencies:
-        - target: EmbyVideoPlayer
-      settings:
-        base:
-          PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
-          PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
-          INFOPLIST_FILE: App/Info.plist
-          SWIFT_OBJC_BRIDGING_HEADER: ""
-          LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
-      info:
-        path: App/Info.plist
+    resources:
+      - path: App/LaunchScreen.storyboard
+    dependencies:
+      - target: EmbyVideoPlayer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
+        PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
+        INFOPLIST_FILE: App/Info.plist
+        SWIFT_OBJC_BRIDGING_HEADER: ""
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+    info:
+      path: App/Info.plist
       properties:
         CFBundleDevelopmentRegion: en
         CFBundleDisplayName: EmbyVideoPlayer
