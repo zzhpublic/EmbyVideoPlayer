@@ -53,6 +53,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-spm-
 
+      - name: Install xcodegen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
       - name: Resolve Swift Package dependencies
         run: swift package resolve
 
@@ -60,6 +66,7 @@ jobs:
         timeout-minutes: 45
         run: |
           xcodebuild \
+            -project EmbyVideoPlayer.xcodeproj \
             -scheme ${{ matrix.scheme }} \
             -destination "${{ matrix.destination }}" \
             -configuration Debug \
@@ -73,6 +80,7 @@ jobs:
         timeout-minutes: 45
         run: |
           xcodebuild archive \
+            -project EmbyVideoPlayer.xcodeproj \
             -scheme ${{ matrix.scheme }} \
             -destination "${{ matrix.destination }}" \
             -configuration Release \
@@ -93,10 +101,10 @@ jobs:
           mkdir -p ./build/ipa/Payload
           echo "=== Searching for .app in archive ==="
           find ./build/EmbyVideoPlayer.xcarchive -type f 2>/dev/null | head -50
-          # Check Products/Applications for .app (xcodebuild archive puts it there for executable targets)
-          APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive/Products -name "*.app" -type d 2>/dev/null | head -1)
+          # For iOS app bundles, xcodebuild archive puts .app in Products/Applications/
+          APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive/Products/Applications -name "*.app" -type d 2>/dev/null | head -1)
           if [ -z "$APP_PATH" ]; then
-            echo "No .app found in Products, checking other locations..."
+            echo "No .app found in Products/Applications, checking other locations..."
             APP_PATH=$(find ./build/EmbyVideoPlayer.xcarchive -name "*.app" -type d 2>/dev/null | head -1)
           fi
           if [ -z "$APP_PATH" ]; then
