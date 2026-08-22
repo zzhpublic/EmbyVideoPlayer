@@ -66,11 +66,11 @@ jobs:
 
       - name: Downgrade Xcode project format for Xcode 15.4 compatibility
         run: |
-          # Xcode 15.4 supports up to format ~120 (Xcode 13), but xcodegen generates 77 (Xcode 16+)
+          # Xcode 15.4 supports up to format ~100 (Xcode 11/12), but xcodegen generates 77 (Xcode 16+)
           # Manually patch the project format
-          sed -i '' 's/objectVersion = 77;/objectVersion = 120;/' EmbyVideoPlayer.xcodeproj/project.pbxproj
+          sed -i '' 's/objectVersion = 77;/objectVersion = 100;/' EmbyVideoPlayer.xcodeproj/project.pbxproj
           # Also update compatibilityVersion if present
-          sed -i '' 's/compatibilityVersion = "Xcode 16.0";/compatibilityVersion = "Xcode 13.0";/' EmbyVideoPlayer.xcodeproj/project.pbxproj
+          sed -i '' 's/compatibilityVersion = "Xcode 16.0";/compatibilityVersion = "Xcode 11.0";/' EmbyVideoPlayer.xcodeproj/project.pbxproj
           # Verify the change
           grep -i "objectVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -1
 
