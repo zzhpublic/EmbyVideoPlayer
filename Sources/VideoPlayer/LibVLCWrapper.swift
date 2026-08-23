@@ -224,24 +224,23 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
                 }
             }
         }
-    }
     
-    public func setAspectRatio(_ aspectRatio: String?) {
-        playbackState.aspectRatio = aspectRatio
-    }
+        public func setAspectRatio(_ aspectRatio: String?) {
+            playbackState.aspectRatio = aspectRatio
+        }
     
-    public func setCropGeometry(_ geometry: String?) {
-        playbackState.cropGeometry = geometry
-    }
+        public func setCropGeometry(_ geometry: String?) {
+            playbackState.cropGeometry = geometry
+        }
     
-    public func takeSnapshot() -> Data? {
-        guard let player = mediaPlayer else { return nil }
-        // VLCKit snapshot implementation
-        return nil
-    }
+        public func takeSnapshot() -> Data? {
+            guard let player = mediaPlayer else { return nil }
+            // VLCKit snapshot implementation
+            return nil
+        }
     
-    public func addSubtitleTrack(url: URL) throws {
-        guard let player = mediaPlayer else { throw LibVLCError.notInitialized }
+        public func addSubtitleTrack(url: URL) throws {
+            guard let player = mediaPlayer else { throw LibVLCError.notInitialized }
         
             // VLCKit 4.0: addPlaybackSlave takes NSURL, not VLCMedia
             let result = player.addPlaybackSlave(url as NSURL, type: .subtitle, enforce: false)
@@ -250,12 +249,12 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             }
         }
     
-    public func cleanup() {
-        stop()
-        mediaPlayer = nil
-        media = nil
-        isInitialized = false
-    }
+        public func cleanup() {
+            stop()
+            mediaPlayer = nil
+            media = nil
+            isInitialized = false
+        }
     
     // MARK: - VLCMediaPlayerDelegate
     
@@ -386,18 +385,17 @@ import CLibVLC
 public class LibVLCWrapper: LibVLCPlayerProtocol, ObservableObject {
     @Published public var playbackState = LibVLCPlaybackState()
     public var playbackStatePublisher: Published<LibVLCPlaybackState>.Publisher { $playbackState }
-    
+        
     @Published public var mediaInfo: LibVLCMediaInfo?
-    
+        
     private var mediaPlayer: OpaquePointer?
     private var media: OpaquePointer?
     private var libvlcInstance: OpaquePointer?
     private var isInitialized = false
-    
+        
     public static let shared = LibVLCWrapper()
-    
-    public override init() {
-        super.init()
+        
+    public init() {
     }
     
     public func initialize() throws {
@@ -706,6 +704,4 @@ public class LibVLCWrapper: LibVLCPlayerProtocol, ObservableObject {
     public func takeSnapshot() -> Data? { return nil }
     public func addSubtitleTrack(url: URL) throws { throw LibVLCError.notInitialized }
     public func cleanup() {}
-}
-
 #endif
