@@ -101,11 +101,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
     private var media: VLCMedia?
     private var isInitialized = false
     
-    public static let shared = LibVLCWrapper()
-    
-    public override init() {
-        super.init()
-    }
+    public static let shared = LibVLCWrapper()\n\n    public init() {\n        // No initialization needed, initialize() must be called separately\n    }\n\n    
     
     public func initialize() throws {
         // VLCKit initializes automatically
@@ -190,8 +186,8 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
                 // VLCKit 4.0: Use selectTrack(at:type:) with VLCMedia.TrackType
             if let videoTracks = player.videoTracks {
                 for (index, track) in videoTracks.enumerated() {
-                        if track.trackId == trackId {
-                            player.selectTrack(at: index, type: VLCMedia.TrackType.video)
+                        if track.id == trackId {
+                            player.selectTrack(at: index, type: .video)
                         playbackState.videoTrack = trackId
                         break
                     }
@@ -203,8 +199,8 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             guard let player = mediaPlayer else { return }
             if let audioTracks = player.audioTracks {
                 for (index, track) in audioTracks.enumerated() {
-                        if track.trackId == trackId {
-                            player.selectTrack(at: index, type: VLCMedia.TrackType.audio)
+                        if track.id == trackId {
+                            player.selectTrack(at: index, type: .audio)
                         playbackState.audioTrack = trackId
                         break
                     }
@@ -216,8 +212,8 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             guard let player = mediaPlayer else { return }
             if let textTracks = player.textTracks {
                 for (index, track) in textTracks.enumerated() {
-                        if track.trackId == trackId {
-                            player.selectTrack(at: index, type: VLCMedia.TrackType.text)
+                        if track.id == trackId {
+                            player.selectTrack(at: index, type: .text)
                         playbackState.subtitleTrack = trackId
                         break
                     }
@@ -243,7 +239,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             guard let player = mediaPlayer else { throw LibVLCError.notInitialized }
         
             // VLCKit 4.0: addPlaybackSlave takes NSURL, not VLCMedia
-                                let result = player.addPlaybackSlave(url as NSURL, type: .subtitle, enforce: false)
+                    let result = player.addPlaybackSlave(url as NSURL, type: .subtitle, enforce: false)
             if result != 0 {
                 throw LibVLCError.playbackFailed("Failed to add subtitle track: \(result)")
             }
@@ -291,17 +287,17 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             // VLCKit 4.0: Get selected track indices from tracks arrays using trackId
             if let videoTracks = player.videoTracks,
                let selectedVideoTrack = videoTracks.first(where: { $0.isSelected }) {
-                            playbackState.videoTrack = Int(selectedVideoTrack.trackId)
+                            playbackState.videoTrack = selectedVideoTrack.id
             }
         
             if let audioTracks = player.audioTracks,
                let selectedAudioTrack = audioTracks.first(where: { $0.isSelected }) {
-                            playbackState.audioTrack = Int(selectedAudioTrack.trackId)
+                            playbackState.audioTrack = selectedAudioTrack.id
             }
         
             if let textTracks = player.textTracks,
                let selectedTextTrack = textTracks.first(where: { $0.isSelected }) {
-                            playbackState.subtitleTrack = Int(selectedTextTrack.trackId)
+                            playbackState.subtitleTrack = selectedTextTrack.id
             }
         
             if let aspectRatioPtr = player.videoAspectRatio {
@@ -393,29 +389,29 @@ public class LibVLCWrapper: LibVLCPlayerProtocol, ObservableObject {
     private var libvlcInstance: OpaquePointer?
     private var isInitialized = false
         
-    public static let shared = LibVLCWrapper()
-        
-        public override init() {
-            super.init()
+        public static let shared = LibVLCWrapper()
+
+        public init() {
+            // No initialization needed, initialize() must be called separately
         }
     
-    public func initialize() throws {
-        let args = [
-            "--no-xlib",
-            "--quiet",
-            "--no-video-title-show",
-            "--network-caching=1000",
-            "--file-caching=1000",
-            "--live-caching=1000"
-        ]
+        public func initialize() throws {
+            let args = [
+                "--no-xlib",
+                "--quiet",
+                "--no-video-title-show",
+                "--network-caching=1000",
+                "--file-caching=1000",
+                "--live-caching=1000"
+            ]
         
-        var cArgs = args.map { strdup($0) }
-        defer { cArgs.forEach { free($0) } }
+            var cArgs = args.map { strdup($0) }
+            defer { cArgs.forEach { free($0) } }
         
-        libvlcInstance = libvlc_new(Int32(args.count), &cArgs)
+            libvlcInstance = libvlc_new(Int32(args.count), &cArgs)
         
-        guard libvlcInstance != nil else {
-            throw LibVLCError.initializationFailed
+            guard libvlcInstance != nil else {
+                throw LibVLCError.initializationFailed
         }
         
         mediaPlayer = libvlc_media_player_new(libvlcInstance)
@@ -705,4 +701,8 @@ public class LibVLCWrapper: LibVLCPlayerProtocol, ObservableObject {
     public func takeSnapshot() -> Data? { return nil }
     public func addSubtitleTrack(url: URL) throws { throw LibVLCError.notInitialized }
     public func cleanup() {}
-#endif
+    } // Close class for Apple platforms
+    #endif
+
+
+
