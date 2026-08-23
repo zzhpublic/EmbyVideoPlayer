@@ -282,7 +282,7 @@ jobs:
               $swiftDownloaded = $true
               break
             } catch {
-              Write-Warning "Failed to download from $swiftUrl: $_"
+              Write-Warning "Failed to download from ${swiftUrl}: $_"
             }
           }
           
@@ -376,7 +376,7 @@ jobs:
                 break
               }
             } catch {
-              Write-Warning "Failed to download from $sdkUrl: $_"
+              Write-Warning "Failed to download from ${sdkUrl}: $_"
             }
           }
           
