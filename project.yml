@@ -60,73 +60,67 @@ targets:
         platform: macOS
 
   EmbyVideoPlayerApp:
-    type: application
-    platform: iOS
-    deploymentTarget:
-      iOS: "16.0"
-      tvOS: "16.0"
-    sources:
-      - path: App
-    resources:
-      - path: App/Assets.xcassets
-    dependencies:
-      - target: EmbyVideoPlayer
-      - package: VLCKit
-        product: VLCKit
-      - package: Kingfisher
-        product: Kingfisher
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
-        PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
-        INFOPLIST_FILE: App/Info.plist
-        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_VLCKIT"
-    variants:
-      tvOS:
-        platform: tvOS
-      macOS:
-        platform: macOS
-  
-      EmbyVideoPlayerApptvOS:
-        type: application
-        platform: tvOS
-        deploymentTarget:
-          tvOS: "16.0"
-        sources:
-          - path: App
-        resources:
-          - path: App/Assets.xcassets
-        dependencies:
-          - target: EmbyVideoPlayer
-          - package: VLCKit
-            product: VLCKit
-          - package: Kingfisher
-            product: Kingfisher
-        settings:
-          base:
-            PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer.tvos
-            PRODUCT_MODULE_NAME: EmbyVideoPlayerApptvOS
-            INFOPLIST_FILE: App/Info.plist
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_VLCKIT"
-  
-      EmbyVideoPlayerMacOS:
-    type: application
-    platform: macOS
-    deploymentTarget:
-      macOS: "13.0"
-    sources:
-      - path: AppMacOS
-    resources:
-      - path: AppMacOS/Assets.xcassets
-    dependencies:
-      - target: EmbyVideoPlayer
-      - package: VLCKit
-        product: VLCKit
-      - package: Kingfisher
-        product: Kingfisher
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer.macos
-        PRODUCT_MODULE_NAME: EmbyVideoPlayerMacOS
-        INFOPLIST_FILE: AppMacOS/Info.plist
-        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_VLCKIT"
+      type: application
+      platform: iOS
+      deploymentTarget:
+        iOS: "16.0"
+      sources:
+        - path: App
+      resources:
+        - path: App/Assets.xcassets
+      dependencies:
+        - target: EmbyVideoPlayer
+        - package: VLCKit
+          product: VLCKit
+        - package: Kingfisher
+          product: Kingfisher
+      settings:
+        base:
+          PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
+          PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
+          INFOPLIST_FILE: App/Info.plist
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_VLCKIT"
+
+    EmbyVideoPlayerApptvOS:
+      type: application
+      platform: tvOS
+      deploymentTarget:
+        tvOS: "16.0"
+      sources:
+        - path: App
+      resources:
+        - path: App/Assets.xcassets
+      dependencies:
+        - target: EmbyVideoPlayer
+        - package: VLCKit
+          product: VLCKit
+        - package: Kingfisher
+          product: Kingfisher
+      settings:
+        base:
+          PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer.tvos
+          PRODUCT_MODULE_NAME: EmbyVideoPlayerApptvOS
+          INFOPLIST_FILE: App/Info.plist
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_VLCKIT"
+
+    EmbyVideoPlayerMacOS:
+      type: application
+      platform: macOS
+      deploymentTarget:
+        macOS: "13.0"
+      sources:
+        - path: AppMacOS
+      resources:
+        - path: AppMacOS/Assets.xcassets
+      dependencies:
+        - target: EmbyVideoPlayer
+        - package: VLCKit
+          product: VLCKit
+        - package: Kingfisher
+          product: Kingfisher
+      settings:
+        base:
+          PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer.macos
+          PRODUCT_MODULE_NAME: EmbyVideoPlayerMacOS
+          INFOPLIST_FILE: AppMacOS/Info.plist
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_VLCKIT"

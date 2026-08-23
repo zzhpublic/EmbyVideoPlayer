@@ -16,7 +16,7 @@ let package = Package(
         ],
     dependencies: [
         // VLCKit for all Apple platforms - using official VideoLAN VLCKit (supports iOS, macOS, tvOS)
-        .package(url: "https://code.videolan.org/videolan/VLCKit.git", exact: "4.0.0-a22"),
+            .package(url: "https://code.videolan.org/videolan/VLCKit.git", from: "4.0.0-a22"),
         // Kingfisher for image loading
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0"),
         // libvlc for Windows (when available via SPM)
