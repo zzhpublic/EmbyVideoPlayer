@@ -58,8 +58,8 @@ targets:
       - path: App/Assets.xcassets
     dependencies:
       - target: EmbyVideoPlayer
-        - package: VLCKit
-          product: VLCKit
+      - package: VLCKit
+        product: VLCKit
       - package: Kingfisher
         product: Kingfisher
     settings:
@@ -82,7 +82,11 @@ targets:
         CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1"
         LSRequiresIPhoneOS: true
-        UILaunchStoryboardName: LaunchScreen
+        UILaunchImages:
+          - UILaunchImageMinimumOSVersion: "16.0"
+            UILaunchImageName: "LaunchImage"
+            UILaunchImageOrientation: "Portrait"
+            UILaunchImageSize: "{393, 852}"
         UIRequiredDeviceCapabilities:
           - arm64
         UISupportedInterfaceOrientations:
@@ -168,7 +172,7 @@ schemes:
     archive:
       config: Release
       revealArchiveInOrganizer: true
-  
+   
   EmbyVideoPlayerMacOS:
     build:
       targets:
