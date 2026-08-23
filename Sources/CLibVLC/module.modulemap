@@ -1,0 +1,13 @@
+module CLibVLC [system] {
+    header "vlc/vlc.h"
+    export *
+    
+    // Platform-specific library linking
+    #if os(Windows)
+    link "libvlc"
+    link "libvlccore"
+    #elseif os(Linux)
+    link "vlc"
+    link "vlccore"
+    #endif
+}

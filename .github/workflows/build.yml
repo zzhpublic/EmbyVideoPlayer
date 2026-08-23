@@ -20,12 +20,19 @@ jobs:
             destination: 'generic/platform=iOS'
             scheme: EmbyVideoPlayerApp
             disable_codesign: true
+          - platform: macOS
+            runs-on: macos-14
+            xcode: "15.4"
+            destination: 'platform=macOS'
+            scheme: EmbyVideoPlayerMacOS
+            disable_codesign: true
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Select Xcode
+        if: runner.os == 'macOS'
         run: |
           # Try multiple Xcode 15.4 paths, fallback to default
           if [ -d "/Applications/Xcode_15.4.app" ]; then
@@ -54,17 +61,20 @@ jobs:
             ${{ runner.os }}-spm-
 
       - name: Install xcodegen
+        if: runner.os == 'macOS'
         run: |
           brew install xcodegen
           xcodegen --version
 
       - name: Generate Xcode project
+        if: runner.os == 'macOS'
         run: |
           xcodegen generate
           # Check project format version
           grep -i "objectVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -1
 
       - name: Downgrade Xcode project format for Xcode 15.4 compatibility
+        if: runner.os == 'macOS'
         run: |
           # Xcode 15.4 supports down to format ~32 (Xcode 7+), but xcodegen generates 77 (Xcode 16+)
           # Manually patch BOTH objectVersion AND preferredProjectObjectVersion
@@ -136,6 +146,48 @@ jobs:
           zip -r EmbyVideoPlayer.ipa Payload/
           echo "Unsigned IPA created at ./build/ipa/EmbyVideoPlayer.ipa"
 
+      - name: Archive for macOS
+        if: matrix.platform == 'macOS'
+        timeout-minutes: 45
+        run: |
+          xcodebuild archive \
+            -project EmbyVideoPlayer.xcodeproj \
+            -scheme ${{ matrix.scheme }} \
+            -destination "${{ matrix.destination }}" \
+            -configuration Release \
+            -archivePath ./build/EmbyVideoPlayerMacOS.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            SKIP_INSTALL=NO \
+            BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+          echo "=== macOS Archive Contents Debug ==="
+          ls -la ./build/EmbyVideoPlayerMacOS.xcarchive/
+          find ./build/EmbyVideoPlayerMacOS.xcarchive -type f 2>/dev/null | head -50
+          echo "=== End Debug ==="
+
+      - name: Create macOS app archive
+        if: matrix.platform == 'macOS'
+        run: |
+          mkdir -p ./build/macos
+          echo "=== Searching for .app in macOS archive ==="
+          APP_PATH=$(find ./build/EmbyVideoPlayerMacOS.xcarchive/Products/Applications -name "*.app" -type d 2>/dev/null | head -1)
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app found in Products/Applications, checking other locations..."
+            APP_PATH=$(find ./build/EmbyVideoPlayerMacOS.xcarchive -name "*.app" -type d 2>/dev/null | head -1)
+          fi
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app found in archive"
+            echo "Archive structure:"
+            find ./build/EmbyVideoPlayerMacOS.xcarchive -type d 2>/dev/null | head -40
+            exit 1
+          fi
+          echo "Found macOS app at: $APP_PATH"
+          cp -R "$APP_PATH" ./build/macos/
+          cd ./build/macos
+          zip -r EmbyVideoPlayerMacOS.zip "$(basename "$APP_PATH")"
+          echo "macOS app archive created at ./build/macos/EmbyVideoPlayerMacOS.zip"
+
       - name: Upload build artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -146,6 +198,79 @@ jobs:
             DerivedData
             build/EmbyVideoPlayer.xcarchive
             build/ipa/EmbyVideoPlayer.ipa
+            build/EmbyVideoPlayerMacOS.xcarchive
+            build/macos/EmbyVideoPlayerMacOS.zip
+          retention-days: 7
+          if-no-files-found: ignore
+
+  windows-build:
+    name: Build Windows
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Swift for Windows
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: "5.10"
+
+      - name: Cache Swift packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            .build
+            %USERPROFILE%\.swiftpm
+          key: windows-spm-${{ hashFiles('Package.resolved') }}
+          restore-keys: |
+            windows-spm-
+
+      - name: Install VLC SDK (Windows)
+        run: |
+          # Download and install VLC for Windows
+          $vlcUrl = "https://get.videolan.org/vlc/3.0.21/win64/vlc-3.0.21-win64.exe"
+          $installPath = "C:\Program Files\VideoLAN\VLC"
+          Invoke-WebRequest -Uri $vlcUrl -OutFile "vlc-installer.exe"
+          Start-Process -FilePath "vlc-installer.exe" -ArgumentList "/S", "/D=$installPath" -Wait
+          # Verify installation
+          if (Test-Path "$installPath\vlc.exe") {
+            Write-Host "VLC installed successfully at $installPath"
+          } else {
+            Write-Error "VLC installation failed"
+            exit 1
+          }
+        shell: pwsh
+
+      - name: Set VLC SDK path
+        run: |
+          echo "VLC_SDK_PATH=C:\Program Files\VideoLAN\VLC" >> $env:GITHUB_ENV
+
+      - name: Build Windows executable
+        run: |
+          swift build -c release --product EmbyVideoPlayerWindows
+        env:
+          VLC_SDK_PATH: C:\Program Files\VideoLAN\VLC
+
+      - name: Package Windows build
+        run: |
+          $buildDir = "build\windows"
+          New-Item -ItemType Directory -Force -Path $buildDir
+          Copy-Item -Path ".build\release\EmbyVideoPlayerWindows.exe" -Destination "$buildDir\"
+          # Copy VLC DLLs
+          Copy-Item -Path "C:\Program Files\VideoLAN\VLC\*.dll" -Destination "$buildDir\" -ErrorAction SilentlyContinue
+          # Create zip
+          Compress-Archive -Path "$buildDir\*" -DestinationPath "$buildDir\EmbyVideoPlayer-Windows.zip"
+          Write-Host "Windows build packaged at $buildDir\EmbyVideoPlayer-Windows.zip"
+        shell: pwsh
+
+      - name: Upload Windows build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-Windows-${{ github.sha }}
+          path: |
+            build/windows/EmbyVideoPlayer-Windows.zip
           retention-days: 7
           if-no-files-found: ignore
 

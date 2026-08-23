@@ -4,6 +4,7 @@ options:
   bundleIdPrefix: com.emby
   deploymentTarget:
     iOS: "16.0"
+    macOS: "13.0"
   minimumXcodeGenVersion: "2.42.0"
   createIntermediateGroups: true
 
@@ -27,6 +28,9 @@ packages:
   Kingfisher:
     url: https://github.com/onevcat/Kingfisher.git
     from: "7.0.0"
+  VLCKit:
+    url: https://github.com/videolan/VLCKit.git
+    branch: "3.x"
 
 targets:
   EmbyVideoPlayer:
@@ -37,13 +41,19 @@ targets:
     dependencies:
       - package: MobileVLCKit
         product: MobileVLCKit
+        condition: "os(iOS) || os(tvOS)"
+      - package: VLCKit
+        product: VLCKit
+        condition: "os(macOS)"
       - package: Kingfisher
         product: Kingfisher
+        condition: "os(iOS) || os(tvOS) || os(macOS)"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
         PRODUCT_MODULE_NAME: EmbyVideoPlayer
         INFOPLIST_FILE: App/Info.plist
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_MOBILE_VLCKIT USE_VLCKIT"
 
   EmbyVideoPlayerApp:
     type: application
@@ -111,12 +121,65 @@ targets:
           - audio
           - fetch
 
+  EmbyVideoPlayerMacOS:
+    type: application
+    platform: macOS
+    sources:
+      - path: AppMacOS
+    resources:
+      - path: AppMacOS/Assets.xcassets
+    dependencies:
+      - target: EmbyVideoPlayer
+      - package: VLCKit
+        product: VLCKit
+      - package: Kingfisher
+        product: Kingfisher
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer.macos
+        PRODUCT_MODULE_NAME: EmbyVideoPlayerMacOS
+        INFOPLIST_FILE: AppMacOS/Info.plist
+        SWIFT_OBJC_BRIDGING_HEADER: ""
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
+        CODE_SIGNING_ALLOWED: "NO"
+        CODE_SIGN_IDENTITY: ""
+        CODE_SIGNING_REQUIRED: "NO"
+    info:
+      path: AppMacOS/Info.plist
+      properties:
+        CFBundleDevelopmentRegion: en
+        CFBundleDisplayName: EmbyVideoPlayer
+        CFBundleExecutable: $(EXECUTABLE_NAME)
+        CFBundleIdentifier: com.emby.videoplayer.macos
+        CFBundleInfoDictionaryVersion: "6.0"
+        CFBundleName: EmbyVideoPlayer
+        CFBundlePackageType: APPL
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        LSMinimumSystemVersion: "13.0"
+        NSHumanReadableCopyright: "Copyright © 2024 EmbyVideoPlayer. All rights reserved."
+        NSPrincipalClass: NSApplication
+        CFBundleIconFile: AppIcon
+
 schemes:
   EmbyVideoPlayerApp:
     build:
       targets:
         EmbyVideoPlayer: [analyze, test, run, archive]
         EmbyVideoPlayerApp: [analyze, test, run, archive]
+    run:
+      config: Debug
+    test:
+      config: Debug
+    archive:
+      config: Release
+      revealArchiveInOrganizer: true
+  
+  EmbyVideoPlayerMacOS:
+    build:
+      targets:
+        EmbyVideoPlayer: [analyze, test, run, archive]
+        EmbyVideoPlayerMacOS: [analyze, test, run, archive]
     run:
       config: Debug
     test:
