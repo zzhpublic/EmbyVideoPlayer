@@ -187,9 +187,9 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
     
     public func setVideoTrack(_ trackId: Int) {
                 guard let player = mediaPlayer else { return }
-                // VLCKit 4.0: videoTracks is non-optional array
+                // VLCKit 4.0: videoTracks is non-optional array, trackId is String
                 for (index, track) in player.videoTracks.enumerated() {
-                    if track.trackId == trackId {
+                    if let trackIdStr = Int("\(track.trackId)"), trackIdStr == trackId {
                         player.selectTrack(at: index, type: .video)
                         playbackState.videoTrack = trackId
                         break
@@ -200,7 +200,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             public func setAudioTrack(_ trackId: Int) {
                 guard let player = mediaPlayer else { return }
                 for (index, track) in player.audioTracks.enumerated() {
-                    if track.trackId == trackId {
+                    if let trackIdStr = Int("\(track.trackId)"), trackIdStr == trackId {
                         player.selectTrack(at: index, type: .audio)
                         playbackState.audioTrack = trackId
                         break
@@ -211,7 +211,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             public func setSubtitleTrack(_ trackId: Int) {
                 guard let player = mediaPlayer else { return }
                 for (index, track) in player.textTracks.enumerated() {
-                    if track.trackId == trackId {
+                    if let trackIdStr = Int("\(track.trackId)"), trackIdStr == trackId {
                         player.selectTrack(at: index, type: .text)
                         playbackState.subtitleTrack = trackId
                         break
