@@ -21,6 +21,9 @@ let package = Package(
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0"),
                     // VLCKit for macOS - using official VideoLAN VLCKit (supports macOS, iOS, tvOS)
                     .package(url: "https://code.videolan.org/videolan/VLCKit.git", exact: "4.0.0-a22"),
+                // Note: VLCKit 4.0.0-a22 includes iOS/macOS/tvOS binaries in single binaryTarget
+                // For iOS/tvOS, we use MobileVLCKit-SPM (stable 3.7.3)
+                // For macOS, we use VLCKit 4.0.0-a22 (unstable but has macOS binaries)
         // libvlc for Windows (when available via SPM)
         // For Windows, we use system libvlc - no SPM package needed
     ],
