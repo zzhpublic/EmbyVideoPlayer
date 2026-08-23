@@ -220,11 +220,41 @@ jobs:
           Invoke-WebRequest -Uri $swiftUrl -OutFile "swift-installer.exe"
           Write-Host "Installing Swift to $installPath"
           Start-Process -FilePath "swift-installer.exe" -ArgumentList "/quiet", "/norestart", "/install", "/installpath=$installPath" -Wait
-          # Add to PATH
-          echo "$installPath\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          echo "SWIFT_PATH=$installPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          # Find the actual swift binary location
+          $swiftBinPaths = @(
+            "$installPath\usr\bin\swift.exe",
+            "$installPath\bin\swift.exe",
+            "$installPath\swift.exe",
+            "C:\swift\usr\bin\swift.exe",
+            "C:\swift\bin\swift.exe"
+          )
+          $swiftExe = $null
+          foreach ($path in $swiftBinPaths) {
+            if (Test-Path $path) {
+              $swiftExe = $path
+              Write-Host "Found Swift at: $path"
+              break
+            }
+          }
+          if (-not $swiftExe) {
+            # Search recursively
+            $found = Get-ChildItem -Path $installPath -Recurse -Filter "swift.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($found) {
+              $swiftExe = $found.FullName
+              Write-Host "Found Swift at: $swiftExe"
+            }
+          }
+          if (-not $swiftExe) {
+            Write-Error "Swift executable not found after installation"
+            exit 1
+          }
+          # Add Swift bin directory to PATH
+          $swiftBinDir = Split-Path $swiftExe
+          Write-Host "Adding $swiftBinDir to PATH"
+          echo "$swiftBinDir" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          echo "SWIFT_PATH=$swiftBinDir" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           # Verify
-          & "$installPath\usr\bin\swift.exe" --version
+          & $swiftExe --version
         shell: pwsh
 
       - name: Cache Swift packages
