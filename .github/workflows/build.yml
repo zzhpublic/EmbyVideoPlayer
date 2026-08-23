@@ -2,9 +2,9 @@ name: Build and Test
 
 on:
   push:
-    branches: [main, master, develop]
+    branches: [main, master, develop, zzhpublic-literate-engine]
   pull_request:
-    branches: [main, master, develop]
+    branches: [main, master, develop, zzhpublic-literate-engine]
   workflow_dispatch:
 
 jobs:
