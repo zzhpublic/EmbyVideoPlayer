@@ -132,16 +132,15 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         }
         
         // Common options for network streaming
-        media?.addOption("network-caching=1000")
-        media?.addOption("file-caching=1000")
-        media?.addOption("live-caching=1000")
-        media?.addOption("sout-mux-caching=1000")
+                media?.addOption("network-caching=1000")
+                media?.addOption("file-caching=1000")
+                media?.addOption("live-caching=1000")
+                media?.addOption("sout-mux-caching=1000")
         
-        player.media = media
+                player.media = media
         
-        // Parse media to get tracks info
-        media?.parse()
-        updateMediaInfo()
+                // Media parsing is automatic in VLCKit 4.0
+                // updateMediaInfo() will be called when media is loaded
     }
     
     public func play() {
@@ -187,17 +186,17 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
     }
     
     public func setVideoTrack(_ trackId: Int) {
-        mediaPlayer?.currentVideoTrackIndex = Int32(trackId)
+            mediaPlayer?.selectedVideoTrackIndex = Int32(trackId)
         playbackState.videoTrack = trackId
     }
     
     public func setAudioTrack(_ trackId: Int) {
-        mediaPlayer?.currentAudioTrackIndex = Int32(trackId)
+            mediaPlayer?.selectedAudioTrackIndex = Int32(trackId)
         playbackState.audioTrack = trackId
     }
     
     public func setSubtitleTrack(_ trackId: Int) {
-        mediaPlayer?.currentVideoSubTitleIndex = Int32(trackId)
+            mediaPlayer?.selectedVideoSubTitleIndex = Int32(trackId)
         playbackState.subtitleTrack = trackId
     }
     
@@ -219,8 +218,9 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         guard let player = mediaPlayer else { throw LibVLCError.notInitialized }
         
         let subtitleTrack = VLCMedia(url: url)
-        player.addPlaybackSlave(subtitleTrack, type: .subtitle)
-    }
+            // VLCKit 4.0 uses addPlaybackSlave with different API
+            player.addPlaybackSlave(subtitleTrack, type: .subtitle, enforce: false)
+        }
     
     public func cleanup() {
         stop()
@@ -257,25 +257,21 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         playbackState.rate = player.rate
         
         if let audio = player.audio {
-            playbackState.volume = Float(audio.volume) / 100.0
-            playbackState.isMuted = audio.isMuted
-        }
+                    playbackState.volume = Float(audio.volume) / 100.0
+                    playbackState.isMuted = audio.isMuted
+                }
         
-        playbackState.videoTrack = Int(player.currentVideoTrackIndex)
-        playbackState.audioTrack = Int(player.currentAudioTrackIndex)
-        playbackState.subtitleTrack = Int(player.currentVideoSubTitleIndex)
-        if let aspectRatioPtr = player.videoAspectRatio {
-            let aspectRatio = String(cString: aspectRatioPtr)
-            if !aspectRatio.isEmpty {
-                playbackState.aspectRatio = aspectRatio
-            }
-        }
-        if let cropGeometryPtr = player.videoCropGeometry {
-            let cropGeometry = String(cString: cropGeometryPtr)
-            if !cropGeometry.isEmpty {
-                playbackState.cropGeometry = cropGeometry
-            }
-        }
+                playbackState.videoTrack = Int(player.selectedVideoTrackIndex)
+                playbackState.audioTrack = Int(player.selectedAudioTrackIndex)
+                playbackState.subtitleTrack = Int(player.selectedVideoSubTitleIndex)
+                if let aspectRatioPtr = player.videoAspectRatio {
+                    let aspectRatio = String(cString: aspectRatioPtr)
+                    if !aspectRatio.isEmpty {
+                        playbackState.aspectRatio = aspectRatio
+                    }
+                }
+                // videoCropGeometry may not be available in VLCKit 4.0
+                // if let cropGeometryPtr = player.videoCropGeometry { ... }
     }
     
     private func updateMediaInfo() {
