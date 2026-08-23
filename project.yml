@@ -29,8 +29,8 @@ packages:
     url: https://github.com/onevcat/Kingfisher.git
     from: "7.0.0"
   VLCKit:
-    url: https://github.com/videolan/VLCKit.git
-    branch: "3.x"
+      url: https://github.com/MobileVLCKit-SPM/VLCKit-SPM.git
+      from: "3.6.0"
 
 targets:
   EmbyVideoPlayer:

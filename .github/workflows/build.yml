@@ -47,7 +47,7 @@ jobs:
       - name: Install Swift toolchain
         uses: swift-actions/setup-swift@v2
         with:
-          swift-version: "5.10"
+          swift-version: "6.0"
 
       - name: Cache Swift packages
         uses: actions/cache@v4
@@ -214,7 +214,7 @@ jobs:
       - name: Setup Swift for Windows
         uses: swift-actions/setup-swift@v2
         with:
-          swift-version: "5.10"
+          swift-version: "6.0"
 
       - name: Cache Swift packages
         uses: actions/cache@v4
