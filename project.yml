@@ -84,8 +84,8 @@ targets:
     variants:
       tvOS:
         platform: tvOS
-          macOS:
-            platform: macOS
+      macOS:
+        platform: macOS
   
       EmbyVideoPlayerApptvOS:
         type: application
