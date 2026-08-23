@@ -20,6 +20,12 @@ jobs:
             destination: 'generic/platform=iOS'
             scheme: EmbyVideoPlayerApp
             disable_codesign: true
+          - platform: tvOS
+            runs-on: macos-14
+            xcode: "15.4"
+            destination: 'generic/platform=tvOS'
+            scheme: EmbyVideoPlayerApp
+            disable_codesign: true
           - platform: macOS
             runs-on: macos-14
             xcode: "15.4"
