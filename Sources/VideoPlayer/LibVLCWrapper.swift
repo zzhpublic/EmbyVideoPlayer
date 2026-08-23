@@ -187,11 +187,11 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
     
     public func setVideoTrack(_ trackId: Int) {
             guard let player = mediaPlayer else { return }
-            // VLCKit 4.0: Use selectTrackAtIndex:type:
+                // VLCKit 4.0: Use selectTrack(at:type:) with VLCMedia.TrackType
             if let videoTracks = player.videoTracks {
                 for (index, track) in videoTracks.enumerated() {
-                    if track.id == trackId {
-                        player.selectTrackAtIndex(index, type: VLCMediaTrackType.video)
+                        if track.trackId == trackId {
+                            player.selectTrack(at: index, type: VLCMedia.TrackType.video)
                         playbackState.videoTrack = trackId
                         break
                     }
@@ -203,8 +203,8 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             guard let player = mediaPlayer else { return }
             if let audioTracks = player.audioTracks {
                 for (index, track) in audioTracks.enumerated() {
-                    if track.id == trackId {
-                        player.selectTrackAtIndex(index, type: VLCMediaTrackType.audio)
+                        if track.trackId == trackId {
+                            player.selectTrack(at: index, type: VLCMedia.TrackType.audio)
                         playbackState.audioTrack = trackId
                         break
                     }
@@ -216,8 +216,8 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             guard let player = mediaPlayer else { return }
             if let textTracks = player.textTracks {
                 for (index, track) in textTracks.enumerated() {
-                    if track.id == trackId {
-                        player.selectTrackAtIndex(index, type: VLCMediaTrackType.text)
+                        if track.trackId == trackId {
+                            player.selectTrack(at: index, type: VLCMedia.TrackType.text)
                         playbackState.subtitleTrack = trackId
                         break
                     }
@@ -243,7 +243,7 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             guard let player = mediaPlayer else { throw LibVLCError.notInitialized }
         
             // VLCKit 4.0: addPlaybackSlave takes NSURL, not VLCMedia
-            let result = player.addPlaybackSlave(url as NSURL, type: .subtitle, enforce: false)
+                                let result = player.addPlaybackSlave(url as NSURL, type: .subtitle, enforce: false)
             if result != 0 {
                 throw LibVLCError.playbackFailed("Failed to add subtitle track: \(result)")
             }
@@ -288,20 +288,20 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
                 playbackState.isMuted = audio.isMuted
             }
         
-            // VLCKit 4.0: Get selected track indices from tracks arrays
+            // VLCKit 4.0: Get selected track indices from tracks arrays using trackId
             if let videoTracks = player.videoTracks,
                let selectedVideoTrack = videoTracks.first(where: { $0.isSelected }) {
-                playbackState.videoTrack = Int(selectedVideoTrack.id)
+                            playbackState.videoTrack = Int(selectedVideoTrack.trackId)
             }
         
             if let audioTracks = player.audioTracks,
                let selectedAudioTrack = audioTracks.first(where: { $0.isSelected }) {
-                playbackState.audioTrack = Int(selectedAudioTrack.id)
+                            playbackState.audioTrack = Int(selectedAudioTrack.trackId)
             }
         
             if let textTracks = player.textTracks,
                let selectedTextTrack = textTracks.first(where: { $0.isSelected }) {
-                playbackState.subtitleTrack = Int(selectedTextTrack.id)
+                            playbackState.subtitleTrack = Int(selectedTextTrack.trackId)
             }
         
             if let aspectRatioPtr = player.videoAspectRatio {
@@ -395,8 +395,9 @@ public class LibVLCWrapper: LibVLCPlayerProtocol, ObservableObject {
         
     public static let shared = LibVLCWrapper()
         
-    public init() {
-    }
+        public override init() {
+            super.init()
+        }
     
     public func initialize() throws {
         let args = [
