@@ -264,12 +264,33 @@ jobs:
       - name: Install Swift (Windows - manual install)
         run: |
           # Install Swift 5.10 manually on Windows (last version with official Windows support)
-          $swiftUrl = "https://download.swift.org/swift-5.10.1-release/windows10/swift-5.10.1-RELEASE/swift-5.10.1-RELEASE-windows10.exe"
+          # Try multiple URLs as they sometimes change
+          $swiftUrls = @(
+            "https://download.swift.org/swift-5.10.1-release/windows10/swift-5.10.1-RELEASE/swift-5.10.1-RELEASE-windows10.exe",
+            "https://download.swift.org/swift-5.10-release/windows10/swift-5.10-RELEASE/swift-5.10-RELEASE-windows10.exe",
+            "https://github.com/swiftlang/swift/releases/download/swift-5.10.1-RELEASE/swift-5.10.1-RELEASE-windows10.exe"
+          )
           $installPath = "C:\swift"
-          Write-Host "Downloading Swift from $swiftUrl"
-          Invoke-WebRequest -Uri $swiftUrl -OutFile "swift-installer.exe"
-          Write-Host "Installing Swift to $installPath"
-          Start-Process -FilePath "swift-installer.exe" -ArgumentList "/quiet", "/norestart", "/install", "/installpath=$installPath" -Wait
+          $swiftDownloaded = $false
+          
+          foreach ($swiftUrl in $swiftUrls) {
+            try {
+              Write-Host "Trying Swift URL: $swiftUrl"
+              Invoke-WebRequest -Uri $swiftUrl -OutFile "swift-installer.exe" -ErrorAction Stop
+              Write-Host "Installing Swift to $installPath"
+              Start-Process -FilePath "swift-installer.exe" -ArgumentList "/quiet", "/norestart", "/install", "/installpath=$installPath" -Wait
+              $swiftDownloaded = $true
+              break
+            } catch {
+              Write-Warning "Failed to download from $swiftUrl: $_"
+            }
+          }
+          
+          if (-not $swiftDownloaded) {
+            Write-Error "Failed to download Swift from all URLs"
+            exit 1
+          }
+          
           # Find the actual swift binary location
           $swiftBinPaths = @(
             "$installPath\usr\bin\swift.exe",
