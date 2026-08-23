@@ -101,9 +101,13 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
     private var media: VLCMedia?
     private var isInitialized = false
     
-    public static let shared = LibVLCWrapper()\n\n    public init() {\n        // No initialization needed, initialize() must be called separately\n    }\n\n    
+        public static let shared = LibVLCWrapper()
     
-    public func initialize() throws {
+        public override init() {
+            super.init()
+        }
+    
+        public func initialize() throws {
         // VLCKit initializes automatically
         mediaPlayer = VLCMediaPlayer()
         mediaPlayer?.delegate = self
