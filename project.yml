@@ -28,7 +28,7 @@ packages:
     from: "7.0.0"
   VLCKit:
     url: https://code.videolan.org/videolan/VLCKit.git
-    exact: "4.0.0-a22"
+    version: "4.0.0-a22"
 
 targets:
   EmbyVideoPlayer:
