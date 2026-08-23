@@ -47,7 +47,7 @@ jobs:
       - name: Install Swift toolchain
         uses: swift-actions/setup-swift@v2
         with:
-          swift-version: "6.0"
+          swift-version: "5.10"
 
       - name: Cache Swift packages
         uses: actions/cache@v4
@@ -212,9 +212,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Swift for Windows
-        uses: swift-actions/setup-swift@v2
+        uses: SwiftlyLab/setup-swift@v1
         with:
-          swift-version: "6.1"
+          version: "5.9.1"
+          enable-swift-testing: false
 
       - name: Cache Swift packages
         uses: actions/cache@v4
@@ -240,24 +241,39 @@ jobs:
             Write-Error "VLC installation failed"
             exit 1
           }
+          
+          # Download VLC SDK for Windows (contains headers and libs)
+          $sdkUrl = "https://get.videolan.org/vlc/3.0.21/win64/vlc-3.0.21-win64-sdk.zip"
+          $sdkPath = "C:\vlc-sdk"
+          Invoke-WebRequest -Uri $sdkUrl -OutFile "vlc-sdk.zip"
+          Expand-Archive -Path "vlc-sdk.zip" -DestinationPath $sdkPath -Force
+          # Verify SDK
+          if (Test-Path "$sdkPath\vlc-3.0.21\include\vlc\vlc.h") {
+            Write-Host "VLC SDK extracted to $sdkPath"
+          } else {
+            Write-Error "VLC SDK extraction failed"
+            exit 1
+          }
         shell: pwsh
 
       - name: Set VLC SDK path
         run: |
-          echo "VLC_SDK_PATH=C:\Program Files\VideoLAN\VLC" >> $env:GITHUB_ENV
+          echo "VLC_SDK_PATH=C:\vlc-sdk\vlc-3.0.21" >> $env:GITHUB_ENV
 
       - name: Build Windows executable
         run: |
           swift build -c release --product EmbyVideoPlayerWindows
         env:
-          VLC_SDK_PATH: C:\Program Files\VideoLAN\VLC
+          VLC_SDK_PATH: C:\vlc-sdk\vlc-3.0.21
 
       - name: Package Windows build
         run: |
           $buildDir = "build\windows"
           New-Item -ItemType Directory -Force -Path $buildDir
           Copy-Item -Path ".build\release\EmbyVideoPlayerWindows.exe" -Destination "$buildDir\"
-          # Copy VLC DLLs
+          # Copy VLC DLLs from SDK
+          Copy-Item -Path "C:\vlc-sdk\vlc-3.0.21\lib\*.dll" -Destination "$buildDir\" -ErrorAction SilentlyContinue
+          # Also copy from VLC installation for runtime
           Copy-Item -Path "C:\Program Files\VideoLAN\VLC\*.dll" -Destination "$buildDir\" -ErrorAction SilentlyContinue
           # Create zip
           Compress-Archive -Path "$buildDir\*" -DestinationPath "$buildDir\EmbyVideoPlayer-Windows.zip"

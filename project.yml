@@ -1,5 +1,5 @@
 name: EmbyVideoPlayer
-projectFormatVersion: 144
+projectFormatVersion: 46
 options:
   bundleIdPrefix: com.emby
   deploymentTarget:
@@ -22,15 +22,12 @@ settings:
       SWIFT_OPTIMIZATION_LEVEL: "-O"
 
 packages:
-  MobileVLCKit:
-    url: https://github.com/MobileVLCKit-SPM/MobileVLCKit-SPM.git
-    from: "3.6.0"
   Kingfisher:
     url: https://github.com/onevcat/Kingfisher.git
     from: "7.0.0"
   VLCKit:
-      url: https://github.com/MobileVLCKit-SPM/VLCKit-SPM.git
-      from: "3.6.0"
+    url: https://code.videolan.org/videolan/VLCKit.git
+    exact: "4.0.0-a22"
 
 targets:
   EmbyVideoPlayer:
@@ -39,12 +36,9 @@ targets:
     sources:
       - path: Sources
     dependencies:
-      - package: MobileVLCKit
-        product: MobileVLCKit
-        condition: "os(iOS) || os(tvOS)"
       - package: VLCKit
         product: VLCKit
-        condition: "os(macOS)"
+        condition: "os(iOS) || os(tvOS) || os(macOS)"
       - package: Kingfisher
         product: Kingfisher
         condition: "os(iOS) || os(tvOS) || os(macOS)"
@@ -53,7 +47,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
         PRODUCT_MODULE_NAME: EmbyVideoPlayer
         INFOPLIST_FILE: App/Info.plist
-        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_MOBILE_VLCKIT USE_VLCKIT"
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_VLCKIT"
 
   EmbyVideoPlayerApp:
     type: application
@@ -64,8 +58,8 @@ targets:
       - path: App/Assets.xcassets
     dependencies:
       - target: EmbyVideoPlayer
-      - package: MobileVLCKit
-        product: MobileVLCKit
+        - package: VLCKit
+          product: VLCKit
       - package: Kingfisher
         product: Kingfisher
     settings:

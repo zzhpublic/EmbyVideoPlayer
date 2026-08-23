@@ -13,7 +13,12 @@ struct EmbyVideoPlayerWindowsApp {
         
         // Initialize LibVLC wrapper
         let vlcWrapper = LibVLCWrapper.shared
-        vlcWrapper.initialize()
+        do {
+            try vlcWrapper.initialize()
+        } catch {
+            print("Failed to initialize: \(error)")
+            return
+        }
         
         // Test with a sample media URL
         // In a real app, this would be from Emby server or SMB share
@@ -22,7 +27,7 @@ struct EmbyVideoPlayerWindowsApp {
         print("Testing playback with: \(testURL)")
         
         do {
-            try await vlcWrapper.openMedia(url: testURL)
+            try vlcWrapper.openMedia(url: URL(string: testURL)!)
             vlcWrapper.play()
             
             print("Playback started. Press Ctrl+C to stop.")
@@ -30,11 +35,11 @@ struct EmbyVideoPlayerWindowsApp {
             // Keep the app running
             while true {
                 try await Task.sleep(nanoseconds: 1_000_000_000)
-                if let state = vlcWrapper.playbackState {
-                    print("State: \(state)")
-                    if state == .ended || state == .error {
-                        break
-                    }
+                let state = vlcWrapper.playbackState
+                print("State: playing=\(state.isPlaying), position=\(state.position), time=\(state.time)/\(state.duration)")
+                // Check if playback ended
+                if state.time >= state.duration && state.duration > 0 {
+                    break
                 }
             }
         } catch {

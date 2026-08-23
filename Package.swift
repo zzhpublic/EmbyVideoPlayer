@@ -15,15 +15,10 @@ let package = Package(
             .executable(name: "EmbyVideoPlayerWindows", targets: ["EmbyVideoPlayerWindows"])
         ],
     dependencies: [
-        // MobileVLCKit for LibVLC - using community SPM distribution (iOS/tvOS)
-                .package(url: "https://github.com/MobileVLCKit-SPM/MobileVLCKit-SPM.git", from: "3.7.3"),
+        // VLCKit for all Apple platforms - using official VideoLAN VLCKit (supports iOS, macOS, tvOS)
+        .package(url: "https://code.videolan.org/videolan/VLCKit.git", exact: "4.0.0-a22"),
         // Kingfisher for image loading
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0"),
-                    // VLCKit for macOS - using official VideoLAN VLCKit (supports macOS, iOS, tvOS)
-                    .package(url: "https://code.videolan.org/videolan/VLCKit.git", exact: "4.0.0-a22"),
-                // Note: VLCKit 4.0.0-a22 includes iOS/macOS/tvOS binaries in single binaryTarget
-                // For iOS/tvOS, we use MobileVLCKit-SPM (stable 3.7.3)
-                // For macOS, we use VLCKit 4.0.0-a22 (unstable but has macOS binaries)
         // libvlc for Windows (when available via SPM)
         // For Windows, we use system libvlc - no SPM package needed
     ],
@@ -39,16 +34,14 @@ let package = Package(
             .target(
                 name: "EmbyVideoPlayer",
             dependencies: [
-                .product(name: "MobileVLCKit", package: "MobileVLCKit-SPM", condition: .when(platforms: [.iOS, .tvOS])),
-                            .product(name: "VLCKit", package: "VLCKit", condition: .when(platforms: [.macOS])),
+                .product(name: "VLCKit", package: "VLCKit", condition: .when(platforms: [.iOS, .tvOS, .macOS])),
                 .product(name: "Kingfisher", package: "Kingfisher", condition: .when(platforms: [.iOS, .tvOS, .macOS])),
             .target(name: "CLibVLC", condition: .when(platforms: [.windows])),
                 ],
                 path: "Sources",
                 resources: [],
                 swiftSettings: [
-            .define("USE_MOBILE_VLCKIT", .when(platforms: [.iOS, .tvOS])),
-            .define("USE_VLCKIT", .when(platforms: [.macOS])),
+            .define("USE_VLCKIT", .when(platforms: [.iOS, .tvOS, .macOS])),
             .define("USE_LIBVLC", .when(platforms: [.windows])),
                 ]
             ),
