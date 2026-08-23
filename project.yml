@@ -246,7 +246,20 @@ schemes:
     archive:
       config: Release
       revealArchiveInOrganizer: true
-   
+  
+  EmbyVideoPlayerApptvOS:
+    build:
+      targets:
+        EmbyVideoPlayer: [analyze, test, run, archive]
+        EmbyVideoPlayerApp-tvOS: [analyze, test, run, archive]
+    run:
+      config: Debug
+    test:
+      config: Debug
+    archive:
+      config: Release
+      revealArchiveInOrganizer: true
+
   EmbyVideoPlayerMacOS:
     build:
       targets:

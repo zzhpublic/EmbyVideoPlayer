@@ -24,7 +24,7 @@ jobs:
             runs-on: macos-14
             xcode: "15.4"
             destination: 'generic/platform=tvOS'
-            scheme: EmbyVideoPlayerApp
+            scheme: EmbyVideoPlayerApptvOS
             disable_codesign: true
           - platform: macOS
             runs-on: macos-14
@@ -152,6 +152,48 @@ jobs:
           zip -r EmbyVideoPlayer.ipa Payload/
           echo "Unsigned IPA created at ./build/ipa/EmbyVideoPlayer.ipa"
 
+      - name: Archive for tvOS
+        if: matrix.platform == 'tvOS'
+        timeout-minutes: 45
+        run: |
+          xcodebuild archive \
+            -project EmbyVideoPlayer.xcodeproj \
+            -scheme ${{ matrix.scheme }} \
+            -destination "${{ matrix.destination }}" \
+            -configuration Release \
+            -archivePath ./build/EmbyVideoPlayertvOS.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            SKIP_INSTALL=NO \
+            BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+          echo "=== tvOS Archive Contents Debug ==="
+          ls -la ./build/EmbyVideoPlayertvOS.xcarchive/
+          find ./build/EmbyVideoPlayertvOS.xcarchive -type f 2>/dev/null | head -50
+          echo "=== End Debug ==="
+
+      - name: Create tvOS app archive
+        if: matrix.platform == 'tvOS'
+        run: |
+          mkdir -p ./build/tvos
+          echo "=== Searching for .app in tvOS archive ==="
+          APP_PATH=$(find ./build/EmbyVideoPlayertvOS.xcarchive/Products/Applications -name "*.app" -type d 2>/dev/null | head -1)
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app found in Products/Applications, checking other locations..."
+            APP_PATH=$(find ./build/EmbyVideoPlayertvOS.xcarchive -name "*.app" -type d 2>/dev/null | head -1)
+          fi
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app found in archive"
+            echo "Archive structure:"
+            find ./build/EmbyVideoPlayertvOS.xcarchive -type d 2>/dev/null | head -40
+            exit 1
+          fi
+          echo "Found tvOS app at: $APP_PATH"
+          cp -R "$APP_PATH" ./build/tvos/
+          cd ./build/tvos
+          zip -r EmbyVideoPlayertvOS.zip "$(basename "$APP_PATH")"
+          echo "tvOS app archive created at ./build/tvos/EmbyVideoPlayertvOS.zip"
+
       - name: Archive for macOS
         if: matrix.platform == 'macOS'
         timeout-minutes: 45
@@ -204,6 +246,8 @@ jobs:
             DerivedData
             build/EmbyVideoPlayer.xcarchive
             build/ipa/EmbyVideoPlayer.ipa
+            build/EmbyVideoPlayertvOS.xcarchive
+            build/tvos/EmbyVideoPlayertvOS.zip
             build/EmbyVideoPlayerMacOS.xcarchive
             build/macos/EmbyVideoPlayerMacOS.zip
           retention-days: 7
