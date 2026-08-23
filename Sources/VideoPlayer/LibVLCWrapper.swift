@@ -186,44 +186,38 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
     }
     
     public func setVideoTrack(_ trackId: Int) {
-            guard let player = mediaPlayer else { return }
-                // VLCKit 4.0: Use selectTrack(at:type:) with VLCMedia.TrackType
-            if let videoTracks = player.videoTracks {
-                for (index, track) in videoTracks.enumerated() {
-                        if track.id == trackId {
-                            player.selectTrack(at: index, type: .video)
+                guard let player = mediaPlayer else { return }
+                // VLCKit 4.0: videoTracks is non-optional array
+                for (index, track) in player.videoTracks.enumerated() {
+                    if track.trackId == trackId {
+                        player.selectTrack(at: index, type: .video)
                         playbackState.videoTrack = trackId
                         break
                     }
                 }
             }
-        }
-    
-        public func setAudioTrack(_ trackId: Int) {
-            guard let player = mediaPlayer else { return }
-            if let audioTracks = player.audioTracks {
-                for (index, track) in audioTracks.enumerated() {
-                        if track.id == trackId {
-                            player.selectTrack(at: index, type: .audio)
+        
+            public func setAudioTrack(_ trackId: Int) {
+                guard let player = mediaPlayer else { return }
+                for (index, track) in player.audioTracks.enumerated() {
+                    if track.trackId == trackId {
+                        player.selectTrack(at: index, type: .audio)
                         playbackState.audioTrack = trackId
                         break
                     }
                 }
             }
-        }
-    
-        public func setSubtitleTrack(_ trackId: Int) {
-            guard let player = mediaPlayer else { return }
-            if let textTracks = player.textTracks {
-                for (index, track) in textTracks.enumerated() {
-                        if track.id == trackId {
-                            player.selectTrack(at: index, type: .text)
+        
+            public func setSubtitleTrack(_ trackId: Int) {
+                guard let player = mediaPlayer else { return }
+                for (index, track) in player.textTracks.enumerated() {
+                    if track.trackId == trackId {
+                        player.selectTrack(at: index, type: .text)
                         playbackState.subtitleTrack = trackId
                         break
                     }
                 }
             }
-        }
     
         public func setAspectRatio(_ aspectRatio: String?) {
             playbackState.aspectRatio = aspectRatio
@@ -289,20 +283,18 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
             }
         
             // VLCKit 4.0: Get selected track indices from tracks arrays using trackId
-            if let videoTracks = player.videoTracks,
-               let selectedVideoTrack = videoTracks.first(where: { $0.isSelected }) {
-                            playbackState.videoTrack = selectedVideoTrack.id
-            }
+                        // videoTracks, audioTracks, textTracks are non-optional arrays
+                        if let selectedVideoTrack = player.videoTracks.first(where: { $0.isSelected }) {
+                            playbackState.videoTrack = selectedVideoTrack.trackId
+                        }
         
-            if let audioTracks = player.audioTracks,
-               let selectedAudioTrack = audioTracks.first(where: { $0.isSelected }) {
-                            playbackState.audioTrack = selectedAudioTrack.id
-            }
+                        if let selectedAudioTrack = player.audioTracks.first(where: { $0.isSelected }) {
+                            playbackState.audioTrack = selectedAudioTrack.trackId
+                        }
         
-            if let textTracks = player.textTracks,
-               let selectedTextTrack = textTracks.first(where: { $0.isSelected }) {
-                            playbackState.subtitleTrack = selectedTextTrack.id
-            }
+                        if let selectedTextTrack = player.textTracks.first(where: { $0.isSelected }) {
+                            playbackState.subtitleTrack = selectedTextTrack.trackId
+                        }
         
             if let aspectRatioPtr = player.videoAspectRatio {
                 let aspectRatio = String(cString: aspectRatioPtr)
