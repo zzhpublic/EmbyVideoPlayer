@@ -211,11 +211,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Swift for Windows
-        uses: SwiftlyLab/setup-swift@v1
+      - name: Install Swift toolchain (Windows)
+        uses: swift-actions/setup-swift@v2
         with:
-          version: "5.9.1"
-          enable-swift-testing: false
+          swift-version: "5.10"
+        continue-on-error: true
+
+      - name: Verify Swift installation
+        run: |
+          swift --version
+        shell: pwsh
+        continue-on-error: true
+
+      - name: Install Swift manually if needed (Windows)
+        if: failure()
+        run: |
+          # Fallback: Install Swift 5.10 manually on Windows
+          $swiftUrl = "https://download.swift.org/swift-5.10.1-release/windows10/swift-5.10.1-RELEASE/swift-5.10.1-RELEASE-windows10.exe"
+          $installPath = "C:\swift"
+          Invoke-WebRequest -Uri $swiftUrl -OutFile "swift-installer.exe"
+          Start-Process -FilePath "swift-installer.exe" -ArgumentList "/quiet", "/norestart", "/install", "/installpath=$installPath" -Wait
+          # Add to PATH
+          echo "$installPath\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          echo "SWIFT_PATH=$installPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          # Verify
+          & "$installPath\usr\bin\swift.exe" --version
+        shell: pwsh
 
       - name: Cache Swift packages
         uses: actions/cache@v4
