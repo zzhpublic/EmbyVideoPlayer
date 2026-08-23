@@ -7,7 +7,9 @@
 
 import SwiftUI
 import Combine
-import MobileVLCKit
+#if os(iOS) || os(tvOS) || os(macOS)
+import VLCKit
+#endif
 import EmbyVideoPlayer
 
 // MARK: - Video Player View
