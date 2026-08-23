@@ -284,16 +284,20 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         
             // VLCKit 4.0: Get selected track indices from tracks arrays using trackId
                         // videoTracks, audioTracks, textTracks are non-optional arrays
-                        if let selectedVideoTrack = player.videoTracks.first(where: { $0.isSelected }) {
-                            playbackState.videoTrack = selectedVideoTrack.trackId
+                        // trackId may be String for some track types, convert to Int
+                        if let selectedVideoTrack = player.videoTracks.first(where: { $0.isSelected }),
+                           let videoTrackId = Int("\(selectedVideoTrack.trackId)") {
+                            playbackState.videoTrack = videoTrackId
                         }
         
-                        if let selectedAudioTrack = player.audioTracks.first(where: { $0.isSelected }) {
-                            playbackState.audioTrack = selectedAudioTrack.trackId
+                        if let selectedAudioTrack = player.audioTracks.first(where: { $0.isSelected }),
+                           let audioTrackId = Int("\(selectedAudioTrack.trackId)") {
+                            playbackState.audioTrack = audioTrackId
                         }
         
-                        if let selectedTextTrack = player.textTracks.first(where: { $0.isSelected }) {
-                            playbackState.subtitleTrack = selectedTextTrack.trackId
+                        if let selectedTextTrack = player.textTracks.first(where: { $0.isSelected }),
+                           let subtitleTrackId = Int("\(selectedTextTrack.trackId)") {
+                            playbackState.subtitleTrack = subtitleTrackId
                         }
         
             if let aspectRatioPtr = player.videoAspectRatio {
