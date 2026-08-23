@@ -4,6 +4,7 @@ options:
   bundleIdPrefix: com.emby
   deploymentTarget:
     iOS: "16.0"
+    tvOS: "16.0"
     macOS: "13.0"
   minimumXcodeGenVersion: "2.42.0"
   createIntermediateGroups: true
@@ -55,125 +56,40 @@ targets:
     variants:
       tvOS:
         platform: tvOS
+      macOS:
+        platform: macOS
 
   EmbyVideoPlayerApp:
-      type: application
-      platform: iOS
-      deploymentTarget:
-        iOS: "16.0"
-        tvOS: "16.0"
-      sources:
-        - path: App
-      resources:
-        - path: App/Assets.xcassets
-      dependencies:
-        - target: EmbyVideoPlayer
-        - package: VLCKit
-          product: VLCKit
-        - package: Kingfisher
-          product: Kingfisher
-      settings:
-        base:
-          PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
-          PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
-          INFOPLIST_FILE: App/Info.plist
-          SWIFT_OBJC_BRIDGING_HEADER: ""
-          LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
-      info:
-        path: App/Info.plist
-        properties:
-          CFBundleDevelopmentRegion: en
-          CFBundleDisplayName: EmbyVideoPlayer
-          CFBundleExecutable: $(EXECUTABLE_NAME)
-          CFBundleIdentifier: com.emby.videoplayer
-          CFBundleInfoDictionaryVersion: "6.0"
-          CFBundleName: EmbyVideoPlayer
-          CFBundlePackageType: APPL
-          CFBundleShortVersionString: "1.0"
-          CFBundleVersion: "1"
-          LSRequiresIPhoneOS: true
-          UILaunchImages:
-            - UILaunchImageMinimumOSVersion: "16.0"
-              UILaunchImageName: "LaunchImage"
-              UILaunchImageOrientation: "Portrait"
-              UILaunchImageSize: "{393, 852}"
-          UIRequiredDeviceCapabilities:
-            - arm64
-          UISupportedInterfaceOrientations:
-            - UIInterfaceOrientationPortrait
-            - UIInterfaceOrientationLandscapeLeft
-            - UIInterfaceOrientationLandscapeRight
-          UISupportedInterfaceOrientations~ipad:
-            - UIInterfaceOrientationPortrait
-            - UIInterfaceOrientationPortraitUpsideDown
-            - UIInterfaceOrientationLandscapeLeft
-            - UIInterfaceOrientationLandscapeRight
-          UIApplicationSceneManifest:
-            UIApplicationSupportsMultipleScenes: true
-            UISceneConfigurations:
-              UIWindowSceneSessionRoleApplication:
-                - UISceneConfigurationName: Default Configuration
-                  UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
-          NSAppTransportSecurity:
-            NSAllowsArbitraryLoads: true
-            NSExceptionDomains:
-              localhost:
-                NSExceptionAllowsInsecureHTTPLoads: true
-          NSBonjourServices:
-            - _smb._tcp.
-            - _http._tcp.
-          UIFileSharingEnabled: true
-          LSSupportsOpeningDocumentsInPlace: true
-          UISupportsDocumentBrowser: true
-          UIBackgroundModes:
-            - audio
-            - fetch
-      variants:
-        tvOS:
-          platform: tvOS
-          info:
-            path: App/Info.plist
-            properties:
-              UIRequiredDeviceCapabilities:
-                - arm64
-            UILaunchImageName: "LaunchImage"
-            UILaunchImageOrientation: "Portrait"
-            UILaunchImageSize: "{393, 852}"
-        UIRequiredDeviceCapabilities:
-          - arm64
-        UISupportedInterfaceOrientations:
-          - UIInterfaceOrientationPortrait
-          - UIInterfaceOrientationLandscapeLeft
-          - UIInterfaceOrientationLandscapeRight
-        UISupportedInterfaceOrientations~ipad:
-          - UIInterfaceOrientationPortrait
-          - UIInterfaceOrientationPortraitUpsideDown
-          - UIInterfaceOrientationLandscapeLeft
-          - UIInterfaceOrientationLandscapeRight
-        UIApplicationSceneManifest:
-          UIApplicationSupportsMultipleScenes: true
-          UISceneConfigurations:
-            UIWindowSceneSessionRoleApplication:
-              - UISceneConfigurationName: Default Configuration
-                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
-        NSAppTransportSecurity:
-          NSAllowsArbitraryLoads: true
-          NSExceptionDomains:
-            localhost:
-              NSExceptionAllowsInsecureHTTPLoads: true
-        NSBonjourServices:
-          - _smb._tcp.
-          - _http._tcp.
-        UIFileSharingEnabled: true
-        LSSupportsOpeningDocumentsInPlace: true
-        UISupportsDocumentBrowser: true
-        UIBackgroundModes:
-          - audio
-          - fetch
+    type: application
+    platform: iOS
+    deploymentTarget:
+      iOS: "16.0"
+      tvOS: "16.0"
+    sources:
+      - path: App
+    resources:
+      - path: App/Assets.xcassets
+    dependencies:
+      - target: EmbyVideoPlayer
+      - package: VLCKit
+        product: VLCKit
+      - package: Kingfisher
+        product: Kingfisher
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer
+        PRODUCT_MODULE_NAME: EmbyVideoPlayerApp
+        INFOPLIST_FILE: App/Info.plist
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_VLCKIT"
+    variants:
+      tvOS:
+        platform: tvOS
 
   EmbyVideoPlayerMacOS:
     type: application
     platform: macOS
+    deploymentTarget:
+      macOS: "13.0"
     sources:
       - path: AppMacOS
     resources:
@@ -189,64 +105,4 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.emby.videoplayer.macos
         PRODUCT_MODULE_NAME: EmbyVideoPlayerMacOS
         INFOPLIST_FILE: AppMacOS/Info.plist
-        SWIFT_OBJC_BRIDGING_HEADER: ""
-        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
-        CODE_SIGNING_ALLOWED: "NO"
-        CODE_SIGN_IDENTITY: ""
-        CODE_SIGNING_REQUIRED: "NO"
-    info:
-      path: AppMacOS/Info.plist
-      properties:
-        CFBundleDevelopmentRegion: en
-        CFBundleDisplayName: EmbyVideoPlayer
-        CFBundleExecutable: $(EXECUTABLE_NAME)
-        CFBundleIdentifier: com.emby.videoplayer.macos
-        CFBundleInfoDictionaryVersion: "6.0"
-        CFBundleName: EmbyVideoPlayer
-        CFBundlePackageType: APPL
-        CFBundleShortVersionString: "1.0"
-        CFBundleVersion: "1"
-        LSMinimumSystemVersion: "13.0"
-        NSHumanReadableCopyright: "Copyright © 2024 EmbyVideoPlayer. All rights reserved."
-        NSPrincipalClass: NSApplication
-        CFBundleIconFile: AppIcon
-
-schemes:
-  EmbyVideoPlayerApp:
-    build:
-      targets:
-        EmbyVideoPlayer: [analyze, test, run, archive]
-        EmbyVideoPlayerApp: [analyze, test, run, archive]
-    run:
-      config: Debug
-    test:
-      config: Debug
-    archive:
-      config: Release
-      revealArchiveInOrganizer: true
-  
-  EmbyVideoPlayerApptvOS:
-    build:
-      targets:
-        EmbyVideoPlayer: [analyze, test, run, archive]
-        EmbyVideoPlayerApp-tvOS: [analyze, test, run, archive]
-    run:
-      config: Debug
-    test:
-      config: Debug
-    archive:
-      config: Release
-      revealArchiveInOrganizer: true
-
-  EmbyVideoPlayerMacOS:
-    build:
-      targets:
-        EmbyVideoPlayer: [analyze, test, run, archive]
-        EmbyVideoPlayerMacOS: [analyze, test, run, archive]
-    run:
-      config: Debug
-    test:
-      config: Debug
-    archive:
-      config: Release
-      revealArchiveInOrganizer: true
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) USE_VLCKIT"
