@@ -186,18 +186,44 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
     }
     
     public func setVideoTrack(_ trackId: Int) {
-            mediaPlayer?.selectedVideoTrackIndex = Int32(trackId)
-        playbackState.videoTrack = trackId
-    }
+            guard let player = mediaPlayer else { return }
+            // VLCKit 4.0: Use selectTrackAtIndex:type:
+            if let videoTracks = player.videoTracks {
+                for (index, track) in videoTracks.enumerated() {
+                    if track.id == trackId {
+                        player.selectTrackAtIndex(index, type: VLCMediaTrackType.video)
+                        playbackState.videoTrack = trackId
+                        break
+                    }
+                }
+            }
+        }
     
-    public func setAudioTrack(_ trackId: Int) {
-            mediaPlayer?.selectedAudioTrackIndex = Int32(trackId)
-        playbackState.audioTrack = trackId
-    }
+        public func setAudioTrack(_ trackId: Int) {
+            guard let player = mediaPlayer else { return }
+            if let audioTracks = player.audioTracks {
+                for (index, track) in audioTracks.enumerated() {
+                    if track.id == trackId {
+                        player.selectTrackAtIndex(index, type: VLCMediaTrackType.audio)
+                        playbackState.audioTrack = trackId
+                        break
+                    }
+                }
+            }
+        }
     
-    public func setSubtitleTrack(_ trackId: Int) {
-            mediaPlayer?.selectedVideoSubTitleIndex = Int32(trackId)
-        playbackState.subtitleTrack = trackId
+        public func setSubtitleTrack(_ trackId: Int) {
+            guard let player = mediaPlayer else { return }
+            if let textTracks = player.textTracks {
+                for (index, track) in textTracks.enumerated() {
+                    if track.id == trackId {
+                        player.selectTrackAtIndex(index, type: VLCMediaTrackType.text)
+                        playbackState.subtitleTrack = trackId
+                        break
+                    }
+                }
+            }
+        }
     }
     
     public func setAspectRatio(_ aspectRatio: String?) {
@@ -217,9 +243,11 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
     public func addSubtitleTrack(url: URL) throws {
         guard let player = mediaPlayer else { throw LibVLCError.notInitialized }
         
-        let subtitleTrack = VLCMedia(url: url)
-            // VLCKit 4.0 uses addPlaybackSlave with different API
-            player.addPlaybackSlave(subtitleTrack, type: .subtitle, enforce: false)
+            // VLCKit 4.0: addPlaybackSlave takes NSURL, not VLCMedia
+            let result = player.addPlaybackSlave(url as NSURL, type: .subtitle, enforce: false)
+            if result != 0 {
+                throw LibVLCError.playbackFailed("Failed to add subtitle track: \(result)")
+            }
         }
     
     public func cleanup() {
@@ -257,89 +285,85 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         playbackState.rate = player.rate
         
         if let audio = player.audio {
-                    playbackState.volume = Float(audio.volume) / 100.0
-                    playbackState.isMuted = audio.isMuted
-                }
+                playbackState.volume = Float(audio.volume) / 100.0
+                playbackState.isMuted = audio.isMuted
+            }
         
-                playbackState.videoTrack = Int(player.selectedVideoTrackIndex)
-                playbackState.audioTrack = Int(player.selectedAudioTrackIndex)
-                playbackState.subtitleTrack = Int(player.selectedVideoSubTitleIndex)
-                if let aspectRatioPtr = player.videoAspectRatio {
-                    let aspectRatio = String(cString: aspectRatioPtr)
-                    if !aspectRatio.isEmpty {
-                        playbackState.aspectRatio = aspectRatio
-                    }
+            // VLCKit 4.0: Get selected track indices from tracks arrays
+            if let videoTracks = player.videoTracks,
+               let selectedVideoTrack = videoTracks.first(where: { $0.isSelected }) {
+                playbackState.videoTrack = Int(selectedVideoTrack.id)
+            }
+        
+            if let audioTracks = player.audioTracks,
+               let selectedAudioTrack = audioTracks.first(where: { $0.isSelected }) {
+                playbackState.audioTrack = Int(selectedAudioTrack.id)
+            }
+        
+            if let textTracks = player.textTracks,
+               let selectedTextTrack = textTracks.first(where: { $0.isSelected }) {
+                playbackState.subtitleTrack = Int(selectedTextTrack.id)
+            }
+        
+            if let aspectRatioPtr = player.videoAspectRatio {
+                let aspectRatio = String(cString: aspectRatioPtr)
+                if !aspectRatio.isEmpty {
+                    playbackState.aspectRatio = aspectRatio
                 }
-                // videoCropGeometry may not be available in VLCKit 4.0
-                // if let cropGeometryPtr = player.videoCropGeometry { ... }
-    }
+            }
+            // videoCropGeometry may not be available in VLCKit 4.0
+            // if let cropGeometryPtr = player.videoCropGeometry { ... }
+        }
     
     private func updateMediaInfo() {
-        guard let media = media else { return }
+            guard let media = media else { return }
         
-        var videoTracks: [LibVLCTrack] = []
-        var audioTracks: [LibVLCTrack] = []
-        var subtitleTracks: [LibVLCTrack] = []
+            var videoTracks: [LibVLCTrack] = []
+            var audioTracks: [LibVLCTrack] = []
+            var subtitleTracks: [LibVLCTrack] = []
         
-        // Video tracks
-        for i in 0..<media.tracksInformation.count {
-            if let trackInfo = media.tracksInformation[i] as? [String: Any],
-               let type = trackInfo["type"] as? String, type == "video",
-               let id = trackInfo["id"] as? Int {
-                let name = trackInfo["name"] as? String ?? "Track \(id)"
-                let language = trackInfo["language"] as? String
-                let codec = trackInfo["codec"] as? String
-                videoTracks.append(LibVLCTrack(id: id, name: name, language: language, codec: codec))
+            // VLCKit 4.0: tracksInformation returns [[AnyHashable: Any]]
+            if let tracksInfo = media.tracksInformation as? [[AnyHashable: Any]] {
+                for trackInfo in tracksInfo {
+                    let trackType = trackInfo["type"] as? String ?? ""
+                    let id = trackInfo["id"] as? Int ?? 0
+                    let name = trackInfo["name"] as? String ?? trackInfo["description"] as? String ?? "Track \(id)"
+                    let language = trackInfo["language"] as? String
+                    let codec = trackInfo["codec"] as? String
+                
+                    let libTrack = LibVLCTrack(id: id, name: name, language: language, codec: codec)
+                
+                    switch trackType {
+                    case "video":
+                        videoTracks.append(libTrack)
+                    case "audio":
+                        audioTracks.append(libTrack)
+                    case "subtitle", "text":
+                        subtitleTracks.append(libTrack)
+                    default:
+                        break
+                    }
+                }
             }
-        }
         
-        // Audio tracks
-        for i in 0..<media.tracksInformation.count {
-            if let trackInfo = media.tracksInformation[i] as? [String: Any],
-               let type = trackInfo["type"] as? String, type == "audio",
-               let id = trackInfo["id"] as? Int {
-                let name = trackInfo["name"] as? String ?? "Track \(id)"
-                let language = trackInfo["language"] as? String
-                let codec = trackInfo["codec"] as? String
-                audioTracks.append(LibVLCTrack(id: id, name: name, language: language, codec: codec))
+            // Get video dimensions from first video track
+            var width = 0
+            var height = 0
+            if let tracksInfo = media.tracksInformation as? [[AnyHashable: Any]],
+               let videoTrack = tracksInfo.first(where: { ($0["type"] as? String) == "video" }) {
+                width = videoTrack["width"] as? Int ?? 0
+                height = videoTrack["height"] as? Int ?? 0
             }
-        }
         
-        // Subtitle tracks
-        for i in 0..<media.tracksInformation.count {
-            if let trackInfo = media.tracksInformation[i] as? [String: Any],
-               let type = trackInfo["type"] as? String, type == "text",
-               let id = trackInfo["id"] as? Int {
-                let name = trackInfo["name"] as? String ?? "Track \(id)"
-                let language = trackInfo["language"] as? String
-                let codec = trackInfo["codec"] as? String
-                subtitleTracks.append(LibVLCTrack(id: id, name: name, language: language, codec: codec))
-            }
+            mediaInfo = LibVLCMediaInfo(
+                duration: TimeInterval(media.length.intValue) / 1000,
+                width: width,
+                height: height,
+                videoTracks: videoTracks,
+                audioTracks: audioTracks,
+                subtitleTracks: subtitleTracks
+            )
         }
-        
-        // Get video dimensions
-        var width = 0
-        var height = 0
-        for i in 0..<media.tracksInformation.count {
-            if let trackInfo = media.tracksInformation[i] as? [String: Any],
-               let type = trackInfo["type"] as? String, type == "video",
-               let w = trackInfo["width"] as? Int,
-               let h = trackInfo["height"] as? Int {
-                width = w
-                height = h
-                break
-            }
-        }
-        
-        mediaInfo = LibVLCMediaInfo(
-            duration: TimeInterval(media.length.intValue) / 1000,
-            width: width,
-            height: height,
-            videoTracks: videoTracks,
-            audioTracks: audioTracks,
-            subtitleTracks: subtitleTracks
-        )
-    }
     
     // MARK: - Drawable (for video output)
     
