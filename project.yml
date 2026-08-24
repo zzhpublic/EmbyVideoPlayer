@@ -94,7 +94,7 @@ targets:
       - path: App/Assets.xcassets
     dependencies:
       - target: EmbyVideoPlayer
-            condition: "os(tvOS)"
+              condition: "os(tvOS)"
           - package: VLCKit
             product: VLCKit
           - package: Kingfisher
