@@ -279,11 +279,36 @@ jobs:
           Write-Host "Installing Swift..."
           & $installerPath /quiet /norestart /log "$env:TEMP\swift-install.log"
           
-          # Add Swift to PATH
-          $swiftPath = "C:\Library\Developer\Toolchains\swift-5.10.1-RELEASE-windows10\usr\bin"
-          if (Test-Path $swiftPath) {
-            $env:PATH = "$swiftPath;$env:PATH"
-            [Environment]::SetEnvironmentVariable("PATH", $env:PATH, [EnvironmentVariableTarget]::User)
+          # Add Swift to PATH - try multiple possible paths
+          $swiftPaths = @(
+            "C:\Library\Developer\Toolchains\swift-5.10.1-RELEASE-windows10\usr\bin",
+            "C:\swift\usr\bin",
+            "C:\Swift\usr\bin",
+            "C:\Library\Developer\Toolchains\swift-5.10.1-RELEASE\usr\bin"
+          )
+          $foundPath = $false
+          foreach ($swiftPath in $swiftPaths) {
+            if (Test-Path $swiftPath) {
+              $env:PATH = "$swiftPath;$env:PATH"
+              [Environment]::SetEnvironmentVariable("PATH", $env:PATH, [EnvironmentVariableTarget]::User)
+              Write-Host "Found Swift at: $swiftPath"
+              $foundPath = $true
+              break
+            }
+          }
+          if (-not $foundPath) {
+            Write-Host "Swift not found in standard locations, searching..."
+            $swiftDirs = Get-ChildItem -Path "C:\Library\Developer\Toolchains\" -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -like "swift*" }
+            foreach ($dir in $swiftDirs) {
+              $binPath = Join-Path $dir.FullName "usr\bin"
+              if (Test-Path $binPath) {
+                $env:PATH = "$binPath;$env:PATH"
+                [Environment]::SetEnvironmentVariable("PATH", $env:PATH, [EnvironmentVariableTarget]::User)
+                Write-Host "Found Swift at: $binPath"
+                $foundPath = $true
+                break
+              }
+            }
           }
           Write-Host "Swift installation complete"
         shell: pwsh
