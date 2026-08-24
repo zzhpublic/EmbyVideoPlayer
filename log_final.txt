@@ -1,0 +1,1510 @@
+﻿Build Windows	Set up job	﻿2026-08-24T01:24:21.2362622Z Current runner version: '2.336.0'
+Build Windows	Set up job	2026-08-24T01:24:21.2421094Z ##[group]Runner Image Provisioner
+Build Windows	Set up job	2026-08-24T01:24:21.2422080Z Hosted Compute Agent
+Build Windows	Set up job	2026-08-24T01:24:21.2422728Z Version: 20260729.566
+Build Windows	Set up job	2026-08-24T01:24:21.2423520Z Commit: cf7153fe6e25b664e8693c24944bf2b00355d109
+Build Windows	Set up job	2026-08-24T01:24:21.2424339Z Build Date: 2026-07-29T19:17:02Z
+Build Windows	Set up job	2026-08-24T01:24:21.2425156Z Worker ID: {ea6bf9ef-6e82-4d41-848e-7b7d7748f1e7}
+Build Windows	Set up job	2026-08-24T01:24:21.2426009Z Azure Region: eastus
+Build Windows	Set up job	2026-08-24T01:24:21.2426670Z ##[endgroup]
+Build Windows	Set up job	2026-08-24T01:24:21.2428866Z ##[group]Operating System
+Build Windows	Set up job	2026-08-24T01:24:21.2429652Z Microsoft Windows Server 2025
+Build Windows	Set up job	2026-08-24T01:24:21.2430381Z 10.0.26100
+Build Windows	Set up job	2026-08-24T01:24:21.2431033Z Datacenter
+Build Windows	Set up job	2026-08-24T01:24:21.2431670Z ##[endgroup]
+Build Windows	Set up job	2026-08-24T01:24:21.2432339Z ##[group]Runner Image
+Build Windows	Set up job	2026-08-24T01:24:21.2433032Z Image: windows-2025-vs2026
+Build Windows	Set up job	2026-08-24T01:24:21.2433722Z Version: 20260818.207.1
+Build Windows	Set up job	2026-08-24T01:24:21.2435215Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260818.207/images/windows/Windows2025-VS2026-Readme.md
+Build Windows	Set up job	2026-08-24T01:24:21.2437475Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260818.207
+Build Windows	Set up job	2026-08-24T01:24:21.2438251Z ##[endgroup]
+Build Windows	Set up job	2026-08-24T01:24:21.2439291Z ##[group]GITHUB_TOKEN Permissions
+Build Windows	Set up job	2026-08-24T01:24:21.2441654Z Contents: read
+Build Windows	Set up job	2026-08-24T01:24:21.2442872Z Metadata: read
+Build Windows	Set up job	2026-08-24T01:24:21.2443612Z Packages: read
+Build Windows	Set up job	2026-08-24T01:24:21.2444206Z ##[endgroup]
+Build Windows	Set up job	2026-08-24T01:24:21.2446163Z Secret source: Actions
+Build Windows	Set up job	2026-08-24T01:24:21.2447079Z Prepare workflow directory
+Build Windows	Set up job	2026-08-24T01:24:21.2730996Z Prepare all required actions
+Build Windows	Set up job	2026-08-24T01:24:21.2772378Z Getting action download info
+Build Windows	Set up job	2026-08-24T01:24:21.4151857Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Build Windows	Set up job	2026-08-24T01:24:21.5273034Z Download action repository 'compnerd/gha-setup-swift@main' (SHA:eeda069c5bc95ac8a9ac5cea7d4f588ae5420ca5)
+Build Windows	Set up job	2026-08-24T01:24:21.6314287Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+Build Windows	Set up job	2026-08-24T01:24:21.7690550Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Build Windows	Set up job	2026-08-24T01:24:22.1366547Z Getting action download info
+Build Windows	Set up job	2026-08-24T01:24:22.2157866Z Download action repository 'compnerd/gha-setup-vsdevenv@f1ba60d553a3216ce1b89abe0201213536bc7557' (SHA:f1ba60d553a3216ce1b89abe0201213536bc7557)
+Build Windows	Set up job	2026-08-24T01:24:22.3831621Z Complete job name: Build Windows
+Build Windows	Checkout repository	﻿2026-08-24T01:24:22.5552149Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build Windows	Checkout repository	2026-08-24T01:24:22.5560508Z ##[group]Run actions/checkout@v4
+Build Windows	Checkout repository	2026-08-24T01:24:22.5561092Z with:
+Build Windows	Checkout repository	2026-08-24T01:24:22.5561461Z   repository: zzhpublic/EmbyVideoPlayer
+Build Windows	Checkout repository	2026-08-24T01:24:22.5565201Z   token: ***
+Build Windows	Checkout repository	2026-08-24T01:24:22.5565561Z   ssh-strict: true
+Build Windows	Checkout repository	2026-08-24T01:24:22.5565936Z   ssh-user: git
+Build Windows	Checkout repository	2026-08-24T01:24:22.5566301Z   persist-credentials: true
+Build Windows	Checkout repository	2026-08-24T01:24:22.5566713Z   clean: true
+Build Windows	Checkout repository	2026-08-24T01:24:22.5567079Z   sparse-checkout-cone-mode: true
+Build Windows	Checkout repository	2026-08-24T01:24:22.5567514Z   fetch-depth: 1
+Build Windows	Checkout repository	2026-08-24T01:24:22.5567876Z   fetch-tags: false
+Build Windows	Checkout repository	2026-08-24T01:24:22.5568260Z   show-progress: true
+Build Windows	Checkout repository	2026-08-24T01:24:22.5568621Z   lfs: false
+Build Windows	Checkout repository	2026-08-24T01:24:22.5568979Z   submodules: false
+Build Windows	Checkout repository	2026-08-24T01:24:22.5569394Z   set-safe-directory: true
+Build Windows	Checkout repository	2026-08-24T01:24:22.5569820Z   allow-unsafe-pr-checkout: false
+Build Windows	Checkout repository	2026-08-24T01:24:22.5570395Z ##[endgroup]
+Build Windows	Checkout repository	2026-08-24T01:24:22.6856832Z Syncing repository: zzhpublic/EmbyVideoPlayer
+Build Windows	Checkout repository	2026-08-24T01:24:22.6859471Z ##[group]Getting Git version info
+Build Windows	Checkout repository	2026-08-24T01:24:22.6860470Z Working directory is 'D:\a\EmbyVideoPlayer\EmbyVideoPlayer'
+Build Windows	Checkout repository	2026-08-24T01:24:22.7593845Z [command]"C:\Program Files\Git\bin\git.exe" version
+Build Windows	Checkout repository	2026-08-24T01:24:23.1144946Z git version 2.55.0.windows.4
+Build Windows	Checkout repository	2026-08-24T01:24:23.1189716Z ##[endgroup]
+Build Windows	Checkout repository	2026-08-24T01:24:23.1208536Z Temporarily overriding HOME='D:\a\_temp\fa769f20-0941-45ac-9618-3b071acfabaa' before making global git config changes
+Build Windows	Checkout repository	2026-08-24T01:24:23.1210148Z Adding repository directory to the temporary git global config as a safe directory
+Build Windows	Checkout repository	2026-08-24T01:24:23.1219254Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\EmbyVideoPlayer\EmbyVideoPlayer
+Build Windows	Checkout repository	2026-08-24T01:24:23.1809511Z Deleting the contents of 'D:\a\EmbyVideoPlayer\EmbyVideoPlayer'
+Build Windows	Checkout repository	2026-08-24T01:24:23.1815481Z ##[group]Initializing the repository
+Build Windows	Checkout repository	2026-08-24T01:24:23.1823849Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\EmbyVideoPlayer\EmbyVideoPlayer
+Build Windows	Checkout repository	2026-08-24T01:24:23.2840430Z Initialized empty Git repository in D:/a/EmbyVideoPlayer/EmbyVideoPlayer/.git/
+Build Windows	Checkout repository	2026-08-24T01:24:23.2887239Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/zzhpublic/EmbyVideoPlayer
+Build Windows	Checkout repository	2026-08-24T01:24:23.3465896Z ##[endgroup]
+Build Windows	Checkout repository	2026-08-24T01:24:23.3467558Z ##[group]Disabling automatic garbage collection
+Build Windows	Checkout repository	2026-08-24T01:24:23.3469106Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+Build Windows	Checkout repository	2026-08-24T01:24:23.3717421Z ##[endgroup]
+Build Windows	Checkout repository	2026-08-24T01:24:23.3719003Z ##[group]Setting up auth
+Build Windows	Checkout repository	2026-08-24T01:24:23.3727535Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+Build Windows	Checkout repository	2026-08-24T01:24:23.3990874Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+Build Windows	Checkout repository	2026-08-24T01:24:24.8397875Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build Windows	Checkout repository	2026-08-24T01:24:24.8675559Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+Build Windows	Checkout repository	2026-08-24T01:24:25.3497084Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build Windows	Checkout repository	2026-08-24T01:24:25.3771709Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+Build Windows	Checkout repository	2026-08-24T01:24:25.8609978Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+Build Windows	Checkout repository	2026-08-24T01:24:25.8881886Z ##[endgroup]
+Build Windows	Checkout repository	2026-08-24T01:24:25.8882584Z ##[group]Fetching the repository
+Build Windows	Checkout repository	2026-08-24T01:24:25.8894384Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8e13aa81be248dde144babbf09df47ac71a6119a:refs/remotes/origin/zzhpublic-literate-engine
+Build Windows	Checkout repository	2026-08-24T01:24:27.0040312Z From https://github.com/zzhpublic/EmbyVideoPlayer
+Build Windows	Checkout repository	2026-08-24T01:24:27.0041682Z  * [new ref]         8e13aa81be248dde144babbf09df47ac71a6119a -> origin/zzhpublic-literate-engine
+Build Windows	Checkout repository	2026-08-24T01:24:27.0084911Z ##[endgroup]
+Build Windows	Checkout repository	2026-08-24T01:24:27.0085470Z ##[group]Determining the checkout info
+Build Windows	Checkout repository	2026-08-24T01:24:27.0088320Z ##[endgroup]
+Build Windows	Checkout repository	2026-08-24T01:24:27.0097941Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+Build Windows	Checkout repository	2026-08-24T01:24:27.0515264Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+Build Windows	Checkout repository	2026-08-24T01:24:27.0813051Z ##[group]Checking out the ref
+Build Windows	Checkout repository	2026-08-24T01:24:27.0824138Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B zzhpublic-literate-engine refs/remotes/origin/zzhpublic-literate-engine
+Build Windows	Checkout repository	2026-08-24T01:24:27.1775503Z Switched to a new branch 'zzhpublic-literate-engine'
+Build Windows	Checkout repository	2026-08-24T01:24:27.1839395Z branch 'zzhpublic-literate-engine' set up to track 'origin/zzhpublic-literate-engine'.
+Build Windows	Checkout repository	2026-08-24T01:24:27.1894474Z ##[endgroup]
+Build Windows	Checkout repository	2026-08-24T01:24:27.2281893Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+Build Windows	Checkout repository	2026-08-24T01:24:27.2512993Z 8e13aa81be248dde144babbf09df47ac71a6119a
+Build Windows	Install Swift (Windows)	﻿2026-08-24T01:24:27.3179225Z ##[group]Run compnerd/gha-setup-swift@main
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3179596Z with:
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3179763Z   swift-version: 5.10.1
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3179945Z   source: swift.org
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3180130Z   build_arch: amd64
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3180313Z   update-sdk-modules: false
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3180513Z   cache: false
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3180701Z ##[endgroup]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3241925Z ##[start-action display=Handle deprecated parameters and validate inputs;id=__compnerd_gha-setup-swift.__run]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3405499Z ##[group]Run # Handle backward compatibility for deprecated parameters
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3406071Z ^[[36;1m# Handle backward compatibility for deprecated parameters^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3406382Z ^[[36;1m$SwiftVersion = "5.10.1"^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3406608Z ^[[36;1m$SwiftBuild = ""^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3406786Z ^[[36;1m^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3407087Z ^[[36;1m# Ensure that only the deprecated or the new parameter set is used at one time.^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3407475Z ^[[36;1m$errors = @(^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3408024Z ^[[36;1m  if (![String]::IsNullOrEmpty("") -and ![String]::IsNullOrEmpty($SwiftVersion)) { "Cannot specify both 'branch' (deprecated) and 'swift-version'. Please use only 'swift-version'." }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3409301Z ^[[36;1m  if (![String]::IsNullOrEmpty("") -and ![String]::IsNullOrEmpty($SwiftBuild)) { "Cannot specify both 'tag' (deprecated) and 'swift-build'. Please use only 'swift-build'." }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3409862Z ^[[36;1m)^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3410095Z ^[[36;1mforeach ($error in $errors) { Write-Host "::error::$error" }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3410376Z ^[[36;1mif ($errors) { exit 1 }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3410564Z ^[[36;1m^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3410755Z ^[[36;1m# Handle deprecated parameters with warnings.^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3411020Z ^[[36;1mif (![String]::IsNullOrEmpty("")) {^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3411510Z ^[[36;1m  Write-Host "::warning::The 'branch' input is deprecated and will be removed in a future version. Please use 'swift-version' instead."^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3412018Z ^[[36;1m  $SwiftVersion = ""^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3412203Z ^[[36;1m}^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3412343Z ^[[36;1m^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3412515Z ^[[36;1mif (![String]::IsNullOrEmpty("")) {^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3412964Z ^[[36;1m  Write-Host "::warning::The 'tag' input is deprecated and will be removed in a future version. Please use 'swift-build' instead."^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3413398Z ^[[36;1m  $SwiftBuild = ""^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3413579Z ^[[36;1m}^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3413716Z ^[[36;1m^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3413946Z ^[[36;1mswitch ("swift.org") {^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3414178Z ^[[36;1m  "swift.org" {^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3414375Z ^[[36;1m    if (-not $SwiftVersion) {^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3414708Z ^[[36;1m      Write-Host "::error::swift-version is required when using swift.org source"^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3415052Z ^[[36;1m      exit 1^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3415212Z ^[[36;1m    }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3415376Z ^[[36;1m^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3415549Z ^[[36;1m    if (-not $SwiftBuild) {^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3415858Z ^[[36;1m      Write-Host "::error::swift-build is required when using swift.org source"^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3416167Z ^[[36;1m      exit 1^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3416325Z ^[[36;1m    }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3416465Z ^[[36;1m  }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3416608Z ^[[36;1m^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3416752Z ^[[36;1m  "custom" {^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3416916Z ^[[36;1m    if (-not "") {^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3417197Z ^[[36;1m      Write-Host "::error::github-repo is required when using custom source"^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3417498Z ^[[36;1m      exit 1^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3417656Z ^[[36;1m    }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3417806Z ^[[36;1m^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3417955Z ^[[36;1m    if (-not "") {^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3418245Z ^[[36;1m      Write-Host "::error::release-tag-name is required when using custom source"^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3418901Z ^[[36;1m      exit 1^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3421126Z ^[[36;1m    }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3421285Z ^[[36;1m^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3421434Z ^[[36;1m    if (-not "") {^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3421759Z ^[[36;1m      Write-Host "::error::release-asset-name is required when using custom source"^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3422100Z ^[[36;1m      exit 1^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3422268Z ^[[36;1m    }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3422415Z ^[[36;1m  }^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3422576Z ^[[36;1m}^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3422722Z ^[[36;1m^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3422930Z ^[[36;1m# Export resolved values for use in subsequent steps.^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3423419Z ^[[36;1mWrite-Output "RESOLVED_SWIFT_VERSION=$SwiftVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.3424027Z ^[[36;1mWrite-Output "RESOLVED_SWIFT_BUILD=$SwiftBuild" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append^[[0m
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.5985278Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.5985680Z ##[endgroup]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:27.9939148Z ##[error]swift-build is required when using swift.org source
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0395319Z ##[error]Process completed with exit code 1.
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0406825Z ##[end-action id=__compnerd_gha-setup-swift.__run;outcome=failure;conclusion=failure;duration_ms=716]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0410403Z ##[start-action display=Validate Linux distribution;id=__compnerd_gha-setup-swift.__run_2]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0421318Z ##[end-action id=__compnerd_gha-setup-swift.__run_2;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0423460Z ##[start-action display=Generate cache key (Windows);id=__compnerd_gha-setup-swift.cache-key]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0428312Z ##[end-action id=__compnerd_gha-setup-swift.cache-key;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0430089Z ##[start-action display=Generate cache key (Linux/macOS);id=__compnerd_gha-setup-swift.cache-key-posix]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0434162Z ##[end-action id=__compnerd_gha-setup-swift.cache-key-posix;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0435792Z ##[start-action display=Restore cached toolchain;id=__compnerd_gha-setup-swift.cache-restore]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0437940Z ##[end-action id=__compnerd_gha-setup-swift.cache-restore;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0440081Z ##[start-action display=Fetch installer from GitHub release (Windows);id=__compnerd_gha-setup-swift.__run_3]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0446741Z ##[end-action id=__compnerd_gha-setup-swift.__run_3;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0449147Z ##[start-action display=Fetch installer from GitHub release (Linux/macOS);id=__compnerd_gha-setup-swift.__run_4]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0452024Z ##[end-action id=__compnerd_gha-setup-swift.__run_4;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0453519Z ##[start-action display=Fetch installer from swift.org;id=__compnerd_gha-setup-swift.__run_5]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0481708Z ##[end-action id=__compnerd_gha-setup-swift.__run_5;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0483552Z ##[start-action display=Fetch installer from swift.org (Linux);id=__compnerd_gha-setup-swift.__run_6]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0486778Z ##[end-action id=__compnerd_gha-setup-swift.__run_6;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0488295Z ##[start-action display=Fetch installer from swift.org (macOS);id=__compnerd_gha-setup-swift.__run_7]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0491099Z ##[end-action id=__compnerd_gha-setup-swift.__run_7;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0492600Z ##[start-action display=Save toolchain to cache;id=__compnerd_gha-setup-swift.__actions_cache]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0494936Z ##[end-action id=__compnerd_gha-setup-swift.__actions_cache;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0496572Z ##[start-action display=Install Swift;id=__compnerd_gha-setup-swift.install-swift]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0499611Z ##[end-action id=__compnerd_gha-setup-swift.install-swift;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0501475Z ##[start-action display=Upload Error Logs;id=__compnerd_gha-setup-swift.__actions_upload-artifact]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0511596Z ##[end-action id=__compnerd_gha-setup-swift.__actions_upload-artifact;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0513260Z ##[start-action display=Check Swift version;id=__compnerd_gha-setup-swift.swift-version]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0515385Z ##[end-action id=__compnerd_gha-setup-swift.swift-version;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0517004Z ##[start-action display=VS2022 Compatibility Setup;id=__compnerd_gha-setup-swift.__compnerd_gha-setup-vsdevenv]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0519494Z ##[end-action id=__compnerd_gha-setup-swift.__compnerd_gha-setup-vsdevenv;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0521464Z ##[start-action display=VS2022 Compatibility Installation;id=__compnerd_gha-setup-swift.__run_8]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0523952Z ##[end-action id=__compnerd_gha-setup-swift.__run_8;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0525485Z ##[start-action display=Update SDK Module Definitions;id=__compnerd_gha-setup-swift.__run_9]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0527569Z ##[end-action id=__compnerd_gha-setup-swift.__run_9;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0528948Z ##[start-action display=Install Swift;id=__compnerd_gha-setup-swift.__run_10]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0530756Z ##[end-action id=__compnerd_gha-setup-swift.__run_10;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0532132Z ##[start-action display=Install Swift;id=__compnerd_gha-setup-swift.__run_11]
+Build Windows	Install Swift (Windows)	2026-08-24T01:24:28.0533895Z ##[end-action id=__compnerd_gha-setup-swift.__run_11;outcome=skipped;conclusion=skipped;duration_ms=0]
+Build Windows	Upload Windows build artifacts	﻿2026-08-24T01:24:28.0752196Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.0753877Z ##[group]Run actions/upload-artifact@v4
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.0754098Z with:
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.0754325Z   name: build-Windows-8e13aa81be248dde144babbf09df47ac71a6119a
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.0754657Z   path: build/windows/EmbyVideoPlayer-Windows.zip
+Build Windows	Upload Windows build artifacts	
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.0754914Z   retention-days: 7
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.0755084Z   if-no-files-found: ignore
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.0755270Z   compression-level: 6
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.0755437Z   overwrite: false
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.0755613Z   include-hidden-files: false
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.0755801Z ##[endgroup]
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.2518883Z (node:2380) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.2520050Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Build Windows	Upload Windows build artifacts	2026-08-24T01:24:28.2560352Z No files were found with the provided path: build/windows/EmbyVideoPlayer-Windows.zip. No artifacts will be uploaded.
+Build Windows	Post Checkout repository	﻿2026-08-24T01:24:28.2887254Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build Windows	Post Checkout repository	2026-08-24T01:24:28.2888335Z Post job cleanup.
+Build Windows	Post Checkout repository	2026-08-24T01:24:28.4378950Z [command]"C:\Program Files\Git\bin\git.exe" version
+Build Windows	Post Checkout repository	2026-08-24T01:24:28.4615760Z git version 2.55.0.windows.4
+Build Windows	Post Checkout repository	2026-08-24T01:24:28.4677798Z Temporarily overriding HOME='D:\a\_temp\1ae03b48-680c-450f-93dd-ed058e350c8b' before making global git config changes
+Build Windows	Post Checkout repository	2026-08-24T01:24:28.4679314Z Adding repository directory to the temporary git global config as a safe directory
+Build Windows	Post Checkout repository	2026-08-24T01:24:28.4687002Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\EmbyVideoPlayer\EmbyVideoPlayer
+Build Windows	Post Checkout repository	2026-08-24T01:24:28.4978582Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+Build Windows	Post Checkout repository	2026-08-24T01:24:28.5276942Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+Build Windows	Post Checkout repository	2026-08-24T01:24:29.0410843Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build Windows	Post Checkout repository	2026-08-24T01:24:29.0640961Z http.https://github.com/.extraheader
+Build Windows	Post Checkout repository	2026-08-24T01:24:29.0684135Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+Build Windows	Post Checkout repository	2026-08-24T01:24:29.0943501Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+Build Windows	Post Checkout repository	2026-08-24T01:24:29.5467864Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build Windows	Post Checkout repository	2026-08-24T01:24:29.5734272Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+Build Windows	Complete job	﻿2026-08-24T01:24:30.0299231Z Cleaning up orphan processes
+Build Windows	Complete job	2026-08-24T01:24:30.0335953Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (tvOS)	Set up job	﻿2026-08-24T01:24:26.5774300Z Current runner version: '2.336.0'
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5791500Z ##[group]Runner Image Provisioner
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5792020Z Hosted Compute Agent
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5792360Z Version: 20260624.560
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5792740Z Commit: 925d229a51159bc391ae97e54a2dd1fe20af789d
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5793190Z Build Date: 2026-06-24T18:26:47Z
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5793610Z Worker ID: {82045226-4cee-4eae-93c3-7abfddc2e773}
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5794040Z Azure Region: westus
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5794380Z ##[endgroup]
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5795200Z ##[group]Operating System
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5795570Z macOS
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5795870Z 14.8.7
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5796170Z 23J520
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5796490Z ##[endgroup]
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5796840Z ##[group]Runner Image
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5797260Z Image: macos-14-arm64
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5797610Z Version: 20260629.0180.1
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5798400Z Included Software: https://github.com/actions/runner-images/blob/macos-14-arm64/20260629.0180/images/macos/macos-14-arm64-Readme.md
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5799900Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-14-arm64%2F20260629.0180
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5800560Z ##[endgroup]
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5801300Z ##[group]GITHUB_TOKEN Permissions
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5802380Z Contents: read
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5802720Z Metadata: read
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5803050Z Packages: read
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5803390Z ##[endgroup]
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5804620Z Secret source: Actions
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.5805230Z Prepare workflow directory
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.6002180Z Prepare all required actions
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.6035100Z Getting action download info
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:26.7546250Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:27.6355750Z Download action repository 'swift-actions/setup-swift@v2' (SHA:7ca6abe6b3b0e8b5421b88be48feee39cbf52c6a)
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:28.1474300Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:28.2150700Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Build & Test (tvOS)	Set up job	2026-08-24T01:24:28.4018250Z Complete job name: Build & Test (tvOS)
+Build & Test (tvOS)	Checkout repository	﻿2026-08-24T01:24:28.4491870Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4499240Z ##[group]Run actions/checkout@v4
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4499960Z with:
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4500520Z   repository: zzhpublic/EmbyVideoPlayer
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4506480Z   token: ***
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4507020Z   ssh-strict: true
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4507550Z   ssh-user: git
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4508100Z   persist-credentials: true
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4508680Z   clean: true
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4509270Z   sparse-checkout-cone-mode: true
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4509930Z   fetch-depth: 1
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4510460Z   fetch-tags: false
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4511010Z   show-progress: true
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4511550Z   lfs: false
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4512060Z   submodules: false
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4512630Z   set-safe-directory: true
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4513260Z   allow-unsafe-pr-checkout: false
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.4514030Z ##[endgroup]
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7268080Z Syncing repository: zzhpublic/EmbyVideoPlayer
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7269770Z ##[group]Getting Git version info
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7270270Z Working directory is '/Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer'
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7271250Z [command]/opt/homebrew/bin/git version
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7528690Z git version 2.54.0
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7687720Z ##[endgroup]
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7693790Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/5102d2fe-923f-4f9f-ac04-10409a982b27/.gitconfig'
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7695180Z Temporarily overriding HOME='/Users/runner/work/_temp/5102d2fe-923f-4f9f-ac04-10409a982b27' before making global git config changes
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7696470Z Adding repository directory to the temporary git global config as a safe directory
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7697430Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7699650Z Deleting the contents of '/Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer'
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7701440Z ##[group]Initializing the repository
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.7702040Z [command]/opt/homebrew/bin/git init /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8101990Z hint: Using 'master' as the name for the initial branch. This default branch name
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8102790Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8106780Z hint: to use in all of your new repositories, which will suppress this warning,
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8107270Z hint: call:
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8107490Z hint:
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8107790Z hint: 	git config --global init.defaultBranch <name>
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8108080Z hint:
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8108370Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8108900Z hint: 'development'. The just-created branch can be renamed via this command:
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8109340Z hint:
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8109630Z hint: 	git branch -m <name>
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8124880Z hint:
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8125240Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8125870Z Initialized empty Git repository in /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/.git/
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8127150Z [command]/opt/homebrew/bin/git remote add origin https://github.com/zzhpublic/EmbyVideoPlayer
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8162080Z ##[endgroup]
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8162570Z ##[group]Disabling automatic garbage collection
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8164340Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8208760Z ##[endgroup]
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8209280Z ##[group]Setting up auth
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8213970Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8252910Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8810760Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.8850830Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.9336960Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.9372080Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.9809680Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.9849150Z ##[endgroup]
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.9849580Z ##[group]Fetching the repository
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:28.9854100Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8e13aa81be248dde144babbf09df47ac71a6119a:refs/remotes/origin/zzhpublic-literate-engine
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7320110Z From https://github.com/zzhpublic/EmbyVideoPlayer
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7320790Z  * [new ref]         8e13aa81be248dde144babbf09df47ac71a6119a -> origin/zzhpublic-literate-engine
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7375180Z ##[endgroup]
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7375990Z ##[group]Determining the checkout info
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7376640Z ##[endgroup]
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7377140Z [command]/opt/homebrew/bin/git sparse-checkout disable
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7425090Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7461620Z ##[group]Checking out the ref
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7464860Z [command]/opt/homebrew/bin/git checkout --progress --force -B zzhpublic-literate-engine refs/remotes/origin/zzhpublic-literate-engine
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7691140Z Switched to a new branch 'zzhpublic-literate-engine'
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7697080Z branch 'zzhpublic-literate-engine' set up to track 'origin/zzhpublic-literate-engine'.
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7701510Z ##[endgroup]
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7766850Z [command]/opt/homebrew/bin/git log -1 --format=%H
+Build & Test (tvOS)	Checkout repository	2026-08-24T01:24:29.7802800Z 8e13aa81be248dde144babbf09df47ac71a6119a
+Build & Test (tvOS)	Select Xcode	﻿2026-08-24T01:24:29.7983130Z ##[group]Run # Try multiple Xcode 15.4 paths, fallback to default
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.7983540Z ^[[36;1m# Try multiple Xcode 15.4 paths, fallback to default^[[0m
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.7983860Z ^[[36;1mif [ -d "/Applications/Xcode_15.4.app" ]; then^[[0m
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.7984180Z ^[[36;1m  sudo xcode-select -s /Applications/Xcode_15.4.app^[[0m
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.7984490Z ^[[36;1melif [ -d "/Applications/Xcode_15.3.app" ]; then^[[0m
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.7984790Z ^[[36;1m  sudo xcode-select -s /Applications/Xcode_15.3.app^[[0m
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.7985030Z ^[[36;1melse^[[0m
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.7985230Z ^[[36;1m  sudo xcode-select -s /Applications/Xcode.app^[[0m
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.7985460Z ^[[36;1mfi^[[0m
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.7985630Z ^[[36;1mxcodebuild -version^[[0m
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.8035810Z shell: /bin/bash -e {0}
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.8036110Z ##[endgroup]
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.9460500Z Xcode 15.4
+Build & Test (tvOS)	Select Xcode	2026-08-24T01:24:29.9492130Z Build version 15F31d
+Build & Test (tvOS)	Install Swift toolchain	﻿2026-08-24T01:24:29.9560060Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:24:29.9561620Z ##[group]Run swift-actions/setup-swift@v2
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:24:29.9561920Z with:
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:24:29.9562080Z   swift-version: 5.10
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:24:29.9562260Z ##[endgroup]
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:24:30.0216200Z [command]/usr/bin/xcrun --toolchain swift 5.10.1 --run swift --version
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:24:31.7347350Z swift-driver version: 1.90.11.1 Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:24:31.7347880Z Target: arm64-apple-macosx14.0
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:24:51.0698390Z [command]/usr/bin/xar -x -C /Users/runner/work/_temp/80c29718-07bb-4c18-af16-3a0745f97914 -f /Users/runner/work/_temp/f2c2d38b-de2d-446c-aadc-ec047f646585
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:24:53.3269880Z [command]/usr/bin/tar xz -C /Users/runner/work/_temp/4e589c2d-3851-455c-874c-3c5ddcdb5489 -f /Users/runner/work/_temp/80c29718-07bb-4c18-af16-3a0745f97914/swift-5.10.1-RELEASE-osx-package.pkg/Payload
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:25:12.4066970Z [command]/Users/runner/hostedtoolcache/swift-macOS/5.10.1/arm64/usr/bin/swift --version
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:25:13.3233220Z Apple Swift version 5.10.1 (swift-5.10.1-RELEASE)
+Build & Test (tvOS)	Install Swift toolchain	2026-08-24T01:25:13.3234090Z Target: arm64-apple-macosx14.0
+Build & Test (tvOS)	Cache Swift packages	﻿2026-08-24T01:25:13.7415230Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7416820Z ##[group]Run actions/cache@v4
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7417100Z with:
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7417640Z   path: .build
+Build & Test (tvOS)	Cache Swift packages	~/Library/Caches/org.swift.swiftpm
+Build & Test (tvOS)	Cache Swift packages	~/Library/org.swift.swiftpm
+Build & Test (tvOS)	Cache Swift packages	
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7418390Z   key: macOS-spm-
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7418650Z   restore-keys: macOS-spm-
+Build & Test (tvOS)	Cache Swift packages	
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7419070Z   enableCrossOsArchive: false
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7419350Z   fail-on-cache-miss: false
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7419730Z   lookup-only: false
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7419990Z   save-always: false
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7420460Z env:
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7420850Z   TOOLCHAINS: swift 5.10.1
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.7425610Z ##[endgroup]
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.8998150Z (node:2260) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.8999360Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.9769730Z Cache hit for: macOS-spm-
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:13.9841370Z (node:2260) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:15.0236970Z Received 171966464 of 866975306 (19.8%), 163.5 MBs/sec
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:16.0364760Z Received 369098752 of 866975306 (42.6%), 174.9 MBs/sec
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:17.0366930Z Received 536870912 of 866975306 (61.9%), 169.8 MBs/sec
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:18.0375380Z Received 801112064 of 866975306 (92.4%), 190.2 MBs/sec
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:18.4388810Z Received 866975306 of 866975306 (100.0%), 187.1 MBs/sec
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:18.4391510Z Cache Size: ~827 MB (866975306 B)
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:18.5263990Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/66755b98-8fc1-4065-92bf-28505b9b8eeb/cache.tzst -P -C /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer --delay-directory-restore --use-compress-program unzstd
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:23.1579420Z Cache restored successfully
+Build & Test (tvOS)	Cache Swift packages	2026-08-24T01:25:23.1925080Z Cache restored from key: macOS-spm-
+Build & Test (tvOS)	Install xcodegen	﻿2026-08-24T01:25:23.2227420Z ##[group]Run brew install xcodegen
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:23.2227700Z ^[[36;1mbrew install xcodegen^[[0m
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:23.2227900Z ^[[36;1mxcodegen --version^[[0m
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:23.2365790Z shell: /bin/bash -e {0}
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:23.2366010Z env:
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:23.2366170Z   TOOLCHAINS: swift 5.10.1
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:23.2366380Z ##[endgroup]
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:25.4739720Z ##[warning]The following taps are not trusted:
+Build & Test (tvOS)	Install xcodegen	  aws/tap
+Build & Test (tvOS)	Install xcodegen	
+Build & Test (tvOS)	Install xcodegen	Homebrew is currently ignoring formulae, casks and commands from these taps because tap trust is required.
+Build & Test (tvOS)	Install xcodegen	Untap them with:
+Build & Test (tvOS)	Install xcodegen	  brew untap aws/tap
+Build & Test (tvOS)	Install xcodegen	Trust specific formulae, casks and commands with:
+Build & Test (tvOS)	Install xcodegen	  brew trust --formula <user>/<tap>/<formula>
+Build & Test (tvOS)	Install xcodegen	  brew trust --cask <user>/<tap>/<cask>
+Build & Test (tvOS)	Install xcodegen	  brew trust --command <user>/<tap>/<command>
+Build & Test (tvOS)	Install xcodegen	Whole-tap trust is broader and includes all current and future formulae,
+Build & Test (tvOS)	Install xcodegen	casks and commands from the listed taps. Trust whole taps with:
+Build & Test (tvOS)	Install xcodegen	  brew trust aws/tap
+Build & Test (tvOS)	Install xcodegen	To disable trust checks:
+Build & Test (tvOS)	Install xcodegen	  export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
+Build & Test (tvOS)	Install xcodegen	This is not recommended and will be removed in a later release.
+Build & Test (tvOS)	Install xcodegen	For more information, see:
+Build & Test (tvOS)	Install xcodegen	  https://docs.brew.sh/Tap-Trust
+Build & Test (tvOS)	Install xcodegen	
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:25.9527900Z ^[[34m==>^[[0m ^[[1mWould install 1 formula:^[[0m
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:25.9528230Z xcodegen
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:25.9541740Z ^[[34m==>^[[0m ^[[1mDownloading https://ghcr.io/v2/homebrew/core/xcodegen/manifests/2.45.4^[[0m
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:26.2423250Z ^[[32m==>^[[0m ^[[1mFetching downloads for: ^[[32mxcodegen^[[39m^[[0m
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:26.5795470Z ✔︎ Bottle xcodegen (2.45.4)
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:26.7099080Z ^[[34m==>^[[0m ^[[1mPouring xcodegen--2.45.4.arm64_sonoma.bottle.tar.gz^[[0m
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:26.7743800Z 🍺  /opt/homebrew/Cellar/xcodegen/2.45.4: 38 files, 7.6MB
+Build & Test (tvOS)	Install xcodegen	2026-08-24T01:25:26.7921420Z Version: 2.45.4
+Build & Test (tvOS)	Generate Xcode project	﻿2026-08-24T01:25:26.7961870Z ##[group]Run xcodegen generate
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.7962180Z ^[[36;1mxcodegen generate^[[0m
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.7962630Z ^[[36;1m# Check project format version^[[0m
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.7963230Z ^[[36;1mgrep -i "objectVersion" EmbyVideoPlayer.xcodeproj/project.pbxproj | head -1^[[0m
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.8013460Z shell: /bin/bash -e {0}
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.8013770Z env:
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.8013940Z   TOOLCHAINS: swift 5.10.1
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.8014150Z ##[endgroup]
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.8364020Z Parsing project spec failed: 97:20: error: scanner: mapping values are not allowed in this context:
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.8364620Z           condition: "os(tvOS)"
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.8364820Z                    ^
+Build & Test (tvOS)	Generate Xcode project	2026-08-24T01:25:26.8371140Z ##[error]Process completed with exit code 1.
+Build & Test (tvOS)	Upload build artifacts	﻿2026-08-24T01:25:26.8462140Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8469080Z ##[group]Run actions/upload-artifact@v4
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8469290Z with:
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8469500Z   name: build-tvOS-8e13aa81be248dde144babbf09df47ac71a6119a
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8470410Z   path: .build
+Build & Test (tvOS)	Upload build artifacts	DerivedData
+Build & Test (tvOS)	Upload build artifacts	build/EmbyVideoPlayer.xcarchive
+Build & Test (tvOS)	Upload build artifacts	build/ipa/EmbyVideoPlayer.ipa
+Build & Test (tvOS)	Upload build artifacts	build/EmbyVideoPlayertvOS.xcarchive
+Build & Test (tvOS)	Upload build artifacts	build/tvos/EmbyVideoPlayertvOS.zip
+Build & Test (tvOS)	Upload build artifacts	build/EmbyVideoPlayerMacOS.xcarchive
+Build & Test (tvOS)	Upload build artifacts	build/macos/EmbyVideoPlayerMacOS.zip
+Build & Test (tvOS)	Upload build artifacts	
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8471250Z   retention-days: 7
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8471410Z   if-no-files-found: ignore
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8471590Z   compression-level: 6
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8471770Z   overwrite: false
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8471930Z   include-hidden-files: false
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8472120Z env:
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8472270Z   TOOLCHAINS: swift 5.10.1
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.8472450Z ##[endgroup]
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9793750Z (node:2664) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9794400Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9827500Z Multiple search paths detected. Calculating the least common ancestor of all paths
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9829940Z The least common ancestor is /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer. This will be the root directory of the artifact
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9830600Z No files were found with the provided path: .build
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9830850Z DerivedData
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9831040Z build/EmbyVideoPlayer.xcarchive
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9831260Z build/ipa/EmbyVideoPlayer.ipa
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9831500Z build/EmbyVideoPlayertvOS.xcarchive
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9831790Z build/tvos/EmbyVideoPlayertvOS.zip
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9832130Z build/EmbyVideoPlayerMacOS.xcarchive
+Build & Test (tvOS)	Upload build artifacts	2026-08-24T01:25:26.9832600Z build/macos/EmbyVideoPlayerMacOS.zip. No artifacts will be uploaded.
+Build & Test (tvOS)	Post Checkout repository	﻿2026-08-24T01:25:26.9955850Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:26.9956920Z Post job cleanup.
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.0768390Z [command]/opt/homebrew/bin/git version
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.0811540Z git version 2.54.0
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.0827970Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/60846af6-ead8-495a-99c3-e9f9e465f2d6/.gitconfig'
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.0834110Z Temporarily overriding HOME='/Users/runner/work/_temp/60846af6-ead8-495a-99c3-e9f9e465f2d6' before making global git config changes
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.0834850Z Adding repository directory to the temporary git global config as a safe directory
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.0837740Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.0905290Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.0947940Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.1557050Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.1602470Z http.https://github.com/.extraheader
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.1630510Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.1665280Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.2189710Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & Test (tvOS)	Post Checkout repository	2026-08-24T01:25:27.2227580Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & Test (tvOS)	Complete job	﻿2026-08-24T01:25:27.3176900Z Cleaning up orphan processes
+Build & Test (tvOS)	Complete job	2026-08-24T01:25:27.7062410Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/upload-artifact@v4, swift-actions/setup-swift@v2. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (iOS Device)	Set up job	﻿2026-08-24T01:24:58.1295030Z Current runner version: '2.336.0'
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1309840Z ##[group]Runner Image Provisioner
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1310360Z Hosted Compute Agent
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1310730Z Version: 20260624.560
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1311120Z Commit: 925d229a51159bc391ae97e54a2dd1fe20af789d
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1311570Z Build Date: 2026-06-24T18:26:47Z
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1312000Z Worker ID: {3c8ea9ee-b045-4939-9dd4-6c5913d45b63}
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1312440Z Azure Region: westus
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1312800Z ##[endgroup]
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1313630Z ##[group]Operating System
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1314010Z macOS
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1314330Z 14.8.7
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1314640Z 23J520
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1315110Z ##[endgroup]
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1315450Z ##[group]Runner Image
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1315810Z Image: macos-14-arm64
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1316170Z Version: 20260629.0180.1
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1316900Z Included Software: https://github.com/actions/runner-images/blob/macos-14-arm64/20260629.0180/images/macos/macos-14-arm64-Readme.md
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1318000Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-14-arm64%2F20260629.0180
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1318650Z ##[endgroup]
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1319430Z ##[group]GITHUB_TOKEN Permissions
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1320450Z Contents: read
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1320800Z Metadata: read
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1321150Z Packages: read
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1321500Z ##[endgroup]
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1323120Z Secret source: Actions
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1323770Z Prepare workflow directory
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1650420Z Prepare all required actions
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.1680930Z Getting action download info
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:58.3028610Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Build & Test (iOS Device)	Set up job	2026-08-24T01:24:59.4533430Z Download action repository 'swift-actions/setup-swift@v2' (SHA:7ca6abe6b3b0e8b5421b88be48feee39cbf52c6a)
+Build & Test (iOS Device)	Set up job	2026-08-24T01:25:00.1441930Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+Build & Test (iOS Device)	Set up job	2026-08-24T01:25:00.2361350Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Build & Test (iOS Device)	Set up job	2026-08-24T01:25:00.4351890Z Complete job name: Build & Test (iOS Device)
+Build & Test (iOS Device)	Checkout repository	﻿2026-08-24T01:25:00.4839780Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4846930Z ##[group]Run actions/checkout@v4
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4847470Z with:
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4847830Z   repository: zzhpublic/EmbyVideoPlayer
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4853220Z   token: ***
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4853540Z   ssh-strict: true
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4853890Z   ssh-user: git
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4854240Z   persist-credentials: true
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4854630Z   clean: true
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4854980Z   sparse-checkout-cone-mode: true
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4855520Z   fetch-depth: 1
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4855850Z   fetch-tags: false
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4856190Z   show-progress: true
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4856530Z   lfs: false
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4856830Z   submodules: false
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4857210Z   set-safe-directory: true
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4857620Z   allow-unsafe-pr-checkout: false
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.4858170Z ##[endgroup]
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9001700Z Syncing repository: zzhpublic/EmbyVideoPlayer
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9003270Z ##[group]Getting Git version info
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9004030Z Working directory is '/Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer'
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9005100Z [command]/opt/homebrew/bin/git version
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9250350Z git version 2.54.0
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9264530Z ##[endgroup]
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9269440Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/7296195f-79ad-4b7f-91e5-967c96008dd0/.gitconfig'
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9275040Z Temporarily overriding HOME='/Users/runner/work/_temp/7296195f-79ad-4b7f-91e5-967c96008dd0' before making global git config changes
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9277450Z Adding repository directory to the temporary git global config as a safe directory
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9280250Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9380630Z Deleting the contents of '/Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer'
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9383090Z ##[group]Initializing the repository
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9386470Z [command]/opt/homebrew/bin/git init /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9575680Z hint: Using 'master' as the name for the initial branch. This default branch name
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9577060Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9578020Z hint: to use in all of your new repositories, which will suppress this warning,
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9578750Z hint: call:
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9579160Z hint:
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9579760Z hint: 	git config --global init.defaultBranch <name>
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9580540Z hint:
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9581140Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9582090Z hint: 'development'. The just-created branch can be renamed via this command:
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9582860Z hint:
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9583250Z hint: 	git branch -m <name>
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9583670Z hint:
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9584330Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9601970Z Initialized empty Git repository in /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/.git/
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9604120Z [command]/opt/homebrew/bin/git remote add origin https://github.com/zzhpublic/EmbyVideoPlayer
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9668410Z ##[endgroup]
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9669450Z ##[group]Disabling automatic garbage collection
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9671010Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9740510Z ##[endgroup]
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9742510Z ##[group]Setting up auth
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9744530Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:00.9808210Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.0508510Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.0546870Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.1011080Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.1064880Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.1744100Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.1883920Z ##[endgroup]
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.1884890Z ##[group]Fetching the repository
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.1886890Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8e13aa81be248dde144babbf09df47ac71a6119a:refs/remotes/origin/zzhpublic-literate-engine
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.9474030Z From https://github.com/zzhpublic/EmbyVideoPlayer
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.9505270Z  * [new ref]         8e13aa81be248dde144babbf09df47ac71a6119a -> origin/zzhpublic-literate-engine
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.9612980Z ##[endgroup]
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.9613960Z ##[group]Determining the checkout info
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.9615060Z ##[endgroup]
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.9616500Z [command]/opt/homebrew/bin/git sparse-checkout disable
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.9682890Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.9739720Z ##[group]Checking out the ref
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:01.9742310Z [command]/opt/homebrew/bin/git checkout --progress --force -B zzhpublic-literate-engine refs/remotes/origin/zzhpublic-literate-engine
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:02.0050080Z Switched to a new branch 'zzhpublic-literate-engine'
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:02.0079390Z branch 'zzhpublic-literate-engine' set up to track 'origin/zzhpublic-literate-engine'.
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:02.0162010Z ##[endgroup]
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:02.0174220Z [command]/opt/homebrew/bin/git log -1 --format=%H
+Build & Test (iOS Device)	Checkout repository	2026-08-24T01:25:02.0220420Z 8e13aa81be248dde144babbf09df47ac71a6119a
+Build & Test (iOS Device)	Select Xcode	﻿2026-08-24T01:25:02.0446670Z ##[group]Run # Try multiple Xcode 15.4 paths, fallback to default
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0447730Z ^[[36;1m# Try multiple Xcode 15.4 paths, fallback to default^[[0m
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0448580Z ^[[36;1mif [ -d "/Applications/Xcode_15.4.app" ]; then^[[0m
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0449380Z ^[[36;1m  sudo xcode-select -s /Applications/Xcode_15.4.app^[[0m
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0450250Z ^[[36;1melif [ -d "/Applications/Xcode_15.3.app" ]; then^[[0m
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0451060Z ^[[36;1m  sudo xcode-select -s /Applications/Xcode_15.3.app^[[0m
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0452090Z ^[[36;1melse^[[0m
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0452800Z ^[[36;1m  sudo xcode-select -s /Applications/Xcode.app^[[0m
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0453530Z ^[[36;1mfi^[[0m
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0454130Z ^[[36;1mxcodebuild -version^[[0m
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0513550Z shell: /bin/bash -e {0}
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.0514350Z ##[endgroup]
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.2235260Z Xcode 15.4
+Build & Test (iOS Device)	Select Xcode	2026-08-24T01:25:02.2336600Z Build version 15F31d
+Build & Test (iOS Device)	Install Swift toolchain	﻿2026-08-24T01:25:02.2422900Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (iOS Device)	Install Swift toolchain	2026-08-24T01:25:02.2425220Z ##[group]Run swift-actions/setup-swift@v2
+Build & Test (iOS Device)	Install Swift toolchain	2026-08-24T01:25:02.2425970Z with:
+Build & Test (iOS Device)	Install Swift toolchain	2026-08-24T01:25:02.2426480Z   swift-version: 5.10
+Build & Test (iOS Device)	Install Swift toolchain	2026-08-24T01:25:02.2427070Z ##[endgroup]
+Build & Test (iOS Device)	Install Swift toolchain	2026-08-24T01:25:02.3038110Z [command]/usr/bin/xcrun --toolchain swift 5.10.1 --run swift --version
+Build & Test (iOS Device)	Install Swift toolchain	2026-08-24T01:25:04.5926320Z swift-driver version: 1.90.11.1 Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+Build & Test (iOS Device)	Install Swift toolchain	2026-08-24T01:25:04.5926940Z Target: arm64-apple-macosx14.0
+Build & Test (iOS Device)	Install Swift toolchain	2026-08-24T01:25:23.9347900Z [command]/usr/bin/xar -x -C /Users/runner/work/_temp/cc38145a-f77e-4686-86cb-cf127cc6cca6 -f /Users/runner/work/_temp/a572b76a-188a-4eba-a507-443315416404
+Build & Test (iOS Device)	Install Swift toolchain	2026-08-24T01:25:25.9388100Z [command]/usr/bin/tar xz -C /Users/runner/work/_temp/4ddcf102-8eed-44c5-bd5e-7b117608a3ed -f /Users/runner/work/_temp/cc38145a-f77e-4686-86cb-cf127cc6cca6/swift-5.10.1-RELEASE-osx-package.pkg/Payload
+Build & Test (iOS Device)	Install Swift toolchain	2026-08-24T01:25:29.9122070Z ##[error]The operation was canceled.
+Build & Test (iOS Device)	Upload build artifacts	﻿2026-08-24T01:25:29.9284800Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:29.9286160Z ##[group]Run actions/upload-artifact@v4
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:29.9309590Z with:
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:29.9309960Z   name: build-iOS Device-8e13aa81be248dde144babbf09df47ac71a6119a
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:29.9311610Z   path: .build
+Build & Test (iOS Device)	Upload build artifacts	DerivedData
+Build & Test (iOS Device)	Upload build artifacts	build/EmbyVideoPlayer.xcarchive
+Build & Test (iOS Device)	Upload build artifacts	build/ipa/EmbyVideoPlayer.ipa
+Build & Test (iOS Device)	Upload build artifacts	build/EmbyVideoPlayertvOS.xcarchive
+Build & Test (iOS Device)	Upload build artifacts	build/tvos/EmbyVideoPlayertvOS.zip
+Build & Test (iOS Device)	Upload build artifacts	build/EmbyVideoPlayerMacOS.xcarchive
+Build & Test (iOS Device)	Upload build artifacts	build/macos/EmbyVideoPlayerMacOS.zip
+Build & Test (iOS Device)	Upload build artifacts	
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:29.9312500Z   retention-days: 7
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:29.9312680Z   if-no-files-found: ignore
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:29.9312860Z   compression-level: 6
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:29.9313090Z   overwrite: false
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:29.9313260Z   include-hidden-files: false
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:29.9313570Z ##[endgroup]
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1721300Z (node:9347) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1726110Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1767190Z Multiple search paths detected. Calculating the least common ancestor of all paths
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1777060Z The least common ancestor is /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer. This will be the root directory of the artifact
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1786170Z No files were found with the provided path: .build
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1786600Z DerivedData
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1786960Z build/EmbyVideoPlayer.xcarchive
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1787320Z build/ipa/EmbyVideoPlayer.ipa
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1787660Z build/EmbyVideoPlayertvOS.xcarchive
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1788630Z build/tvos/EmbyVideoPlayertvOS.zip
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1789140Z build/EmbyVideoPlayerMacOS.xcarchive
+Build & Test (iOS Device)	Upload build artifacts	2026-08-24T01:25:30.1793520Z build/macos/EmbyVideoPlayerMacOS.zip. No artifacts will be uploaded.
+Build & Test (iOS Device)	Post Checkout repository	﻿2026-08-24T01:25:30.1956060Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.1958170Z Post job cleanup.
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.3339390Z [command]/opt/homebrew/bin/git version
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.3659440Z git version 2.54.0
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.3676890Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/d4b98729-5dea-4530-aea3-51030d4e98e3/.gitconfig'
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.3683670Z Temporarily overriding HOME='/Users/runner/work/_temp/d4b98729-5dea-4530-aea3-51030d4e98e3' before making global git config changes
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.3684420Z Adding repository directory to the temporary git global config as a safe directory
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.3686380Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.3854350Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.3937020Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.4717220Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.4759500Z http.https://github.com/.extraheader
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.4794050Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.4824490Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.5801350Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & Test (iOS Device)	Post Checkout repository	2026-08-24T01:25:30.5840400Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & Test (iOS Device)	Complete job	﻿2026-08-24T01:25:30.6743950Z Cleaning up orphan processes
+Build & Test (iOS Device)	Complete job	2026-08-24T01:25:31.2456990Z Terminate orphan process: pid (9323) (bsdtar)
+Build & Test (iOS Device)	Complete job	2026-08-24T01:25:31.3002950Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4, swift-actions/setup-swift@v2. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+SwiftLint Check	Set up job	﻿2026-08-24T01:24:31.3594160Z Current runner version: '2.336.0'
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3627420Z ##[group]Runner Image Provisioner
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3629550Z Hosted Compute Agent
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3631030Z Version: 20260624.560
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3631720Z Commit: 925d229a51159bc391ae97e54a2dd1fe20af789d
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3632220Z Build Date: 2026-06-24T18:26:47Z
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3632680Z Worker ID: {10a73ba5-3a45-4b4c-80d7-bd613c30d1d6}
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3633160Z Azure Region: westus
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3633540Z ##[endgroup]
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3634810Z ##[group]Operating System
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3635230Z macOS
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3635580Z 14.8.7
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3635910Z 23J520
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3636260Z ##[endgroup]
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3636630Z ##[group]Runner Image
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3637030Z Image: macos-14-arm64
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3637410Z Version: 20260629.0180.1
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3638180Z Included Software: https://github.com/actions/runner-images/blob/macos-14-arm64/20260629.0180/images/macos/macos-14-arm64-Readme.md
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3639480Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-14-arm64%2F20260629.0180
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3641640Z ##[endgroup]
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3643980Z ##[group]GITHUB_TOKEN Permissions
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3648130Z Contents: read
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3649140Z Metadata: read
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3650160Z Packages: read
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3651130Z ##[endgroup]
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3654790Z Secret source: Actions
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3656540Z Prepare workflow directory
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3918250Z Prepare all required actions
+SwiftLint Check	Set up job	2026-08-24T01:24:31.3951920Z Getting action download info
+SwiftLint Check	Set up job	2026-08-24T01:24:31.6524790Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+SwiftLint Check	Set up job	2026-08-24T01:24:32.6158740Z Complete job name: SwiftLint Check
+SwiftLint Check	Run actions/checkout@v4	﻿2026-08-24T01:24:32.6594910Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6601310Z ##[group]Run actions/checkout@v4
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6601790Z with:
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6602140Z   repository: zzhpublic/EmbyVideoPlayer
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6604740Z   token: ***
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6605070Z   ssh-strict: true
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6605400Z   ssh-user: git
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6605740Z   persist-credentials: true
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6606100Z   clean: true
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6606440Z   sparse-checkout-cone-mode: true
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6606830Z   fetch-depth: 1
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6607160Z   fetch-tags: false
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6607490Z   show-progress: true
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6607830Z   lfs: false
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6608150Z   submodules: false
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6608520Z   set-safe-directory: true
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6608900Z   allow-unsafe-pr-checkout: false
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:32.6609390Z ##[endgroup]
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.0943370Z Syncing repository: zzhpublic/EmbyVideoPlayer
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.0945150Z ##[group]Getting Git version info
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.0945800Z Working directory is '/Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer'
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.0946950Z [command]/opt/homebrew/bin/git version
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1261530Z git version 2.54.0
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1285530Z ##[endgroup]
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1292480Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/cbeceda0-8ad3-4d50-b872-3f12270e57ad/.gitconfig'
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1306390Z Temporarily overriding HOME='/Users/runner/work/_temp/cbeceda0-8ad3-4d50-b872-3f12270e57ad' before making global git config changes
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1309590Z Adding repository directory to the temporary git global config as a safe directory
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1312410Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1460530Z Deleting the contents of '/Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer'
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1468710Z ##[group]Initializing the repository
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1469840Z [command]/opt/homebrew/bin/git init /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1788790Z hint: Using 'master' as the name for the initial branch. This default branch name
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1848630Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1849740Z hint: to use in all of your new repositories, which will suppress this warning,
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1850470Z hint: call:
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1850950Z hint:
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1851440Z hint: 	git config --global init.defaultBranch <name>
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1851960Z hint:
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1852540Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1853580Z hint: 'development'. The just-created branch can be renamed via this command:
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1854320Z hint:
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1854780Z hint: 	git branch -m <name>
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1855260Z hint:
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1855880Z hint: Disable this message with "git config set advice.defaultBranchName false"
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1856940Z Initialized empty Git repository in /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/.git/
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1858830Z [command]/opt/homebrew/bin/git remote add origin https://github.com/zzhpublic/EmbyVideoPlayer
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1860480Z ##[endgroup]
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1861440Z ##[group]Disabling automatic garbage collection
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1862180Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1955450Z ##[endgroup]
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1957800Z ##[group]Setting up auth
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.1969170Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.2018630Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.2932110Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.2985320Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.3656000Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.3705250Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.4799330Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.4803460Z ##[endgroup]
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.4808870Z ##[group]Fetching the repository
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:33.4812260Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8e13aa81be248dde144babbf09df47ac71a6119a:refs/remotes/origin/zzhpublic-literate-engine
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1400960Z From https://github.com/zzhpublic/EmbyVideoPlayer
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1403730Z  * [new ref]         8e13aa81be248dde144babbf09df47ac71a6119a -> origin/zzhpublic-literate-engine
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1475670Z ##[endgroup]
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1480230Z ##[group]Determining the checkout info
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1481630Z ##[endgroup]
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1482230Z [command]/opt/homebrew/bin/git sparse-checkout disable
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1564060Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1625590Z ##[group]Checking out the ref
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1627400Z [command]/opt/homebrew/bin/git checkout --progress --force -B zzhpublic-literate-engine refs/remotes/origin/zzhpublic-literate-engine
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1968400Z Switched to a new branch 'zzhpublic-literate-engine'
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1981370Z branch 'zzhpublic-literate-engine' set up to track 'origin/zzhpublic-literate-engine'.
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.1990490Z ##[endgroup]
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.2100830Z [command]/opt/homebrew/bin/git log -1 --format=%H
+SwiftLint Check	Run actions/checkout@v4	2026-08-24T01:24:34.2154460Z 8e13aa81be248dde144babbf09df47ac71a6119a
+SwiftLint Check	Install SwiftLint	﻿2026-08-24T01:24:34.2402340Z ##[group]Run brew install swiftlint
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:34.2403390Z ^[[36;1mbrew install swiftlint^[[0m
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:34.2465990Z shell: /bin/bash -e {0}
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:34.2467000Z ##[endgroup]
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:36.5358670Z ##[warning]The following taps are not trusted:
+SwiftLint Check	Install SwiftLint	  aws/tap
+SwiftLint Check	Install SwiftLint	
+SwiftLint Check	Install SwiftLint	Homebrew is currently ignoring formulae, casks and commands from these taps because tap trust is required.
+SwiftLint Check	Install SwiftLint	Untap them with:
+SwiftLint Check	Install SwiftLint	  brew untap aws/tap
+SwiftLint Check	Install SwiftLint	Trust specific formulae, casks and commands with:
+SwiftLint Check	Install SwiftLint	  brew trust --formula <user>/<tap>/<formula>
+SwiftLint Check	Install SwiftLint	  brew trust --cask <user>/<tap>/<cask>
+SwiftLint Check	Install SwiftLint	  brew trust --command <user>/<tap>/<command>
+SwiftLint Check	Install SwiftLint	Whole-tap trust is broader and includes all current and future formulae,
+SwiftLint Check	Install SwiftLint	casks and commands from the listed taps. Trust whole taps with:
+SwiftLint Check	Install SwiftLint	  brew trust aws/tap
+SwiftLint Check	Install SwiftLint	To disable trust checks:
+SwiftLint Check	Install SwiftLint	  export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
+SwiftLint Check	Install SwiftLint	This is not recommended and will be removed in a later release.
+SwiftLint Check	Install SwiftLint	For more information, see:
+SwiftLint Check	Install SwiftLint	  https://docs.brew.sh/Tap-Trust
+SwiftLint Check	Install SwiftLint	
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:37.1748330Z ^[[34m==>^[[0m ^[[1mWould install 1 formula:^[[0m
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:37.1749480Z swiftlint
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:37.1762640Z ^[[34m==>^[[0m ^[[1mDownloading https://ghcr.io/v2/homebrew/core/swiftlint/manifests/0.65.0^[[0m
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:37.4127680Z ^[[32m==>^[[0m ^[[1mFetching downloads for: ^[[32mswiftlint^[[39m^[[0m
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:37.9691250Z ✔︎ Bottle swiftlint (0.65.0)
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:38.0765660Z ^[[34m==>^[[0m ^[[1mPouring swiftlint--0.65.0.arm64_sonoma.bottle.tar.gz^[[0m
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:38.1919980Z 🍺  /opt/homebrew/Cellar/swiftlint/0.65.0: 10 files, 42.6MB
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:38.1921610Z ^[[32m==>^[[0m ^[[1mCaveats^[[0m
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:38.1924210Z Bash completion has been installed to:
+SwiftLint Check	Install SwiftLint	2026-08-24T01:24:38.1925330Z   /opt/homebrew/etc/bash_completion.d
+SwiftLint Check	Check SwiftLint	﻿2026-08-24T01:24:38.2104070Z ##[group]Run swiftlint lint --config .swiftlint.yml
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.2104520Z ^[[36;1mswiftlint lint --config .swiftlint.yml^[[0m
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.2174950Z shell: /bin/bash -e {0}
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.2175240Z ##[endgroup]
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3046130Z warning: 'explicit_self' should be listed in the 'analyzer_rules' configuration section for more clarity as it is only run by 'swiftlint analyze'.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3052720Z warning: Configuration for 'file_length' rule contains the invalid key(s) 'ignores_comments'.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3071770Z warning: Configuration for 'nesting' rule contains the invalid key(s) 'statement_level'.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3108320Z warning: 'missing_docs' is listed 2 times in the configuration.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3109430Z warning: 'explicit_self' is listed 2 times in the configuration.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3110380Z warning: 'force_unwrapping' is listed 2 times in the configuration.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3111620Z warning: Found a configuration for 'function_body_length' rule, but it is disabled in 'disabled_rules'.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3113450Z warning: Found a configuration for 'cyclomatic_complexity' rule, but it is disabled in 'disabled_rules'.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3115080Z warning: Found a configuration for 'file_length' rule, but it is disabled in 'disabled_rules'.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3116480Z warning: Found a configuration for 'type_body_length' rule, but it is disabled in 'disabled_rules'.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3118160Z warning: Found a configuration for 'identifier_name' rule, but it is disabled in 'disabled_rules'.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3119750Z warning: Found a configuration for 'line_length' rule, but it is disabled in 'disabled_rules'.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:38.3121170Z warning: Found a configuration for 'nesting' rule, but it is disabled in 'disabled_rules'.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9839550Z Linting Swift files in current working directory
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9942550Z warning: 'quick_discard_none' is not a valid rule identifier
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9944390Z Valid rule identifiers:
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9945680Z accessibility_label_for_image
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9946700Z accessibility_trait_for_button
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9947480Z all
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9948160Z anonymous_argument_in_multiline_closure
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9948950Z array_init
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9949610Z async_without_await
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9950580Z attribute_name_spacing
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9951310Z attributes
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9951960Z balanced_xctest_lifecycle
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9952670Z blanket_disable_command
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9953370Z block_based_kvo
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9954070Z capture_variable
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9954810Z class_delegate_protocol
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9955480Z closing_brace
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9956120Z closure_body_length
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9956750Z closure_end_indentation
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9957460Z closure_parameter_position
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9958140Z closure_spacing
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9958780Z collection_alignment
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9959400Z colon
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9960010Z comma
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9960630Z comma_inheritance
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9961250Z comment_spacing
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9961900Z compiler_protocol_init
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9962580Z computed_accessors_order
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9963310Z conditional_returns_on_newline
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9964080Z contains_over_filter_count
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9964820Z contains_over_filter_is_empty
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9965530Z contains_over_first_not_nil
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9966280Z contains_over_range_nil_comparison
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9967670Z contrasted_opening_brace
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9968480Z control_statement
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9969130Z convenience_type
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9969740Z custom_rules
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9970390Z cyclomatic_complexity
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9971040Z deployment_target
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9971690Z direct_return
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9972350Z discarded_notification_center_observer
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9973170Z discouraged_assert
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9973860Z discouraged_default_parameter
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9974600Z discouraged_direct_init
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9976510Z discouraged_none_name
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9977180Z discouraged_object_literal
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9984740Z discouraged_optional_boolean
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9987770Z discouraged_optional_collection
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9988390Z duplicate_conditions
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9988910Z duplicate_enum_cases
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9989370Z duplicate_imports
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9989870Z duplicated_key_in_dictionary_literal
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9990430Z dynamic_inline
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9990960Z empty_collection_literal
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9991480Z empty_count
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9991940Z empty_enum_arguments
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9992400Z empty_parameters
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9992900Z empty_parentheses_with_trailing_closure
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9993500Z empty_string
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9994150Z empty_xctest_method
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9994640Z enum_case_associated_values_count
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9995230Z expiring_todo
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9995670Z explicit_acl
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9996140Z explicit_enum_raw_value
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9996610Z explicit_init
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9997020Z explicit_self
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9997600Z explicit_top_level_acl
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9998340Z explicit_type_interface
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9998830Z extension_access_modifier
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9999340Z fallthrough
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:39.9999740Z fatal_error_message
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0000190Z file_header
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0000610Z file_length
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0001000Z file_name
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0027820Z file_name_no_space
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0028570Z file_types_order
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0029000Z final_test_case
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0029570Z first_where
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0030110Z flatmap_over_map_reduce
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0031430Z for_where
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0031870Z force_cast
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0032320Z force_try
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0032740Z force_unwrapping
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0033160Z function_body_length
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0034420Z function_default_parameter_at_end
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0036180Z function_name_whitespace
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0036700Z function_parameter_count
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0037210Z generic_type_name
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0037720Z ibinspectable_in_extension
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0038210Z identical_operands
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0038650Z identifier_name
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0039070Z implicit_getter
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0039500Z implicit_optional_initialization
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0040010Z implicit_return
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0040440Z implicitly_unwrapped_optional
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0041040Z inclusive_language
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0041500Z incompatible_concurrency_annotation
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0042120Z indentation_width
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0045720Z invalid_swiftlint_command
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0046290Z invisible_character
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0046740Z is_disjoint
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0047220Z joined_default_parameter
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0047720Z large_tuple
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0048110Z last_where
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0048490Z leading_whitespace
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0048960Z legacy_cggeometry_functions
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0058510Z legacy_constant
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0069230Z legacy_constructor
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0070040Z legacy_hashing
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0070910Z legacy_multiple
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0071740Z legacy_nsgeometry_functions
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0098910Z legacy_objc_type
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0099630Z legacy_random
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0100090Z legacy_uigraphics_function
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0100610Z let_var_whitespace
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0101070Z line_length
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0101500Z literal_expression_end_indentation
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0102060Z local_doc_comment
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0102480Z lower_acl_than_parent
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0102900Z mark
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0103280Z missing_docs
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0103690Z modifier_order
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0104130Z multiline_arguments
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0105230Z multiline_arguments_brackets
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0105830Z multiline_call_arguments
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0106310Z multiline_function_chains
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0106850Z multiline_literal_brackets
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0108330Z multiline_parameters
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0108820Z multiline_parameters_brackets
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0109430Z multiple_closures_with_trailing_closure
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0109990Z nesting
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0110390Z nimble_operator
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0110810Z no_empty_block
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0111260Z no_extension_access_modifier
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0111770Z no_fallthrough_only
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0112220Z no_grouping_extension
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0112650Z no_magic_numbers
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0113090Z no_space_in_method_call
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0113570Z non_optional_string_data_conversion
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0115440Z non_overridable_class_declaration
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0116110Z notification_center_detachment
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0116660Z ns_number_init_as_function_reference
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0117210Z nslocalizedstring_key
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0117690Z nslocalizedstring_require_bundle
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0118220Z nsobject_prefer_isequal
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0118810Z number_separator
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0119270Z object_literal
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0119710Z one_declaration_per_file
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0120160Z opening_brace
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0120620Z operator_usage_whitespace
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0121130Z optional_data_string_conversion
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0121640Z optional_enum_case_matching
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0122140Z orphaned_doc_comment
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0122600Z overridden_super_call
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0123090Z override_in_extension
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0123560Z pattern_matching_keywords
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0126960Z period_spacing
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0127450Z prefer_asset_symbols
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0127920Z prefer_condition_list
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0128410Z prefer_key_path
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0128860Z prefer_nimble
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0129300Z prefer_self_in_static_references
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0130690Z prefer_self_type_over_type_of_self
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0131450Z prefer_type_checking
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0131960Z prefer_zero_over_explicit_init
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0133480Z prefixed_toplevel_constant
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0134010Z private_action
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0134440Z private_outlet
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0134850Z private_over_fileprivate
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0135340Z private_subject
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0135750Z private_swiftui_state
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0136870Z private_unit_test
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0137330Z prohibited_interface_builder
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0138520Z prohibited_super_call
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0139040Z protocol_property_accessors_order
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0139610Z quick_discouraged_call
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0141210Z quick_discouraged_focused_test
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0141840Z quick_discouraged_pending_test
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0142420Z raw_value_for_camel_cased_codable_enum
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0143130Z reduce_boolean
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0143630Z reduce_into
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0144040Z redundant_discardable_let
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0144500Z redundant_final
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0145090Z redundant_nil_coalescing
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0145630Z redundant_objc_attribute
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0146090Z redundant_self
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0146530Z redundant_sendable
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0146990Z redundant_set_access_control
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0147530Z redundant_string_enum_value
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0148060Z redundant_type_annotation
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0148560Z redundant_void_return
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0148990Z required_deinit
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0149390Z required_enum_case
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0149840Z return_arrow_whitespace
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0151470Z return_value_from_void_function
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0152050Z self_binding
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0152490Z self_in_property_initialization
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0153030Z shorthand_argument
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0153460Z shorthand_operator
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0153930Z shorthand_optional_binding
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0154510Z single_test_class
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0154930Z sorted_enum_cases
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0155360Z sorted_first_last
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0155770Z sorted_imports
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0156210Z statement_position
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0157550Z static_operator
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0157970Z static_over_final_class
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0158430Z strict_fileprivate
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0158840Z strong_iboutlet
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0159270Z superfluous_disable_command
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0159750Z superfluous_else
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0160170Z switch_case_alignment
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0160610Z switch_case_on_newline
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0161050Z syntactic_sugar
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0161470Z test_case_accessibility
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0162050Z todo
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0163760Z toggle_bool
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0164490Z trailing_closure
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0164940Z trailing_comma
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0165350Z trailing_newline
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0165760Z trailing_semicolon
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0166250Z trailing_whitespace
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0166700Z type_body_length
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0167110Z type_contents_order
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0167520Z type_name
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0167960Z typesafe_array_init
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0168410Z unavailable_condition
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0168870Z unavailable_function
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0169310Z unhandled_throwing_task
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0169780Z unneeded_break_in_switch
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0175150Z unneeded_escaping
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0185850Z unneeded_override
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0209310Z unneeded_parentheses_in_closure_argument
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0210090Z unneeded_synthesized_initializer
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0210630Z unneeded_throws_rethrows
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0211100Z unowned_variable_capture
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0211570Z untyped_error_in_catch
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0212030Z unused_closure_parameter
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0212500Z unused_control_flow_label
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0212960Z unused_declaration
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0213370Z unused_enumerated
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0213780Z unused_import
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0214190Z unused_optional_binding
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0215650Z unused_parameter
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0216130Z unused_setter_value
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0216560Z valid_ibinspectable
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0218100Z variable_shadowing
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0218570Z vertical_parameter_alignment
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0219100Z vertical_parameter_alignment_on_call
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0219640Z vertical_whitespace
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0220090Z vertical_whitespace_between_cases
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0220640Z vertical_whitespace_closing_braces
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0221200Z vertical_whitespace_opening_braces
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0222280Z void_function_in_ternary
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0222770Z void_return
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0223150Z weak_delegate
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0223550Z xct_specific_matcher
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0223970Z xctfail_message
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0224370Z yoda_condition
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0377070Z Linting 'LibVLCWrapper.swift' (1/8)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0377930Z Linting 'EmbyAPI.swift' (2/8)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.0378290Z Linting 'SMBBrowser.swift' (3/8)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1242340Z Linting 'MainView.swift' (4/8)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1243180Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/SMB/SMBBrowser.swift:386:1: warning: No Grouping Extension Violation: Extensions shouldn't be used to group code within the same source file (no_grouping_extension)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1349210Z Linting 'PosterFlowView.swift' (5/8)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1349940Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/SMB/SMBBrowser.swift:98:8: warning: Required Deinit Violation: Classes should have an explicit deinit method (required_deinit)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1446240Z Linting 'SMBBrowserView.swift' (6/8)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1447050Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/SMB/SMBBrowser.swift:144:70: warning: Unused Closure Parameter Violation: Unused parameter in a closure should be replaced with _ (unused_closure_parameter)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1448190Z Linting 'VideoPlayerView.swift' (7/8)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1448840Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:634:41: warning: Force Unwrapping Violation: Force unwrapping should be avoided (force_unwrapping)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1452170Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:636:78: warning: Force Unwrapping Violation: Force unwrapping should be avoided (force_unwrapping)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1453400Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:637:90: warning: Force Unwrapping Violation: Force unwrapping should be avoided (force_unwrapping)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1556800Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:638:81: warning: Force Unwrapping Violation: Force unwrapping should be avoided (force_unwrapping)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1601220Z Linting 'EmbyVideoPlayerApp.swift' (8/8)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1602120Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:645:44: warning: Force Unwrapping Violation: Force unwrapping should be avoided (force_unwrapping)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1624600Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:646:45: warning: Force Unwrapping Violation: Force unwrapping should be avoided (force_unwrapping)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1628260Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:630:13: warning: Implicit Optional Initialization Violation: Optional should be implicitly initialized without nil (implicit_optional_initialization)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1638990Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:29:8: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1640150Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:30:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1641260Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:31:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1642780Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:32:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1643870Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:33:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1645060Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:34:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1646770Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:35:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1651240Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:46:8: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1652440Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:47:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1653480Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:48:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1654520Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:49:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1655560Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:50:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1656620Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:51:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1657970Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:52:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1659010Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:53:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1660110Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:54:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1661160Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:55:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1662200Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:56:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1663230Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:57:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1664260Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:58:12: warning: Missing Docs Violation: public declarations should be documented (missing_docs)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1665330Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:94:8: warning: Required Deinit Violation: Classes should have an explicit deinit method (required_deinit)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1666440Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:673:8: warning: Required Deinit Violation: Classes should have an explicit deinit method (required_deinit)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1667790Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/VideoPlayer/LibVLCWrapper.swift:184:9: warning: Toggle Bool Violation: Prefer `someBool.toggle()` over `someBool = !someBool` (toggle_bool)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1668950Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:475:1: warning: No Grouping Extension Violation: Extensions shouldn't be used to group code within the same source file (no_grouping_extension)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1670070Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:144:8: warning: Required Deinit Violation: Classes should have an explicit deinit method (required_deinit)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1671130Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:258:120: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1672220Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:274:36: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1673300Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:354:39: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1674560Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:484:120: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1675670Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:490:61: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1676810Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:496:61: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1678050Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:502:61: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1679150Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:508:64: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1680290Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:228:49: warning: Unused Closure Parameter Violation: Unused parameter in a closure should be replaced with _ (unused_closure_parameter)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1681480Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:383:49: warning: Unused Closure Parameter Violation: Unused parameter in a closure should be replaced with _ (unused_closure_parameter)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1682650Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:458:45: warning: Unused Closure Parameter Violation: Unused parameter in a closure should be replaced with _ (unused_closure_parameter)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1683830Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Emby/EmbyAPI.swift:458:55: warning: Unused Closure Parameter Violation: Unused parameter in a closure should be replaced with _ (unused_closure_parameter)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1723520Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Browser/SMBBrowserView.swift:794:28: warning: Implicit Optional Initialization Violation: Optional should be implicitly initialized without nil (implicit_optional_initialization)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1725080Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Browser/SMBBrowserView.swift:49:69: warning: Multiple Closures with Trailing Closure Violation: Trailing closure syntax should not be used when passing more than one closure argument (multiple_closures_with_trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1727180Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Browser/SMBBrowserView.swift:56:70: warning: Multiple Closures with Trailing Closure Violation: Trailing closure syntax should not be used when passing more than one closure argument (multiple_closures_with_trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1728760Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Browser/SMBBrowserView.swift:111:69: warning: Multiple Closures with Trailing Closure Violation: Trailing closure syntax should not be used when passing more than one closure argument (multiple_closures_with_trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1730370Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Browser/SMBBrowserView.swift:115:70: warning: Multiple Closures with Trailing Closure Violation: Trailing closure syntax should not be used when passing more than one closure argument (multiple_closures_with_trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1732030Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Browser/SMBBrowserView.swift:523:56: warning: Multiple Closures with Trailing Closure Violation: Trailing closure syntax should not be used when passing more than one closure argument (multiple_closures_with_trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1738220Z Done linting! Found 67 violations, 0 serious in 8 files.
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1740960Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Browser/PosterFlowView.swift:727:81: warning: Multiple Closures with Trailing Closure Violation: Trailing closure syntax should not be used when passing more than one closure argument (multiple_closures_with_trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1745390Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Browser/PosterFlowView.swift:663:40: warning: Operator Usage Whitespace Violation: Operators should be surrounded by a single whitespace when they are being used (operator_usage_whitespace)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1749300Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Browser/PosterFlowView.swift:767:42: warning: Unused Closure Parameter Violation: Unused parameter in a closure should be replaced with _ (unused_closure_parameter)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1752930Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Browser/PosterFlowView.swift:854:34: warning: Unused Closure Parameter Violation: Unused parameter in a closure should be replaced with _ (unused_closure_parameter)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1754250Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Player/VideoPlayerView.swift:217:17: warning: Prefer For-Where Violation: `where` clauses are preferred over a single `if` inside a `for` (for_where)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1756440Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Player/VideoPlayerView.swift:46:54: warning: Force Unwrapping Violation: Force unwrapping should be avoided (force_unwrapping)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1757850Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Player/VideoPlayerView.swift:499:57: warning: Multiple Closures with Trailing Closure Violation: Trailing closure syntax should not be used when passing more than one closure argument (multiple_closures_with_trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1759530Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Player/VideoPlayerView.swift:747:68: warning: Multiple Closures with Trailing Closure Violation: Trailing closure syntax should not be used when passing more than one closure argument (multiple_closures_with_trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1761140Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Player/VideoPlayerView.swift:786:61: warning: Multiple Closures with Trailing Closure Violation: Trailing closure syntax should not be used when passing more than one closure argument (multiple_closures_with_trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1762600Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Player/VideoPlayerView.swift:855:1: warning: No Grouping Extension Violation: Extensions shouldn't be used to group code within the same source file (no_grouping_extension)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1764320Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Player/VideoPlayerView.swift:646:47: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1765530Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Player/VideoPlayerView.swift:659:47: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1766720Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Player/VideoPlayerView.swift:672:43: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Check SwiftLint	2026-08-24T01:24:40.1767910Z /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/Sources/Views/Player/VideoPlayerView.swift:679:47: warning: Trailing Closure Violation: Trailing closure syntax should be used whenever possible (trailing_closure)
+SwiftLint Check	Post Run actions/checkout@v4	﻿2026-08-24T01:24:40.1931930Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.1933350Z Post job cleanup.
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.2850750Z [command]/opt/homebrew/bin/git version
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.2919540Z git version 2.54.0
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.2938300Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/c8719893-1cd8-4dec-b22e-d33e6a218b37/.gitconfig'
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.2949140Z Temporarily overriding HOME='/Users/runner/work/_temp/c8719893-1cd8-4dec-b22e-d33e6a218b37' before making global git config changes
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.2950840Z Adding repository directory to the temporary git global config as a safe directory
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.2955830Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.3016000Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.3072750Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.3729870Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.3778680Z http.https://github.com/.extraheader
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.3792330Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.3846040Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.4476180Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+SwiftLint Check	Post Run actions/checkout@v4	2026-08-24T01:24:40.4525280Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+SwiftLint Check	Complete job	﻿2026-08-24T01:24:40.5234150Z Cleaning up orphan processes
+SwiftLint Check	Complete job	2026-08-24T01:24:40.8523400Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+SwiftFormat Check	Set up job	﻿2026-08-24T01:24:46.5043820Z Current runner version: '2.336.0'
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5065000Z ##[group]Runner Image Provisioner
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5065710Z Hosted Compute Agent
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5066100Z Version: 20260624.560
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5066500Z Commit: 925d229a51159bc391ae97e54a2dd1fe20af789d
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5066990Z Build Date: 2026-06-24T18:26:47Z
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5067420Z Worker ID: {9088b47a-00c5-447f-ba76-90f60d346841}
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5067880Z Azure Region: westus
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5068250Z ##[endgroup]
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5069360Z ##[group]Operating System
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5069750Z macOS
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5070090Z 14.8.7
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5070410Z 23J520
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5070750Z ##[endgroup]
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5071110Z ##[group]Runner Image
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5071490Z Image: macos-14-arm64
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5071860Z Version: 20260629.0180.1
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5072590Z Included Software: https://github.com/actions/runner-images/blob/macos-14-arm64/20260629.0180/images/macos/macos-14-arm64-Readme.md
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5073730Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-14-arm64%2F20260629.0180
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5074380Z ##[endgroup]
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5075160Z ##[group]GITHUB_TOKEN Permissions
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5076410Z Contents: read
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5076770Z Metadata: read
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5077110Z Packages: read
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5077460Z ##[endgroup]
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5078920Z Secret source: Actions
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5079570Z Prepare workflow directory
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5344140Z Prepare all required actions
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.5382950Z Getting action download info
+SwiftFormat Check	Set up job	2026-08-24T01:24:46.7946700Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+SwiftFormat Check	Set up job	2026-08-24T01:24:47.9361190Z Complete job name: SwiftFormat Check
+SwiftFormat Check	Run actions/checkout@v4	﻿2026-08-24T01:24:47.9848030Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9855550Z ##[group]Run actions/checkout@v4
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9856070Z with:
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9856420Z   repository: zzhpublic/EmbyVideoPlayer
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9859170Z   token: ***
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9859490Z   ssh-strict: true
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9859820Z   ssh-user: git
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9860160Z   persist-credentials: true
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9860540Z   clean: true
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9860890Z   sparse-checkout-cone-mode: true
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9861280Z   fetch-depth: 1
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9861610Z   fetch-tags: false
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9861940Z   show-progress: true
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9862280Z   lfs: false
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9862590Z   submodules: false
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9862980Z   set-safe-directory: true
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9863370Z   allow-unsafe-pr-checkout: false
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:47.9863960Z ##[endgroup]
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.4899520Z Syncing repository: zzhpublic/EmbyVideoPlayer
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.4906470Z ##[group]Getting Git version info
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.4911130Z Working directory is '/Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer'
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.4913700Z [command]/opt/homebrew/bin/git version
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5191850Z git version 2.54.0
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5208690Z ##[endgroup]
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5216820Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/4917ae70-3442-4d45-b00e-b0a58eaf6d3d/.gitconfig'
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5227290Z Temporarily overriding HOME='/Users/runner/work/_temp/4917ae70-3442-4d45-b00e-b0a58eaf6d3d' before making global git config changes
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5228600Z Adding repository directory to the temporary git global config as a safe directory
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5238660Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5345970Z Deleting the contents of '/Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer'
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5349860Z ##[group]Initializing the repository
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5353920Z [command]/opt/homebrew/bin/git init /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5577660Z hint: Using 'master' as the name for the initial branch. This default branch name
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5581760Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5584380Z hint: to use in all of your new repositories, which will suppress this warning,
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5590800Z hint: call:
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5592570Z hint:
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5593270Z hint: 	git config --global init.defaultBranch <name>
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5595190Z hint:
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5595880Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5596720Z hint: 'development'. The just-created branch can be renamed via this command:
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5597470Z hint:
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5597910Z hint: 	git branch -m <name>
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5598490Z hint:
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5599060Z hint: Disable this message with "git config set advice.defaultBranchName false"
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5600990Z Initialized empty Git repository in /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/.git/
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5615700Z [command]/opt/homebrew/bin/git remote add origin https://github.com/zzhpublic/EmbyVideoPlayer
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5682900Z ##[endgroup]
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5685100Z ##[group]Disabling automatic garbage collection
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5686850Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5756110Z ##[endgroup]
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5756920Z ##[group]Setting up auth
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5764830Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.5837850Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.7631900Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.7724580Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.8565680Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.8625170Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.9556360Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.9558840Z ##[endgroup]
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.9559580Z ##[group]Fetching the repository
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:48.9561760Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8e13aa81be248dde144babbf09df47ac71a6119a:refs/remotes/origin/zzhpublic-literate-engine
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5088920Z From https://github.com/zzhpublic/EmbyVideoPlayer
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5090540Z  * [new ref]         8e13aa81be248dde144babbf09df47ac71a6119a -> origin/zzhpublic-literate-engine
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5192800Z ##[endgroup]
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5195040Z ##[group]Determining the checkout info
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5198220Z ##[endgroup]
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5204290Z [command]/opt/homebrew/bin/git sparse-checkout disable
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5330080Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5397480Z ##[group]Checking out the ref
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5400600Z [command]/opt/homebrew/bin/git checkout --progress --force -B zzhpublic-literate-engine refs/remotes/origin/zzhpublic-literate-engine
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5872320Z Switched to a new branch 'zzhpublic-literate-engine'
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5886630Z branch 'zzhpublic-literate-engine' set up to track 'origin/zzhpublic-literate-engine'.
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.5909280Z ##[endgroup]
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.6042320Z [command]/opt/homebrew/bin/git log -1 --format=%H
+SwiftFormat Check	Run actions/checkout@v4	2026-08-24T01:24:49.6108120Z 8e13aa81be248dde144babbf09df47ac71a6119a
+SwiftFormat Check	Install SwiftFormat	﻿2026-08-24T01:24:49.6373660Z ##[group]Run brew install swiftformat
+SwiftFormat Check	Install SwiftFormat	2026-08-24T01:24:49.6374780Z ^[[36;1mbrew install swiftformat^[[0m
+SwiftFormat Check	Install SwiftFormat	2026-08-24T01:24:49.6444700Z shell: /bin/bash -e {0}
+SwiftFormat Check	Install SwiftFormat	2026-08-24T01:24:49.6445480Z ##[endgroup]
+SwiftFormat Check	Install SwiftFormat	2026-08-24T01:24:52.0672890Z ^[[33mWarning:^[[0m swiftformat 0.61.1 is already installed and up-to-date.
+SwiftFormat Check	Install SwiftFormat	2026-08-24T01:24:52.0675140Z To reinstall 0.61.1, run:
+SwiftFormat Check	Install SwiftFormat	2026-08-24T01:24:52.0675730Z   brew reinstall swiftformat
+SwiftFormat Check	Check SwiftFormat	﻿2026-08-24T01:24:52.0858310Z ##[group]Run echo "Skipping SwiftFormat check"
+SwiftFormat Check	Check SwiftFormat	2026-08-24T01:24:52.0859340Z ^[[36;1mecho "Skipping SwiftFormat check"^[[0m
+SwiftFormat Check	Check SwiftFormat	2026-08-24T01:24:52.0964560Z shell: /bin/bash -e {0}
+SwiftFormat Check	Check SwiftFormat	2026-08-24T01:24:52.0964910Z ##[endgroup]
+SwiftFormat Check	Check SwiftFormat	2026-08-24T01:24:52.1519930Z Skipping SwiftFormat check
+SwiftFormat Check	Post Run actions/checkout@v4	﻿2026-08-24T01:24:52.1639930Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.1641700Z Post job cleanup.
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.2757840Z [command]/opt/homebrew/bin/git version
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.2860740Z git version 2.54.0
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.2902790Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/1843e341-81ca-4139-b316-428208a82e47/.gitconfig'
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.2916760Z Temporarily overriding HOME='/Users/runner/work/_temp/1843e341-81ca-4139-b316-428208a82e47' before making global git config changes
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.2918920Z Adding repository directory to the temporary git global config as a safe directory
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.2921310Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.2985180Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.3040120Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.3716900Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.3760740Z http.https://github.com/.extraheader
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.3774940Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.3827750Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.4513960Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+SwiftFormat Check	Post Run actions/checkout@v4	2026-08-24T01:24:52.4560560Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+SwiftFormat Check	Complete job	﻿2026-08-24T01:24:52.5343590Z Cleaning up orphan processes
+SwiftFormat Check	Complete job	2026-08-24T01:24:52.7803350Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (macOS)	Set up job	﻿2026-08-24T01:25:23.4480390Z Current runner version: '2.336.0'
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4495360Z ##[group]Runner Image Provisioner
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4495920Z Hosted Compute Agent
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4496290Z Version: 20260624.560
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4496690Z Commit: 925d229a51159bc391ae97e54a2dd1fe20af789d
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4497140Z Build Date: 2026-06-24T18:26:47Z
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4497580Z Worker ID: {5f79cdda-e351-4b62-8886-7bfde5a48d01}
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4498040Z Azure Region: westus
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4498390Z ##[endgroup]
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4499200Z ##[group]Operating System
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4499600Z macOS
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4499930Z 14.8.7
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4500270Z 23J520
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4500600Z ##[endgroup]
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4500960Z ##[group]Runner Image
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4501350Z Image: macos-14-arm64
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4501720Z Version: 20260629.0180.1
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4502470Z Included Software: https://github.com/actions/runner-images/blob/macos-14-arm64/20260629.0180/images/macos/macos-14-arm64-Readme.md
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4503590Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-14-arm64%2F20260629.0180
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4504260Z ##[endgroup]
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4505030Z ##[group]GITHUB_TOKEN Permissions
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4506050Z Contents: read
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4506430Z Metadata: read
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4506800Z Packages: read
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4507160Z ##[endgroup]
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4508450Z Secret source: Actions
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4509090Z Prepare workflow directory
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4719010Z Prepare all required actions
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.4752570Z Getting action download info
+Build & Test (macOS)	Set up job	2026-08-24T01:25:23.8842830Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Build & Test (macOS)	Set up job	2026-08-24T01:25:24.3778260Z Download action repository 'swift-actions/setup-swift@v2' (SHA:7ca6abe6b3b0e8b5421b88be48feee39cbf52c6a)
+Build & Test (macOS)	Set up job	2026-08-24T01:25:24.6596830Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+Build & Test (macOS)	Set up job	2026-08-24T01:25:24.7240410Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Build & Test (macOS)	Set up job	2026-08-24T01:25:24.8747460Z Complete job name: Build & Test (macOS)
+Build & Test (macOS)	Checkout repository	﻿2026-08-24T01:25:24.9113300Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9119000Z ##[group]Run actions/checkout@v4
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9119440Z with:
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9119750Z   repository: zzhpublic/EmbyVideoPlayer
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9122320Z   token: ***
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9122600Z   ssh-strict: true
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9122900Z   ssh-user: git
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9123200Z   persist-credentials: true
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9123530Z   clean: true
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9123830Z   sparse-checkout-cone-mode: true
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9124220Z   fetch-depth: 1
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9124520Z   fetch-tags: false
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9124820Z   show-progress: true
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9125130Z   lfs: false
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9125430Z   submodules: false
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9125930Z   set-safe-directory: true
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9126520Z   allow-unsafe-pr-checkout: false
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:24.9127100Z ##[endgroup]
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0225220Z Syncing repository: zzhpublic/EmbyVideoPlayer
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0226660Z ##[group]Getting Git version info
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0227280Z Working directory is '/Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer'
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0228180Z [command]/opt/homebrew/bin/git version
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0436140Z git version 2.54.0
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0500020Z ##[endgroup]
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0505090Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/88698003-fc46-4bad-a408-5563dd5cf8a6/.gitconfig'
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0506270Z Temporarily overriding HOME='/Users/runner/work/_temp/88698003-fc46-4bad-a408-5563dd5cf8a6' before making global git config changes
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0507760Z Adding repository directory to the temporary git global config as a safe directory
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0508720Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0535280Z Deleting the contents of '/Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer'
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0538030Z ##[group]Initializing the repository
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0541040Z [command]/opt/homebrew/bin/git init /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0727550Z hint: Using 'master' as the name for the initial branch. This default branch name
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0728450Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0729240Z hint: to use in all of your new repositories, which will suppress this warning,
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0730600Z hint: call:
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0731040Z hint:
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0731600Z hint: 	git config --global init.defaultBranch <name>
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0732120Z hint:
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0732630Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0733370Z hint: 'development'. The just-created branch can be renamed via this command:
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0733980Z hint:
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0734370Z hint: 	git branch -m <name>
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0735150Z hint:
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0735690Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0736660Z Initialized empty Git repository in /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer/.git/
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0741990Z [command]/opt/homebrew/bin/git remote add origin https://github.com/zzhpublic/EmbyVideoPlayer
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0774750Z ##[endgroup]
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0775450Z ##[group]Disabling automatic garbage collection
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0779940Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0822990Z ##[endgroup]
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0823730Z ##[group]Setting up auth
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0826810Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.0865410Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.1388940Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.1426920Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.1855340Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.1892810Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.2329930Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.2368390Z ##[endgroup]
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.2369000Z ##[group]Fetching the repository
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.2373590Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8e13aa81be248dde144babbf09df47ac71a6119a:refs/remotes/origin/zzhpublic-literate-engine
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.7861570Z From https://github.com/zzhpublic/EmbyVideoPlayer
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.7862470Z  * [new ref]         8e13aa81be248dde144babbf09df47ac71a6119a -> origin/zzhpublic-literate-engine
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.7912280Z ##[endgroup]
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.7912940Z ##[group]Determining the checkout info
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.7913540Z ##[endgroup]
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.7915810Z [command]/opt/homebrew/bin/git sparse-checkout disable
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.7964580Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.7999860Z ##[group]Checking out the ref
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.8002900Z [command]/opt/homebrew/bin/git checkout --progress --force -B zzhpublic-literate-engine refs/remotes/origin/zzhpublic-literate-engine
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.8199140Z Switched to a new branch 'zzhpublic-literate-engine'
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.8210280Z branch 'zzhpublic-literate-engine' set up to track 'origin/zzhpublic-literate-engine'.
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.8214830Z ##[endgroup]
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.8277790Z [command]/opt/homebrew/bin/git log -1 --format=%H
+Build & Test (macOS)	Checkout repository	2026-08-24T01:25:25.8313930Z 8e13aa81be248dde144babbf09df47ac71a6119a
+Build & Test (macOS)	Select Xcode	﻿2026-08-24T01:25:25.8443760Z ##[group]Run # Try multiple Xcode 15.4 paths, fallback to default
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8444770Z ^[[36;1m# Try multiple Xcode 15.4 paths, fallback to default^[[0m
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8445310Z ^[[36;1mif [ -d "/Applications/Xcode_15.4.app" ]; then^[[0m
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8445850Z ^[[36;1m  sudo xcode-select -s /Applications/Xcode_15.4.app^[[0m
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8446400Z ^[[36;1melif [ -d "/Applications/Xcode_15.3.app" ]; then^[[0m
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8446970Z ^[[36;1m  sudo xcode-select -s /Applications/Xcode_15.3.app^[[0m
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8447480Z ^[[36;1melse^[[0m
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8447870Z ^[[36;1m  sudo xcode-select -s /Applications/Xcode.app^[[0m
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8448340Z ^[[36;1mfi^[[0m
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8448670Z ^[[36;1mxcodebuild -version^[[0m
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8505370Z shell: /bin/bash -e {0}
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.8505800Z ##[endgroup]
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.9484650Z Xcode 15.4
+Build & Test (macOS)	Select Xcode	2026-08-24T01:25:25.9485310Z Build version 15F31d
+Build & Test (macOS)	Install Swift toolchain	﻿2026-08-24T01:25:25.9536460Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (macOS)	Install Swift toolchain	2026-08-24T01:25:25.9538320Z ##[group]Run swift-actions/setup-swift@v2
+Build & Test (macOS)	Install Swift toolchain	2026-08-24T01:25:25.9538760Z with:
+Build & Test (macOS)	Install Swift toolchain	2026-08-24T01:25:25.9539100Z   swift-version: 5.10
+Build & Test (macOS)	Install Swift toolchain	2026-08-24T01:25:25.9539440Z ##[endgroup]
+Build & Test (macOS)	Install Swift toolchain	2026-08-24T01:25:26.0145970Z [command]/usr/bin/xcrun --toolchain swift 5.10.1 --run swift --version
+Build & Test (macOS)	Install Swift toolchain	2026-08-24T01:25:27.6866840Z swift-driver version: 1.90.11.1 Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+Build & Test (macOS)	Install Swift toolchain	2026-08-24T01:25:27.6867630Z Target: arm64-apple-macosx14.0
+Build & Test (macOS)	Install Swift toolchain	2026-08-24T01:25:29.1770150Z ##[error]The operation was canceled.
+Build & Test (macOS)	Upload build artifacts	﻿2026-08-24T01:25:29.1867380Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.1868390Z ##[group]Run actions/upload-artifact@v4
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.1868600Z with:
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.1868910Z   name: build-macOS-8e13aa81be248dde144babbf09df47ac71a6119a
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.1869800Z   path: .build
+Build & Test (macOS)	Upload build artifacts	DerivedData
+Build & Test (macOS)	Upload build artifacts	build/EmbyVideoPlayer.xcarchive
+Build & Test (macOS)	Upload build artifacts	build/ipa/EmbyVideoPlayer.ipa
+Build & Test (macOS)	Upload build artifacts	build/EmbyVideoPlayertvOS.xcarchive
+Build & Test (macOS)	Upload build artifacts	build/tvos/EmbyVideoPlayertvOS.zip
+Build & Test (macOS)	Upload build artifacts	build/EmbyVideoPlayerMacOS.xcarchive
+Build & Test (macOS)	Upload build artifacts	build/macos/EmbyVideoPlayerMacOS.zip
+Build & Test (macOS)	Upload build artifacts	
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.1870610Z   retention-days: 7
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.1870810Z   if-no-files-found: ignore
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.1871030Z   compression-level: 6
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.1871200Z   overwrite: false
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.1871380Z   include-hidden-files: false
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.1871600Z ##[endgroup]
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3057420Z (node:1200) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3058400Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3202170Z Multiple search paths detected. Calculating the least common ancestor of all paths
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3215770Z The least common ancestor is /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer. This will be the root directory of the artifact
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3216950Z No files were found with the provided path: .build
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3217380Z DerivedData
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3218340Z build/EmbyVideoPlayer.xcarchive
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3218690Z build/ipa/EmbyVideoPlayer.ipa
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3218940Z build/EmbyVideoPlayertvOS.xcarchive
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3219210Z build/tvos/EmbyVideoPlayertvOS.zip
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3219460Z build/EmbyVideoPlayerMacOS.xcarchive
+Build & Test (macOS)	Upload build artifacts	2026-08-24T01:25:29.3219820Z build/macos/EmbyVideoPlayerMacOS.zip. No artifacts will be uploaded.
+Build & Test (macOS)	Post Checkout repository	﻿2026-08-24T01:25:29.3403590Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.3404680Z Post job cleanup.
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4112680Z [command]/opt/homebrew/bin/git version
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4152180Z git version 2.54.0
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4167950Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/048e28ce-a8e4-4ea3-a573-18efcc96f0eb/.gitconfig'
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4173780Z Temporarily overriding HOME='/Users/runner/work/_temp/048e28ce-a8e4-4ea3-a573-18efcc96f0eb' before making global git config changes
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4174610Z Adding repository directory to the temporary git global config as a safe directory
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4176780Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/EmbyVideoPlayer/EmbyVideoPlayer
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4216760Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4253980Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4865420Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4900440Z http.https://github.com/.extraheader
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4935410Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.4936770Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.5447350Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build & Test (macOS)	Post Checkout repository	2026-08-24T01:25:29.5481260Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build & Test (macOS)	Complete job	﻿2026-08-24T01:25:29.6517180Z Cleaning up orphan processes
+Build & Test (macOS)	Complete job	2026-08-24T01:25:30.2081430Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4, swift-actions/setup-swift@v2. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

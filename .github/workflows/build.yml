@@ -263,29 +263,42 @@ jobs:
 
       - name: Install Swift (Windows)
         run: |
-          $swiftVersion = "5.10.1"
-          $swiftUrl = "https://download.swift.org/swift-5.10.1-release/windows10/swift-5.10.1-RELEASE/swift-5.10.1-RELEASE-windows10.exe"
-          $fallbackUrl = "https://download.swift.org/swift-5.10.1-release/windows10/swift-5.10.1-RELEASE/swift-5.10.1-RELEASE-windows10.exe"
-          $installerPath = "$env:TEMP\swift-installer.exe"
+          Write-Host "Installing Swift 5.10.1 on Windows..."
           
-          Write-Host "Downloading Swift ${swiftVersion}..."
-          try {
-            Invoke-WebRequest -Uri $swiftUrl -OutFile $installerPath -ErrorAction Stop
-          } catch {
-            Write-Host "Primary URL failed, trying fallback..."
-            Invoke-WebRequest -Uri $fallbackUrl -OutFile $installerPath -ErrorAction Stop
+          # First try Chocolatey (fastest, usually pre-installed on windows runners)
+          if (Get-Command choco -ErrorAction SilentlyContinue) {
+            Write-Host "Trying Chocolatey..."
+            try {
+              choco install swift -y --version 5.10.1
+              Write-Host "Swift installed via Chocolatey"
+            } catch {
+              Write-Host "Chocolatey install failed, trying manual download..."
+            }
           }
           
-          Write-Host "Installing Swift..."
-          & $installerPath /quiet /norestart /log "$env:TEMP\swift-install.log"
+          # If Chocolatey didn't work, try manual download
+          if (-not (Get-Command swift -ErrorAction SilentlyContinue)) {
+            $swiftVersion = "5.10.1"
+            $swiftUrl = "https://download.swift.org/swift-5.10.1-release/windows10/swift-5.10.1-RELEASE/swift-5.10.1-RELEASE-windows10.exe"
+            $installerPath = "$env:TEMP\swift-installer.exe"
+            
+            Write-Host "Downloading Swift ${swiftVersion}..."
+            Invoke-WebRequest -Uri $swiftUrl -OutFile $installerPath -ErrorAction Stop
+            
+            Write-Host "Installing Swift..."
+            & $installerPath /quiet /norestart /log "$env:TEMP\swift-install.log"
+          }
           
-          # Add Swift to PATH - try multiple possible paths
+          # Search for Swift in all possible locations and add to PATH
           $swiftPaths = @(
+            "C:\Library\Developer\Toolchains\swift-5.10.1-RELEASE\usr\bin",
             "C:\Library\Developer\Toolchains\swift-5.10.1-RELEASE-windows10\usr\bin",
             "C:\swift\usr\bin",
             "C:\Swift\usr\bin",
-            "C:\Library\Developer\Toolchains\swift-5.10.1-RELEASE\usr\bin"
+            "C:\Program Files\Swift\usr\bin",
+            "C:\Program Files (x86)\Swift\usr\bin"
           )
+          
           $foundPath = $false
           foreach ($swiftPath in $swiftPaths) {
             if (Test-Path $swiftPath) {
@@ -296,8 +309,9 @@ jobs:
               break
             }
           }
+          
           if (-not $foundPath) {
-            Write-Host "Swift not found in standard locations, searching..."
+            Write-Host "Swift not found in standard locations, searching C:\Library\Developer\Toolchains\..."
             $swiftDirs = Get-ChildItem -Path "C:\Library\Developer\Toolchains\" -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -like "swift*" }
             foreach ($dir in $swiftDirs) {
               $binPath = Join-Path $dir.FullName "usr\bin"
@@ -310,6 +324,16 @@ jobs:
               }
             }
           }
+          
+          if (-not $foundPath) {
+            Write-Host "Swift not found, checking Chocolatey paths..."
+            $chocoPath = "C:\ProgramData\chocolatey\bin"
+            if (Test-Path $chocoPath) {
+              $env:PATH = "$chocoPath;$env:PATH"
+              [Environment]::SetEnvironmentVariable("PATH", $env:PATH, [EnvironmentVariableTarget]::User)
+            }
+          }
+          
           Write-Host "Swift installation complete"
         shell: pwsh
 
