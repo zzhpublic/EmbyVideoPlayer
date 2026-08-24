@@ -264,7 +264,8 @@ jobs:
       - name: Install Swift (Windows)
         uses: compnerd/gha-setup-swift@main
         with:
-          swift-version: "5.10.1"
+          swift-version: swift-5.10.1-release
+          swift-build: 5.10.1-RELEASE
 
       - name: Check Swift
         run: swift --version
