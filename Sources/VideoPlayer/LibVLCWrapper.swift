@@ -236,8 +236,8 @@ public class LibVLCWrapper: NSObject, LibVLCPlayerProtocol, ObservableObject, VL
         public func addSubtitleTrack(url: URL) throws {
             guard let player = mediaPlayer else { throw LibVLCError.notInitialized }
         
-            // VLCKit 4.0: addPlaybackSlave takes NSURL, not VLCMedia
-            let result = player.addPlaybackSlave(url as NSURL, type: .subtitle, enforce: false)
+                    // VLCKit 4.0: addPlaybackSlave takes URL (not NSURL) in newer API
+                    let result = player.addPlaybackSlave(url, type: .subtitle, enforce: false)
             if result != 0 {
                 throw LibVLCError.playbackFailed("Failed to add subtitle track: \(result)")
             }
