@@ -36,8 +36,6 @@ targets:
     platform: iOS
     deploymentTarget:
       iOS: "16.0"
-      tvOS: "16.0"
-      macOS: "13.0"
     sources:
       - path: Sources
     dependencies:
@@ -56,8 +54,12 @@ targets:
     variants:
       tvOS:
         platform: tvOS
+        deploymentTarget:
+          tvOS: "16.0"
       macOS:
         platform: macOS
+        deploymentTarget:
+          macOS: "13.0"
 
   EmbyVideoPlayerApp:
     type: application
