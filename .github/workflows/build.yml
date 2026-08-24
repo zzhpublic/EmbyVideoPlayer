@@ -283,14 +283,19 @@ jobs:
 
       - name: Install VLC SDK (Windows)
         run: |
-          # Download VLC SDK from official VideoLAN releases
-          $sdkUrl = "https://download.videolan.org/pub/videolan/vlc/3.0.21/win64/vlc-3.0.21-win64.zip"
+          # Download VLC SDK from fossies.org mirror (3.0.23)
+          $sdkUrl = "https://fossies.org/windows/misc/vlc-3.0.23-win64.7z"
           $sdkPath = "C:\vlc-sdk"
           try {
             Write-Host "Downloading VLC SDK from $sdkUrl"
-            Invoke-WebRequest -Uri $sdkUrl -OutFile "vlc-sdk.zip" -ErrorAction Stop
+            Invoke-WebRequest -Uri $sdkUrl -OutFile "vlc-sdk.7z" -ErrorAction Stop
+            
+            # Install 7zip for extraction
+            Write-Host "Installing 7zip..."
+            choco install 7zip -y
+            
             Write-Host "Extracting SDK to $sdkPath"
-            Expand-Archive -Path "vlc-sdk.zip" -DestinationPath $sdkPath -Force
+            & "C:\Program Files\7-Zip\7z.exe" x "vlc-sdk.7z" -o"$sdkPath" -y
             
             # Find the actual extracted folder (VLC SDK may extract to versioned subfolder)
             $extractedDirs = Get-ChildItem -Path $sdkPath -Directory -ErrorAction SilentlyContinue
