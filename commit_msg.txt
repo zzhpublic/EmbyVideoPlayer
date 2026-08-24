@@ -1,0 +1,9 @@
+Fix VLCKit 4.0 API and Windows Swift install
+
+- Fix LibVLCWrapper.swift for VLCKit 4.0 API:
+  - Use selectTrack(at:type:) instead of selectTrackAtIndex(_:type:)
+  - Use VLCMedia.TrackType instead of VLCMediaTrackType
+  - Use trackId instead of id for track identification
+  - Fix addPlaybackSlave to use .subtitle instead of VLCMediaPlaybackSlaveType
+  - Fix Windows init() to call super.init()
+- Fix PowerShell syntax in workflow

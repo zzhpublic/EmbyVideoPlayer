@@ -262,9 +262,31 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Swift (Windows)
-        uses: compnerd/gha-setup-swift@main
-        with:
-          swift-version: "5.10.1"
+        run: |
+          $swiftVersion = "5.10.1"
+          $swiftUrl = "https://download.swift.org/swift-5.10.1-release/windows10/swift-5.10.1-RELEASE/swift-5.10.1-RELEASE-windows10.exe"
+          $fallbackUrl = "https://download.swift.org/swift-5.10.1-release/windows10/swift-5.10.1-RELEASE/swift-5.10.1-RELEASE-windows10.exe"
+          $installerPath = "$env:TEMP\swift-installer.exe"
+          
+          Write-Host "Downloading Swift ${swiftVersion}..."
+          try {
+            Invoke-WebRequest -Uri $swiftUrl -OutFile $installerPath -ErrorAction Stop
+          } catch {
+            Write-Host "Primary URL failed, trying fallback..."
+            Invoke-WebRequest -Uri $fallbackUrl -OutFile $installerPath -ErrorAction Stop
+          }
+          
+          Write-Host "Installing Swift..."
+          & $installerPath /quiet /norestart /log "$env:TEMP\swift-install.log"
+          
+          # Add Swift to PATH
+          $swiftPath = "C:\Library\Developer\Toolchains\swift-5.10.1-RELEASE-windows10\usr\bin"
+          if (Test-Path $swiftPath) {
+            $env:PATH = "$swiftPath;$env:PATH"
+            [Environment]::SetEnvironmentVariable("PATH", $env:PATH, [EnvironmentVariableTarget]::User)
+          }
+          Write-Host "Swift installation complete"
+        shell: pwsh
 
       - name: Check Swift
         run: swift --version

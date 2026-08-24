@@ -1,0 +1,7 @@
+﻿gh : run 32630769087 is still in progress; logs will be available when it is complete
+所在位置 行:2 字符: 1
++ gh run view 32630769087 --log 2>&1 | Out-File -FilePath full_log4.txt ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (run 32630769087... it is complete:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
