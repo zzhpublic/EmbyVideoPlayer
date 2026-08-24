@@ -264,8 +264,7 @@ jobs:
       - name: Install Swift (Windows)
         uses: compnerd/gha-setup-swift@main
         with:
-          swift-version: swift-5.10.1-release
-          swift-build: 5.10.1-RELEASE
+          swift-version: "5.10.1"
 
       - name: Check Swift
         run: swift --version
@@ -283,48 +282,32 @@ jobs:
 
       - name: Install VLC SDK (Windows)
         run: |
-          # Download and install VLC for Windows
-          $vlcUrl = "https://get.videolan.org/vlc/3.0.21/win64/vlc-3.0.21-win64.exe"
-          $installPath = "C:\Program Files\VideoLAN\VLC"
-          Write-Host "Downloading VLC from $vlcUrl"
-          Invoke-WebRequest -Uri $vlcUrl -OutFile "vlc-installer.exe"
-          Write-Host "Installing VLC to $installPath"
-          Start-Process -FilePath "vlc-installer.exe" -ArgumentList "/S", "/D=$installPath" -Wait
-          # Verify installation
-          if (Test-Path "$installPath\vlc.exe") {
-            Write-Host "VLC installed successfully at $installPath"
-          } else {
-            Write-Error "VLC installation failed"
-            exit 1
-          }
+          # Install VLC via Chocolatey (includes headers/libs in some versions)
+          choco install vlc --version=3.0.21 -y
           
-          # Download VLC SDK for Windows (contains headers and libs)
-          # Try multiple URLs as they sometimes change
-          $sdkUrls = @(
-            "https://get.videolan.org/vlc/3.0.21/win64/vlc-3.0.21-win64-sdk.zip",
-            "https://download.videolan.org/pub/videolan/vlc/3.0.21/win64/vlc-3.0.21-win64-sdk.zip"
-          )
+          # Also try to install via Chocolatey VLC SDK if available
+          # Or download SDK from GitHub releases as fallback
+          $sdkUrl = "https://github.com/videolan/vlc/releases/download/3.0.21/vlc-3.0.21-win64-sdk.zip"
           $sdkPath = "C:\vlc-sdk"
-          $sdkDownloaded = $false
-          
-          foreach ($sdkUrl in $sdkUrls) {
-            try {
-              Write-Host "Trying SDK URL: $sdkUrl"
-              Invoke-WebRequest -Uri $sdkUrl -OutFile "vlc-sdk.zip" -ErrorAction Stop
-              Write-Host "Extracting SDK to $sdkPath"
-              Expand-Archive -Path "vlc-sdk.zip" -DestinationPath $sdkPath -Force
-              if (Test-Path "$sdkPath\vlc-3.0.21\include\vlc\vlc.h") {
-                Write-Host "VLC SDK extracted to $sdkPath"
-                $sdkDownloaded = $true
-                break
+          try {
+            Write-Host "Downloading VLC SDK from $sdkUrl"
+            Invoke-WebRequest -Uri $sdkUrl -OutFile "vlc-sdk.zip" -ErrorAction Stop
+            Write-Host "Extracting SDK to $sdkPath"
+            Expand-Archive -Path "vlc-sdk.zip" -DestinationPath $sdkPath -Force
+            if (Test-Path "$sdkPath\include\vlc\vlc.h") {
+              Write-Host "VLC SDK extracted to $sdkPath"
+            } else {
+              Write-Warning "VLC SDK structure may differ, checking for vlc.h..."
+              $found = Get-ChildItem -Path $sdkPath -Recurse -Filter "vlc.h" -ErrorAction SilentlyContinue | Select-Object -First 1
+              if ($found) {
+                Write-Host "Found vlc.h at: $($found.FullName)"
+              } else {
+                Write-Error "vlc.h not found in SDK"
+                exit 1
               }
-            } catch {
-              Write-Warning "Failed to download from ${sdkUrl}: $_"
             }
-          }
-          
-          if (-not $sdkDownloaded) {
-            Write-Error "Failed to download VLC SDK from all URLs"
+          } catch {
+            Write-Error "Failed to download/extract VLC SDK: $_"
             exit 1
           }
         shell: pwsh
