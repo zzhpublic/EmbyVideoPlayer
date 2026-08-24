@@ -284,7 +284,7 @@ jobs:
       - name: Install VLC SDK (Windows)
         run: |
           # Download VLC SDK from official VideoLAN releases
-          $sdkUrl = "https://get.videolan.org/vlc/3.0.21/win64/vlc-3.0.21-win64-sdk.zip"
+          $sdkUrl = "https://download.videolan.org/pub/videolan/vlc/3.0.21/win64/vlc-3.0.21-win64.zip"
           $sdkPath = "C:\vlc-sdk"
           try {
             Write-Host "Downloading VLC SDK from $sdkUrl"
