@@ -261,81 +261,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Swift (Windows)
-        run: |
-          Write-Host "Installing Swift 5.10.1 on Windows..."
-          
-          # First try Chocolatey (fastest, usually pre-installed on windows runners)
-          if (Get-Command choco -ErrorAction SilentlyContinue) {
-            Write-Host "Trying Chocolatey..."
-            try {
-              choco install swift -y --version 5.10.1
-              Write-Host "Swift installed via Chocolatey"
-            } catch {
-              Write-Host "Chocolatey install failed, trying manual download..."
-            }
-          }
-          
-          # If Chocolatey didn't work, try manual download
-          if (-not (Get-Command swift -ErrorAction SilentlyContinue)) {
-            $swiftVersion = "5.10.1"
-            $swiftUrl = "https://download.swift.org/swift-5.10.1-release/windows10/swift-5.10.1-RELEASE/swift-5.10.1-RELEASE-windows10.exe"
-            $installerPath = "$env:TEMP\swift-installer.exe"
-            
-            Write-Host "Downloading Swift ${swiftVersion}..."
-            Invoke-WebRequest -Uri $swiftUrl -OutFile $installerPath -ErrorAction Stop
-            
-            Write-Host "Installing Swift..."
-            & $installerPath /quiet /norestart /log "$env:TEMP\swift-install.log"
-          }
-          
-          # Search for Swift in all possible locations and add to PATH
-          $swiftPaths = @(
-            "C:\Library\Developer\Toolchains\swift-5.10.1-RELEASE\usr\bin",
-            "C:\Library\Developer\Toolchains\swift-5.10.1-RELEASE-windows10\usr\bin",
-            "C:\swift\usr\bin",
-            "C:\Swift\usr\bin",
-            "C:\Program Files\Swift\usr\bin",
-            "C:\Program Files (x86)\Swift\usr\bin"
-          )
-          
-          $foundPath = $false
-          foreach ($swiftPath in $swiftPaths) {
-            if (Test-Path $swiftPath) {
-              $env:PATH = "$swiftPath;$env:PATH"
-              [Environment]::SetEnvironmentVariable("PATH", $env:PATH, [EnvironmentVariableTarget]::User)
-              Write-Host "Found Swift at: $swiftPath"
-              $foundPath = $true
-              break
-            }
-          }
-          
-          if (-not $foundPath) {
-            Write-Host "Swift not found in standard locations, searching C:\Library\Developer\Toolchains\..."
-            $swiftDirs = Get-ChildItem -Path "C:\Library\Developer\Toolchains\" -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -like "swift*" }
-            foreach ($dir in $swiftDirs) {
-              $binPath = Join-Path $dir.FullName "usr\bin"
-              if (Test-Path $binPath) {
-                $env:PATH = "$binPath;$env:PATH"
-                [Environment]::SetEnvironmentVariable("PATH", $env:PATH, [EnvironmentVariableTarget]::User)
-                Write-Host "Found Swift at: $binPath"
-                $foundPath = $true
-                break
-              }
-            }
-          }
-          
-          if (-not $foundPath) {
-            Write-Host "Swift not found, checking Chocolatey paths..."
-            $chocoPath = "C:\ProgramData\chocolatey\bin"
-            if (Test-Path $chocoPath) {
-              $env:PATH = "$chocoPath;$env:PATH"
-              [Environment]::SetEnvironmentVariable("PATH", $env:PATH, [EnvironmentVariableTarget]::User)
-            }
-          }
-          
-          Write-Host "Swift installation complete"
-        shell: pwsh
+      - name: Setup Swift
+        uses: compnerd/gha-setup-swift@main
+        with:
+          swift-version: swift-5.10.1-release
+          swift-build: 5.10.1-RELEASE
 
       - name: Check Swift
         run: swift --version
@@ -353,25 +283,36 @@ jobs:
 
       - name: Install VLC SDK (Windows)
         run: |
-          # Install VLC via Chocolatey (includes headers/libs in some versions)
-          choco install vlc --version=3.0.21 -y
-          
-          # Also try to install via Chocolatey VLC SDK if available
-          # Or download SDK from GitHub releases as fallback
-          $sdkUrl = "https://github.com/videolan/vlc/releases/download/3.0.21/vlc-3.0.21-win64-sdk.zip"
+          # Download VLC SDK from official VideoLAN releases
+          $sdkUrl = "https://get.videolan.org/vlc/3.0.21/win64/vlc-3.0.21-win64-sdk.zip"
           $sdkPath = "C:\vlc-sdk"
           try {
             Write-Host "Downloading VLC SDK from $sdkUrl"
             Invoke-WebRequest -Uri $sdkUrl -OutFile "vlc-sdk.zip" -ErrorAction Stop
             Write-Host "Extracting SDK to $sdkPath"
             Expand-Archive -Path "vlc-sdk.zip" -DestinationPath $sdkPath -Force
-            if (Test-Path "$sdkPath\include\vlc\vlc.h") {
-              Write-Host "VLC SDK extracted to $sdkPath"
+            
+            # Find the actual extracted folder (VLC SDK may extract to versioned subfolder)
+            $extractedDirs = Get-ChildItem -Path $sdkPath -Directory -ErrorAction SilentlyContinue
+            $vlcSdkRoot = $sdkPath
+            foreach ($dir in $extractedDirs) {
+              if (Test-Path (Join-Path $dir.FullName "include\vlc\vlc.h")) {
+                $vlcSdkRoot = $dir.FullName
+                break
+              }
+            }
+            
+            if (Test-Path (Join-Path $vlcSdkRoot "include\vlc\vlc.h")) {
+              Write-Host "VLC SDK found at: $vlcSdkRoot"
+              echo "VLC_SDK_PATH=$vlcSdkRoot" >> $env:GITHUB_ENV
             } else {
-              Write-Warning "VLC SDK structure may differ, checking for vlc.h..."
+              Write-Warning "vlc.h not found in expected location, searching..."
               $found = Get-ChildItem -Path $sdkPath -Recurse -Filter "vlc.h" -ErrorAction SilentlyContinue | Select-Object -First 1
               if ($found) {
+                $vlcSdkRoot = Split-Path (Split-Path $found.FullName)
                 Write-Host "Found vlc.h at: $($found.FullName)"
+                Write-Host "VLC SDK root: $vlcSdkRoot"
+                echo "VLC_SDK_PATH=$vlcSdkRoot" >> $env:GITHUB_ENV
               } else {
                 Write-Error "vlc.h not found in SDK"
                 exit 1
@@ -383,15 +324,11 @@ jobs:
           }
         shell: pwsh
 
-      - name: Set VLC SDK path
-        run: |
-          echo "VLC_SDK_PATH=C:\vlc-sdk\vlc-3.0.21" >> $env:GITHUB_ENV
-
       - name: Build Windows executable
         run: |
           swift build -c release --product EmbyVideoPlayerWindows
         env:
-          VLC_SDK_PATH: C:\vlc-sdk\vlc-3.0.21
+          VLC_SDK_PATH: ${{ env.VLC_SDK_PATH }}
 
       - name: Package Windows build
         run: |
@@ -399,9 +336,16 @@ jobs:
           New-Item -ItemType Directory -Force -Path $buildDir
           Copy-Item -Path ".build\release\EmbyVideoPlayerWindows.exe" -Destination "$buildDir\"
           # Copy VLC DLLs from SDK
-          Copy-Item -Path "C:\vlc-sdk\vlc-3.0.21\lib\*.dll" -Destination "$buildDir\" -ErrorAction SilentlyContinue
+          $sdkPath = "${{ env.VLC_SDK_PATH }}"
+          if (Test-Path "$sdkPath\lib\*.dll") {
+            Copy-Item -Path "$sdkPath\lib\*.dll" -Destination "$buildDir\" -ErrorAction SilentlyContinue
+            Write-Host "Copied DLLs from SDK lib folder"
+          }
           # Also copy from VLC installation for runtime
-          Copy-Item -Path "C:\Program Files\VideoLAN\VLC\*.dll" -Destination "$buildDir\" -ErrorAction SilentlyContinue
+          if (Test-Path "C:\Program Files\VideoLAN\VLC\*.dll") {
+            Copy-Item -Path "C:\Program Files\VideoLAN\VLC\*.dll" -Destination "$buildDir\" -ErrorAction SilentlyContinue
+            Write-Host "Copied DLLs from VLC installation"
+          }
           # Create zip
           Compress-Archive -Path "$buildDir\*" -DestinationPath "$buildDir\EmbyVideoPlayer-Windows.zip"
           Write-Host "Windows build packaged at $buildDir\EmbyVideoPlayer-Windows.zip"
